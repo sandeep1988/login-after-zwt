@@ -1,212 +1,170 @@
 <!-- BEGIN PAGE CONTENT -->
-                       <!-- BEGIN PAGE HEAD -->
-            <div class="page-head">
-                <div class="container">
-                    <!-- BEGIN PAGE TITLE -->
-                    <div class="page-title">
-                        <h1>Add Contact</h1>
-                    </div>
-                    <!-- END PAGE TITLE -->
-                    <!-- BEGIN PAGE TOOLBAR -->
-                    <div class="page-toolbar">
-                        <!-- BEGIN THEME PANEL -->
-                        <div class="btn-group btn-theme-panel">
-                            <a href="javascript:;" class="btn dropdown-toggle"  data-hover="dropdown" data-toggle="dropdown">
-                                <i class="icon-settings"></i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li>
-                                    <a href="javascript:;">
-                                        <i class="icon-settings"></i>Settings </a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- END PAGE TOOLBAR -->
-                </div>
+    <!-- BEGIN PAGE HEAD -->
+    <div class="page-head">
+        <div class="container-fluid">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>Cases <small> Find and manage Cases</small></h1>
             </div>
-            <!-- END PAGE HEAD -->
-            <div class="page-content">
-                <div class="container">
-                    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-                    <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                    <h4 class="modal-title">Modal title</h4>
-                                </div>
-                                <div class="modal-body">
-                                    Widget settings form goes here
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn blue">Save changes</button>
-                                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
+            <!-- END PAGE TITLE -->
+            <!-- BEGIN PAGE TOOLBAR -->
+            <div class="page-toolbar">
+                <!-- BEGIN THEME PANEL -->
+                
+            </div>
+            <!-- END PAGE TOOLBAR -->
+        </div>
+    </div>
+    <!-- END PAGE HEAD -->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">Modal title</h4>
                         </div>
-                        <!-- /.modal-dialog -->
+                        <div class="modal-body">
+                            Widget settings form goes here
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn blue">Save changes</button>
+                            <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <!-- /.modal -->
-                    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-                    <!-- BEGIN PAGE BREADCRUMB -->
-                    <ul class="page-breadcrumb breadcrumb">
-                        <li>
-                            <a href="#">Dashboard</a><i class="fa fa-circle"></i>
-                        </li>
-                        <li class="active">
-                            Add Contact
-                        </li>
-                    </ul>
-                    <!-- END PAGE BREADCRUMB -->
-                    <!-- BEGIN PAGE CONTENT INNER -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="portlet light" id="form_wizard_1">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <span class="caption-subject font-green-sharp bold uppercase">
-                                            <i class="fa fa-user"></i> Add Contact</span>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="/dashboard">Dashboard</a><i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="/cases">Cases</a><i class="fa fa-circle"></i>
+                </li>                        
+                <li class="active">
+                    Add
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet light" id="form_wizard_1">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <span class="caption-subject font-green-sharp bold uppercase">
+                                    <i class="fa fa-user"></i> Add Case</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            <!-- BEGIN FORM-->
+                            <form action="javascript:;" id="investor_create" class="form-horizontal">
+                                <div class="form-body">
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="inputWarning">Title <span class="required">*</span></label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="add_inv1" class="form-control" placeholder="Add Title">
+                                            
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="portlet-body form">
-                                    <!-- BEGIN FORM-->
-                                    <form action="javascript:;" id="investor_create" class="form-horizontal">
-                                        <div class="form-body">
-                                            <h3 class="form-section">Personal Information</h3>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="inputWarning">Title</label>
-                                                <div class="col-md-4">
-                                                    <input type="text" name="add_inv1" class="form-control">
-                                                    <span class="help-block">Fill title </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="inputWarning">Description</label>
-                                                <div class="col-md-4">
-                                                    <textarea name="add_inv13" value="Test Title22" class="form-control" id="" cols="20" rows="6" placeholder="Add Description"></textarea>
-                                                    <span class="help-block">Fill description </span>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="inputWarning">Description <span class="required">*</span></label>
+                                        <div class="col-md-7">
+                                            <textarea name="add_inv13" value="Test Title22" class="ckeditor form-control" id="" cols="20" rows="3" placeholder="Add Description"></textarea>
+                                            
+                                        </div>
+                                    </div>
 
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="inputWarning">Reference Urls </label>
-                                                <div class="col-md-4">
-                                                    <input type="email" name="add_inv14" class="form-control">
-                                                    <span class="help-block">Fill referenceurls</span>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="inputWarning">Reference Urls </label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="add_inv14" class="form-control" placeholder="Enter Reference URL" />
+                                            
+                                        </div>
+                                    </div>
 
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="inputWarning">File Attachment  </label>
-                                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                                <div class="input-group input-large">
-
-                                                                    <span class="input-group-addon btn yellow btn-file">
-
-                                                                        <span class="fileinput-new">
-                                                                            <i class="fa fa-cloud-upload "></i> Choose file </span>
-                                                                        <span class="fileinput-exists">
-                                                                            Change </span>
-                                                                        <input type="hidden">
-                                                                        <input type="file" name="...">
-                                                                    </span>
-                                                                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput">
-                                                                        Remove </a>
-                                                                    <div class="form-control uneditable-input span3" data-trigger="fileinput">
-                                                                        <i class="fa fa-file fileinput-exists"></i>&nbsp; <span class="fileinput-filename">
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="inputWarning">File Attachment  </label>
+                                        <div class="row fileupload-buttonbar">
+        									<div class="col-lg-3">
+        										<!-- The fileinput-button span is used to style the file input field as button -->
+        										<span class="btn green fileinput-button">
+                                                    <i class="fa fa-plus"></i> <span>Add files... </span>
+        										    <input type="file" multiple="" name="files[]" />
+                                                </span>
+                                                <span class="help-block">   </span>
+        									</div>
+        								</div>
+                                        
+                                    </div>
 
 
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="inputWarning">Tags</label>
-                                                <div class="col-md-4">
-                                                    <input type="text" name="add_inv15" class="form-control">
-                                                    <span class="help-block">Fill tags </span>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="inputWarning">Status </label>
-                                                <div class="col-md-4">
-                                                <select class="form-control select2me" name="add_inv12">
-
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="inputWarning">Tags</label>
+                                        <div class="col-md-7">
+                                             <input id="tags_2" type="text" class="form-control tags medium" placeholder="Add Tags" value=""/>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="inputWarning">Notes</label>
+                                        <div class="col-md-7">
+                                            <textarea name="add_inv16" class="form-control" id="" cols="20" rows="3" placeholder="Add Notes"></textarea>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="inputWarning">Status <span class="required">*</span></label>
+                                        <div class="col-md-7">
+                                            <select class="form-control select2me" name="add_inv12">
                                                 <option value="end_client">Open</option>
-
                                                 <option value="">Won</option>
                                                 <option value="">Lost</option>
                                                 <option value="">Dead</option>
                                             </select>
-                                            </div>
-                                            </div>
+                                        </div>
+                                    </div>
 
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="inputWarning">Notes</label>
-                                                <div class="col-md-4">
-                                                    <textarea name="add_inv16" class="form-control" id="" cols="20" rows="6" placeholder="Add Notes"></textarea>
-                                                    <span class="help-block">Fill notes </span>
-                                                </div>
-                                            </div>
-
-                                        <div class="form-actions">
-                                            <div class="row">
-                                                <div class="col-md-offset-3 col-md-9">
-                                                    <button type="button" id="submit_investor" class="btn green-haze">Submit</button>
-                                                    <button type="submit" class="btn default">Validate</button>
-                                                </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="button" id="submit_investor" class="btn green-haze">Submit</button>
+                                                <button type="submit" class="btn default">Validate</button>
+                                                 <a class="btn default" href="/cases">Cancel </a>
                                             </div>
                                         </div>
-                                    </form>
-                                    <!-- END FORM-->
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
+                            <!-- END FORM-->
                         </div>
                     </div>
-                    <!-- END PAGE CONTENT INNER -->
                 </div>
             </div>
-            <!-- END PAGE CONTENT -->
+            <!-- END PAGE CONTENT INNER -->
         </div>
-        <!-- END PAGE CONTAINER -->
-        <script src="/assets/jquery.min.js" type="text/javascript"></script>
-        <script src="/assets/jquery-migrate.min.js" type="text/javascript"></script>
-        <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-        <script src="/assets/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-        <script src="/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-
-        <script type="text/javascript" src="/assets/jquery-validation/js/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="/assets/jquery-validation/js/additional-methods.min.js"></script>
-        <script src="/assets/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-        <script src="/assets/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="/assets/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="/assets/jquery.cokie.min.js" type="text/javascript"></script>
-        <script src="/assets/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="/assets/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="/assets/select2/select2.min.js"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="/assets/metronic.js" type="text/javascript"></script>
-        <script src="/assets/layout.js" type="text/javascript"></script>
-        <script src="/assets/demo.js" type="text/javascript"></script> 
-
-        <script src="/assets/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-
-        <script src="/assets/add_investor.js"></script>
-
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <script>
-            jQuery(document).ready(function() {     
-                Metronic.init(); // init metronic core components
-                Layout.init(); // init current layout
-                Demo.init();
-                Login.init();
-            });
-        </script>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->  
+<link href="/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>
+<link href="/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet"/>
+<link href="/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet"/>
+<link href="/plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet"/>
+<script src="/plugins/jquery-tags-input/jquery.tagsinput.min.js" type="text/javascript"></script>
+<script src="/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+<script src="/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="/js/components-form-tools.js"></script>     
+<script>
+    jQuery(document).ready(function() {       
+        ComponentsFormTools.init();
+    });
+</script>          

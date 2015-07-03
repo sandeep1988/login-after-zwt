@@ -1,26 +1,64 @@
-<h2>Log in</h2>
+<div class="content">
+    <div id="login-block">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'login-form', novalidate:"novalidate" }) do |f| %>
+        <h3 class="form-title">Login to your use account</h3>
+        <div class="alert alert-danger display-hide">
+            <button class="close" data-close="alert"></button>
+            <span>Enter any username and password. </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Username</label>
+            <div class="input-icon">
+                <i class="fa fa-user"></i>
+                <input id="user_email" class="form-control placeholder-no-fix valid" type="email" name="username" attrName="user[email]" placeholder="Username" autocomplete="off" autofocus="autofocus" aria-invalid="false" aria-describedby="user_email-error">
+            </div>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Password</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input id="user_password" class="form-control placeholder-no-fix valid" type="password" name="password" attrName="user[password]" placeholder="Password" autocomplete="off" aria-invalid="false">
+            </div>
+        </div>
+        
+          <label class="checkbox"> 
+            <input type="checkbox" name="remember" value="1"/> Remember me </label> 
+            <div class="form-actions clearfix">
+                <button type="button" id="submit_action" class="btn green-haze pull-right">
+                    Log in <i class="m-icon-swapright m-icon-white"></i>
+                </button>
+                
+            </div>
+    <% end %>
+    <!-- END LOGIN FORM -->
+    <!-- BEGIN FORGOT PASSWORD FORM -->
+    <div class="forget-password">
+        <h4>Forgot your password ?</h4>
+        <%= render :partial => "devise/shared/links" %>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    </div>
+    <div id="forgot-block" style="display: none;">
+    <%= render :partial => "devise/passwords/form" %> 
+    </div>            
+</div>
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+    jQuery(document).ready(function() {     
+        jQuery('#submit_action').click(function(e) { 
+            if (jQuery('.login-form').validate().form()) { 
+                jQuery('.login-form .form-control').each(function() {
+                    jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                });
+                jQuery('.login-form').submit();
+            }
+            return false;
+        });
+        jQuery('#forget-password').click(function(e) { 
+            jQuery('#forgot-block').show();
+            jQuery('#login-block').hide();
+            jQuery('#forget-form').show();
+        });
+    });
+</script>
+<!-- END JAVASCRIPTS -->

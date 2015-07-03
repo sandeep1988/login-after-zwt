@@ -1,0 +1,90 @@
+#product_detail{}
+#product_detail .todo-sidebar p{}
+#product_detail .todo-sidebar p strong{ display: block;}
+#product_detail .tabbable-custom > .tab-content{ padding: 20px;}
+.m0{margin: 0px !important;}
+.mt10{margin-top: 10px;}
+.mt20{margin-top: 20px;}
+.mt30{margin-top: 30px;}
+.mt40{margin-top: 40px;}
+.mb30{margin-bottom: 30px;}
+.mb40{margin-bottom: 40px;}
+.mb10{margin-bottom: 10px;}
+.pl20{padding-left: 20px;}
+.p0{ padding: 0 !important;}
+.p40{padding: 40px !important;}
+.pt0{padding-top: 0 !important;}
+.pl0{padding-left: 0 !important;}
+.pr0{ padding-right: 0 !important;}
+.mt0{margin-top: 0 !important;}
+.key_resource{ min-width: 13%;}
+.max-width-150{max-width: 150px;}
+#product_detail .tab-content textarea{ resize: none}
+#product_detail .portlet.light .portlet-body{ border-right: 1px solid #d6d6d6; padding-right: 20px !important;}
+#product_detail .fileinput-new.input-group .btn-file, #product_detail .fileinput-new .input-group .btn-file{border-radius: 4px 0px 0px 4px;}
+#product_detail .inbox-compose-btn { padding: 0px 4px; background: #FFFFFF; width: 50%; float: right; text-align: right; }
+#product_detail .dropdown > .dropdown-menu:before, #product_detail .dropdown-toggle > .dropdown-menu:before, #product_detail .btn-group > .dropdown-menu:before{ left: 149px;}
+#product_detail .dropdown > .dropdown-menu:after, #product_detail .dropdown-toggle > .dropdown-menu:after, #product_detail .btn-group > .dropdown-menu:after{ left: 150px;}
+.activity_container{ }
+.activity_container .title{ border-bottom: 1px solid #eee; padding-bottom: 6px; padding-top: 20px;}
+.activity_container .icon-btn{display: block; white-space: normal; text-align: left; cursor: auto; border-radius: 0px 0 0px 30px; margin-top: 20px; height: auto; padding: 15px; line-height: normal; padding-left: 50px; font-size: 13px;}
+.activity_container .icon-btn .btn-default{ padding: 0 7px; border-radius: 4px !important;}
+.activity_container .icon-btn .top-news-icon {  left: 18px; top: 18px; opacity: 0.3; font-size: 21px;position: absolute;  filter: alpha(opacity=30);  /*For IE8*/}
+.activity_container .icon-btn:hover {background: #fff; box-shadow: 3px 4px 10px -3px #dfdfdf;}
+.activity_container .icon-btn span{ display: block;padding-bottom: 8px;}
+.activity_container .icon-btn span strong{color: #F73D3D; font-weight: normal;}
+.activity_container .icon-btn.panel-danger { border-color: #FF7676; border-right: 3px solid #FF7676;}
+.activity_container .icon-btn.panel-warning { border-color: #ffe576; border-right: 3px solid #ffe576;}
+#product_detail .col-md-4 .note{ padding-right: 15px;}
+#product_detail .col-md-4 .note h5{padding-top: 3px;}
+#product_detail .col-md-4 .note.alert{border-width: 0; border-left-width: 5px;}
+#product_detail .col-md-4 .note label{ font-size: 13px; padding-left: 0; padding-top: 5px;}
+/*#product_detail .col-md-4 .note.note-info{ padding: 0 !important;}
+#product_detail .col-md-4 .note.note-info form{padding-bottom: 15px!important; padding-left: 15px!important; padding-right: 10px!important; padding-top: 15px!important;}*/
+#product_detail .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark{}
+.bootstrap-select.btn-group .dropdown-menu li a{ padding-right: 30px;}
+.bootstrap-select.btn-group .dropdown-menu li.selected a span.check-mark{ position: absolute; display: inline-block; right: 3px; margin-top: 3px;}
+
+#product_detail table .radio input[type=radio]{ margin-left: -10px;}
+
+/* Message Center page */
+.inbox .inbox-nav li.active a, .inbox .inbox-nav li.active:hover a{}
+.login_btn span{ display: block; padding: 5px; font-size: 12px;}
+
+/* Email Template */
+.email_template{}
+.email_template .inbox-compose-btn{ text-align: right;}
+.email_template .delete_email{display: none;}
+.email_template #portlet_tab2 .delete_email{display: inline-block;}
+
+.deve_create_acc{}
+.deve_create_acc .form-body{ padding-top: 20px;}
+.deve_create_acc .portlet > .portlet-title > .caption{ float: none}
+#docu_nda .modal-body{ overflow: scroll }
+
+
+/* Responsive */
+@media (max-width: 1024px) {
+  #product_detail .col-md-4 .note{ padding: 30px;}
+}
+
+
+
+
+@media (max-width: 768px) {
+  .btn-responsive, .tabbable-custom > .nav-tabs > li > a {
+    padding:4px 10px;
+    font-size:90%;
+    line-height: 1;
+    border-radius:3px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive, .tabbable-custom > .nav-tabs > li > a {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.2;
+  }
+}
+

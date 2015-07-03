@@ -8,7 +8,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: zwt_sales_development
+  database: zeal_sales1
   pool: 5
   username: root
   password: this.admin
@@ -16,7 +16,7 @@ development:
 
 test:
   adapter: mysql2
-  encoding: utf8
+  encoding: utf
   reconnect: false
   database: zwt_sales_test
   pool: 5
@@ -24,12 +24,14 @@ test:
   password: this.admin
   host: localhost
   port: 3306
-
+ 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: zwt_sales_production
+  database: zeal_sales
+  username: siteproof-net
+  password: thisadmin
   pool: 5
   host: localhost
   port: 3306

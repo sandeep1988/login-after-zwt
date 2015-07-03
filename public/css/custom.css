@@ -1,0 +1,188 @@
+/* here you can put your own css to customize and override the theme */
+/***
+Rounded Portlets
+***/
+/*
+.portlet {
+	border-radius: 4px !important;
+}
+
+.portlet .portlet-title {
+	border-radius: 4px 4px 0px 0px !important;
+}
+
+.portlet .portlet-body,
+.portlet .portlet-body .form-actions  {
+	border-radius: 0px 0px 4px 4px !important;
+}
+*/
+/*.ng-show{
+    display: inline-block !important;
+}
+
+*/
+
+.ng-show-inline-block{
+    display: inline-block !important;
+}
+.ng-show-block{
+    display: block !important;
+}
+.ng-hide{
+    display: none !important;
+}
+
+
+ /*
+.page-content {
+   min-height: 678px;
+}
+*/
+/* Begin css for crop box in profile page */
+img-crop {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+img-crop canvas {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  /* mobile webkit */
+}
+.cropArea {
+  /*background: #E4E4E4;*/
+  margin: auto;
+  overflow: hidden;
+}
+.cropArea.big {
+  width:800px;
+  height:600px;
+}
+.cropArea.medium {
+  width:500px;
+  height:350px;
+}
+.cropArea.small {
+  width:300px;
+  height:200px;
+}
+/* End css for crop box in profile page */
+
+/* Begin public submit from */
+.public-submit-form .has-error .input-group-btn button {margin-top: -23px;}
+
+/* detail page send massage email to */
+.controls-to .tagsinput {
+    border: medium none;
+}
+
+/* Text Editor in detail page */
+.text_editor .btn-toolbar .btn-group, .text_editor .btn-toolbar .input-group {
+float: none;
+}
+.text_editor .note-toolbar.btn-toolbar {
+text-align: center;
+}
+.content_edit .note-toolbar.btn-toolbar {
+    text-align: center;
+}
+.content_edit .btn-group{
+    float: none;
+}
+
+/* All page link List */
+.all-page-link table{
+    width: 100%;
+}
+.all-page-link table tr{
+    line-height:20px;
+}
+.all-page-link th{
+    text-align: center;
+}
+.all-page-link td, th{
+    padding-left: 5px;
+}
+.all-page-link td a, th {
+    font-size: 14px;
+}
+
+.collapse-text-toggle {
+font-size: 0.9em;
+color: #666666;
+cursor: pointer;
+}
+.collapse-text-toggle:hover {
+color: #222222;
+}
+
+.activity_container .not-found{
+    color: red; 
+    font-weight:bold; 
+    text-align:center !important;
+}
+.activity_container .icon-btn.not-found{
+    background:#fafafa !important;
+    box-shadow:none !important;
+    border-color: #ddd !important;
+    
+}
+
+.inbox-compose .has-error .help-block,.inbox-compose .has-error .help-inline,.inbox-compose .has-error .control-label,.inbox-compose .has-error .radio,.inbox-compose .has-error .checkbox,.inbox-compose .has-error .radio-inline,.inbox-compose .has-error .checkbox-inline
+{
+    color: #a94442;
+}
+#compose_msg .reply_post {
+    border: 1px solid #ddd;
+    margin: 15px 20px 15px 15px;
+    padding: 13px 0 0;
+}
+#compose_msg .note-editor .note-toolbar {
+    text-align: center;
+}
+#compose_msg .note-editor .note-toolbar .btn-group{
+    float: none;
+}
+
+.collapsable {
+    display: inline-block;
+    overflow: hidden;
+    height: 100%;
+    transition: height 1s;
+    -webkit-transition: height 1s;        
+    -moz-transition: height 1s;        
+    -o-transition: height 1s;         
+}
+.collapsable.showMe {
+    height: 35px;
+}
+
+.has-error .tagsinput {
+    border-color: #ebccd1;
+    box-shadow: none;
+}
+
+/*.inbox-compose .has-error .controls > input {
+    border:1px solid #ebccd1 !important;
+}
+.inbox-compose .has-error .controls-to {
+    border:1px solid #ebccd1 !important;
+}*/
+div.download_attach{
+   margin-bottom: 0px; 
+}
+.download_attach .attachment_files{
+    text-align: left;
+}
+.download_attach .all-attachments{
+    color: #e87e04;
+}
+.download_attach a{
+    padding: 2px 5px;
+}

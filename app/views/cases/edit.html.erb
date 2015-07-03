@@ -1,256 +1,202 @@
  <!-- BEGIN PAGE CONTAINER -->
-        <div class="page-container">
-            <!-- BEGIN PAGE HEAD -->
-            <div class="page-head">
-                <div class="container">
-                    <!-- BEGIN PAGE TITLE -->
-                    <div class="page-title">
-                        <h1>Case <small>Find and manage Case</small></h1>
-                    </div>
-                    <!-- END PAGE TITLE -->
-                    <!-- BEGIN PAGE TOOLBAR -->
-                    <div class="page-toolbar">
-                        <!-- BEGIN THEME PANEL -->
-                        <div class="btn-group btn-theme-panel">
-                            <a href="javascript:;" class="btn dropdown-toggle"  data-hover="dropdown" data-toggle="dropdown">
-                                <i class="icon-settings"></i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li>
-                                    <a href="javascript:;">
-                                        <i class="icon-settings"></i>Settings </a>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- END PAGE TOOLBAR -->
-                </div>
+<div class="page-container">
+    <!-- BEGIN PAGE HEAD -->
+    <div class="page-head">
+        <div class="container-fluid">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>Cases <small>Find and manage Cases</small></h1>
             </div>
-            <!-- END PAGE HEAD -->
-            <!-- BEGIN PAGE CONTENT -->
-            <div class="page-content">
-                <div class="container">
-                    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-                    <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                    <h4 class="modal-title">Modal title</h4>
-                                </div>
-                                <div class="modal-body">
-                                    Widget settings form goes here
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn blue">Save changes</button>
-                                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
+            <!-- END PAGE TITLE -->
+            <!-- BEGIN PAGE TOOLBAR -->
+            <div class="page-toolbar">
+                <!-- BEGIN THEME PANEL -->
+            </div>
+            <!-- END PAGE TOOLBAR -->
+        </div>
+    </div>
+    <!-- END PAGE HEAD -->
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="/dashboard">Dashboard</a><i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="/cases">Cases</a><i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    <a href="/cases/details">Case title will display here with long text</a><i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Edit
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="row margin-top-10">
+                <div class="col-md-12">
+                    <!-- BEGIN PROFILE SIDEBAR -->
+                    <div class="profile-sidebar" style="">
+                        <!-- PORTLET MAIN -->
+                        
+                        <div class="portlet light">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <span class="caption-subject font-green-sharp bold uppercase">Case Info</span>
                                 </div>
                             </div>
-                            <!-- /.modal-content -->
+                            <p>
+                                <strong>Title </strong> <br>
+                                <strong><a href="/cases/details">Case title will display here with long text</a></strong>
+                            </p>
+                            <p>
+                                <strong>Contact Name </strong> <br>
+                                <strong><a target="_blank" href="/contacts/details">Chris Monnat</a></strong>
+                            </p>
+                            <p>
+                                <strong>Compnay Name</strong> <br>
+                                Bluetext Co.
+                            </p>
+                            <p>
+                                <strong>Staus </strong> <br>
+                                Open
+                            </p>  
+                            <p>
+                                <strong>Added On </strong> <br>
+                                5th may, 2015
+                            </p>                                
+                            <p>
+                                <strong>Reference Urls </strong> <br>
+                                <a target="_blank" href="http://www.zealousweb.com">http://www.zealousweb.com</a>, <a target="_blank" href="http://www.bluetext.com">http://www.bluetext.com</a>, <a target="_blank" href="http://www.zealousweb.com">http://www.zealousweb.com</a>
+                            </p>
+                            <p>
+                                <strong>Files </strong> <br>
+                                <a target="_blank" href="http://www.zealousweb.com">file1</a>, <a target="_blank" href="http://www.bluetext.com">file2</a>, <a target="_blank" href="http://www.zealousweb.com">file3</a>
+                            </p>
+                            <p>
+                                <strong>Tags </strong> <br>
+                                tag1, tag2
+                            </p>
+                            <p>
+                                <strong>Description </strong> <br>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                            <p>
+                                <strong>Notes </strong> <br>
+                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                            </p>
                         </div>
-                        <!-- /.modal-dialog -->
+                        <!-- END PORTLET MAIN -->
                     </div>
-                    <!-- /.modal -->
-                    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-                    <!-- BEGIN PAGE BREADCRUMB -->
-                    <ul class="page-breadcrumb breadcrumb">
-                        <li>
-                            <a href="#">Dashboard</a><i class="fa fa-circle"></i>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Case</a><i class="fa fa-circle"></i>
-                        </li>
-                        <li class="active">
-                            Test Title22  Smothsonian
-                        </li>
-                    </ul>
-                    <!-- END PAGE BREADCRUMB -->
-                    <!-- BEGIN PAGE CONTENT INNER -->
-                    <div class="row margin-top-10">
-                        <div class="col-md-12">
-                            <!-- BEGIN PROFILE SIDEBAR -->
-                            <div class="profile-sidebar" style="">
-                                <!-- PORTLET MAIN -->
-                                
+                    <!-- END BEGIN PROFILE SIDEBAR -->
+                    <!-- BEGIN PROFILE CONTENT -->
+                    <div class="profile-content">
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="portlet light">
-                                    <div class="portlet-title">
-                                        <div class="caption">
-                                            <span class="caption-subject font-green-sharp bold uppercase">Case </span>
+                                    <div class="portlet-title tabbable-line">
+                                        <div class="caption caption-md">
+                                            <i class="icon-globe theme-font hide"></i>
+                                            <span class="caption-subject font-blue-madison bold uppercase">Edit Case Information</span>
                                         </div>
+                                        
                                     </div>
-                                    <p>
-                                        <strong><a href="#">Test Title22  Smothsonian</a></strong>
-                                    </p>
-                                    <p>
-                                        <strong>Description </strong> <br>
-                                          This is the basic Description of Case..
-                                    </p>
-                                    <p>
-                                        <strong>Compnay Name</strong> <br>
-                                          Zealousweb Pvt.Ltd.
-                                    </p>
-                                    <p>
-                                        <strong>Reference Urls </strong> <br>
-                                          www.zealousweb.com
-                                    </p>
-                                   
-                            		<p>
-                                        <strong>Staus </strong> <br>
-                                          Open
-                                    </p>
+                                    <div class="portlet-body">
+                                        <!-- PERSONAL INFO TAB -->
+                                        <form role="form" id="form_sample_3" method="post" action="javascript:;">
+                                            <div class="alert alert-success display-hide">
+                                                <button class="close" data-close="alert"></button>
+                                                Your Case information are successfully updated! 
+                                            </div>
+                                            <div class="alert alert-danger display-hide">
+                                                <button class="close" data-close="alert"></button>
+                                                You have some form errors. Please check below.
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Title <span class="required">*</span></label>
+                                                <input type="text" value="Test Title22 " placeholder="Case  Title" class="form-control"  name="username" aria-required="true" aria-describedby="username-error" aria-invalid="true"/>
+                                            </div>                                                   
+                                            <div class="form-group">
+                                                <label class="control-label">Description <span class="required">*</span></label>
+                                                    <textarea name="description" value="Test Title22" class="ckeditor form-control" id="" cols="20" rows="4" placeholder="Add Description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </textarea>
+                                            </div>
 
-                                    <p>
-                                        <strong>Notes </strong> <br>
-                                          This is the basic Notes of Case..
-                                    </p>
 
-                                    <p>
-                                        <strong>Email</strong> <br>
-                                        <a href="mailto:mikeross@psl-construction.com">test@gmail.com </a>
-                                    </p>
-                                </div>
-                                <!-- END PORTLET MAIN -->
-                            </div>
-                            <!-- END BEGIN PROFILE SIDEBAR -->
-                            <!-- BEGIN PROFILE CONTENT -->
-                            <div class="profile-content">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="portlet light">
-                                            <div class="portlet-title tabbable-line">
-                                                <div class="caption caption-md">
-                                                    <i class="icon-globe theme-font hide"></i>
-                                                    <span class="caption-subject font-blue-madison bold uppercase">Edit Case</span>
-                                                </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Reference Urls </label>
+                                                <input type="text" name="referenceurls" placeholder="Add Reference Urls " value="www.zealousweb.com " class="form-control"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label">Upload Files</label>
+                                                <div class="row fileupload-buttonbar">
+                									<div class="col-lg-7">
+                										<!-- The fileinput-button span is used to style the file input field as button -->
+                										<span class="btn green fileinput-button">
+                                                            <i class="fa fa-plus"></i> <span>Add files... </span>
+                										    <input type="file" multiple="" name="files[]" />
+                                                        </span>
+                                                        <span class="help-block"></span>
+                									</div>                        									                        									
+                								</div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label">Tags</label>
+                                                <input id="tags_2" type="text" class="form-control tags medium" placeholder="Tags.." value="tag1,tag2"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label">Notes</label>
+                                                    <textarea name="notes" value="Test Title22" class="form-control" id="" cols="20" rows="4" placeholder="Add a Note">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. </textarea>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label">Status <span class="required">*</span></label>
+                                            
+                                                <select class="form-control select2me" name="contact_type">
+                                                    <option value="Open">Open</option>
+                                                    <option value="Won">Won</option>
+                                                    <option value="Lost">Lost</option>
+                                                    <option value="Dead">Dead</option>
+                                                </select>
                                                 
                                             </div>
-                                            <div class="portlet-body">
-                                                <!-- PERSONAL INFO TAB -->
-                                                <form role="form" id="form_sample_3" method="post" action="javascript:;">
-                                                    <div class="alert alert-success display-hide">
-                                                        <button class="close" data-close="alert"></button>
-                                                        Your personal information are successfully updated! 
-                                                    </div>
-                                                    <div class="alert alert-danger display-hide">
-                                                        <button class="close" data-close="alert"></button>
-                                                        You have some form errors. Please check below.
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">Title</label>
-                                                        <input type="text" value="Test Title22 " placeholder="Your title" class="form-control"  name="username" aria-required="true" aria-describedby="username-error" aria-invalid="true"/>
-                                                    </div>                                                   
-                                                    <div class="form-group">
-                                                        <label class="control-label">Description</label>
-                                                            <textarea name="description" value="Test Title22" class="form-control" id="" cols="20" rows="6" placeholder="Add Description"></textarea>
-                                                    </div>
 
-
-                                                    <div class="form-group">
-                                                        <label class="control-label">Reference Urls  </label>
-                                                        <input type="text" name="referenceurls" placeholder="Your Company Name " value="www.zealousweb.com " class="form-control"/>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                                <div class="input-group input-large">
-
-                                                                    <span class="input-group-addon btn yellow btn-file">
-
-                                                                        <span class="fileinput-new">
-                                                                            <i class="fa fa-cloud-upload "></i> Choose file </span>
-                                                                        <span class="fileinput-exists">
-                                                                            Change </span>
-                                                                        <input type="hidden">
-                                                                        <input type="file" name="...">
-                                                                    </span>
-                                                                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput">
-                                                                        Remove </a>
-                                                                    <div class="form-control uneditable-input span3" data-trigger="fileinput">
-                                                                        <i class="fa fa-file fileinput-exists"></i>&nbsp; <span class="fileinput-filename">
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-
-                                                    <div class="form-group">
-                                                        <label class="control-label">Tags</label>
-                                                        <input type="text" name="tags" placeholder="Your Tags" value=" Tag1 " class="form-control"/>
-                                                    </div>
-
-
-                                                     <div class="form-group">
-                                                        <label class="control-label">Status</label>
-                                                    
-                                                        <select class="form-control select2me" name="contact_type">
-
-                                                        <option value="end_client">Open</option>
-                                                        <option value="">Won</option>
-                                                        <option value="">Lost</option>
-                                                        <option value="">Dead</option>
-
-                                                        </select>
-                                                        
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label">Notes</label>
-                                                            <textarea name="notes" value="Test Title22" class="form-control" id="" cols="20" rows="6" placeholder="Add a note"></textarea>
-                                                    </div>
-
-                                                    <div class="margiv-top-10">
-                                                        <a href="#" id="submit-personal-info-form" class="btn green-haze">
-                                                            Save Changes </a>
-                                                        <input type="submit" class="btn default" value="Validate">
-                                                        <a href="#" class="btn default">Cancel </a>
-                                                    </div>
-                                                </form>
+                                            <div class="margiv-top-10">
+                                                <a href="#" id="submit-personal-info-form" class="btn green-haze">
+                                                    Save Changes </a>
+                                                <input type="submit" class="btn default" value="Validate">
+                                                <a href="/cases" class="btn default">Cancel </a>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <!-- END PROFILE CONTENT -->
                         </div>
                     </div>
-                    <!-- END PAGE CONTENT INNER -->
+                    <!-- END PROFILE CONTENT -->
                 </div>
             </div>
-            <!-- END PAGE CONTENT -->
+            <!-- END PAGE CONTENT INNER -->
         </div>
-        <!-- END PAGE CONTAINER -->
-
-        <script src="/assets/jquery.min.js" type="text/javascript"></script>
-        <script src="/assets/jquery-migrate.min.js" type="text/javascript"></script>
-        <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-        <script src="/assets/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-        <script src="/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="/assets/jquery-validation/js/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="/assets/jquery-validation/js/additional-methods.min.js"></script>
-        <script src="/assets/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-        <script src="/assets/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="/assets/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="/assets/jquery.cokie.min.js" type="text/javascript"></script>
-        <script src="/assets/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="/assets/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-        <script src="/assets/form-validation.js"></script>
-        <script src="/assets/jquery.sparkline.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="/assets/metronic.js" type="text/javascript"></script>
-        <script src="/assets/layout.js" type="text/javascript"></script>
-        <script src="/assets/demo.js" type="text/javascript"></script>
-        <script src="/assets/profile.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <script>
-            jQuery(document).ready(function() {       
-                // initiate layout and plugins
-                Metronic.init(); // init metronic core components
-                Layout.init(); // init current layout
-                Demo.init(); // init demo features\
-                Profile.init(); // init page demo
-                FormValidation.init();    
-            });
-        </script>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+<link href="/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>
+<link href="/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet"/>
+<link href="/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet"/>
+<link href="/plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet"/>
+<script src="/plugins/jquery-tags-input/jquery.tagsinput.min.js" type="text/javascript"></script>
+<script src="/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+<script src="/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="/js/components-form-tools.js"></script>     
+<script>
+    jQuery(document).ready(function() {       
+        ComponentsFormTools.init();
+    });
+</script>          

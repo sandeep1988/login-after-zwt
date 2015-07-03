@@ -1,19 +1,55 @@
 Rails.application.routes.draw do
+    #devise_for :users, :controllers => {:registrations => "registrations"}
+devise_for :users, controllers: { sessions: "sessions", 
+  registrations: "registrations", passwords: "passwords" } 
+  get 'tag/index'
+  resources :followuptypes
   resources :cases
   resources :contacts
   resources :sales
-  get 'welcome/index'
   get 'welcome/edit_user'
+  get '/my_profile', to: 'sales#my_profile'
+  get '/search', to: 'sales#search'
+  get '/dashboard', to: 'sales#dashboard'
   get 'welcome/forget_password_developer'
   get 'contacts/details'
+  get 'cases/details'
+  get 'tag/index'
+  post '/sales/list_ajax'
+  post '/cases/list_ajax'
+  post '/contacts/list_ajax'
+
+  # devise_scope :user do
+  #   authenticated :user do
+  #     root 'sales#dashboard', as: :authenticated_root
+  #   end
+  #   unauthenticated do
+  #     root 'devise/sessions#new', as: :unauthenticated_root
+  #   end
+  # end
+devise_scope :user do
+  authenticated :user do
+    root 'sales#dashboard', as: :authenticated_root
+  end
+  unauthenticated :user do
+  root :to => "devise/sessions#new"
+end
+end
+
+#   authenticated :user do
+#   root :to => 'devise/sessions#new', :as => :authenticated_root
+# end
+# root :to => redirect('/users/sign_in')
+#   devise_scope :user do
+#   root :to => 'devise/sessions#new'
+# end
   # get 'users/edit'
   # get 'contacts/:id' => 'contacts#contacts_details', as: :contacts_details
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
-
+ # root 'devise/sessions#new'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -62,4 +98,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end
