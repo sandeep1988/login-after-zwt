@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
     #devise_for :users, :controllers => {:registrations => "registrations"}
 devise_for :users, controllers: { sessions: "sessions", 
-  registrations: "registrations", passwords: "passwords" } 
+  registrations: "registrations", passwords: "passwords", :confirmations => "confirmations"} 
   get 'tag/index'
   resources :followuptypes
   resources :cases
@@ -19,21 +19,13 @@ devise_for :users, controllers: { sessions: "sessions",
   post '/cases/list_ajax'
   post '/contacts/list_ajax'
 
-  # devise_scope :user do
-  #   authenticated :user do
-  #     root 'sales#dashboard', as: :authenticated_root
-  #   end
-  #   unauthenticated do
-  #     root 'devise/sessions#new', as: :unauthenticated_root
-  #   end
-  # end
 devise_scope :user do
   authenticated :user do
     root 'sales#dashboard', as: :authenticated_root
   end
   unauthenticated :user do
   root :to => "devise/sessions#new"
-end
+  end
 end
 
 #   authenticated :user do

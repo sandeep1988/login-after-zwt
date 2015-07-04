@@ -523,6 +523,9 @@ var FormValidation = function () {
                 },
                 remember: {
                     required: false
+                },
+                password_confirmation: {
+                    equalTo: "#user_password"
                 }
             },
 
@@ -532,7 +535,11 @@ var FormValidation = function () {
                 },
                 password: {
                     required: "Password is required."
+                },
+                password_confirmation: {
+                    required: "Password Confirmation is required."
                 }
+                
             },
 
             invalidHandler: function(event, validator) { //display error alert on form submit   

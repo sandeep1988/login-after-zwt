@@ -99,6 +99,9 @@
                             getBlock.removeClass('alert-danger');
                             getBlock.addClass('alert-success');
                             getBlock.show();
+                            jQuery('.forgot-block p').hide();
+                            jQuery('.forgot-block .input-icon').hide();
+                            jQuery('.forgot-block #forgot-submit').hide();
                         } else { 
                             jQuery(getBlock).find('span').text(result.message);
                             getBlock.removeClass('alert-success');
@@ -118,6 +121,9 @@
             jQuery('#forgot-block').show();
             jQuery('#login-block').hide();
             jQuery('#forget-form').show();
+            jQuery('.forgot-block p').show();
+            jQuery('.forgot-block .input-icon').show();
+            jQuery('.forgot-block #forgot-submit').show();
         });
         // back-btn
         jQuery('#back-btn').click(function(e) { 
