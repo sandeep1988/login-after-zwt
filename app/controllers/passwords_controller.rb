@@ -9,6 +9,7 @@ class PasswordsController < Devise::PasswordsController
     if User.all.collect(&:email).include? params[:user][:email]
       super
     else 
+      #render :text => "Wrong email"
       redirect_to root_path 
       end
   end

@@ -9,7 +9,7 @@ def create
 	if user_signed_in?
 		redirect_to authenticated_root_path
 	else
-		redirect_to root_path, notice: "Invalid email or password"
+		render :text => "Invalid Credential"
 	end
 end
 

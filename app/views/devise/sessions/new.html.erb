@@ -52,7 +52,23 @@
                 jQuery('.login-form .form-control').each(function() {
                     jQuery(this).attr('name', jQuery(this).attr('attrName'));
                 });
-                jQuery('.login-form').submit();
+                // jQuery('.login-form').submit();
+                var serializedData = $('.login-form').serialize();
+                
+        $.ajax({
+            type: "POST",
+            url: "/users/sign_in",
+            data: serializedData,
+            dataType: "html",
+            success: function(response) {
+                alert(response);
+                console.log(response);
+                // location.reload();
+            },
+            error: function(error){
+            return false;
+            }
+        });
             }
             return false;
         });
@@ -63,7 +79,23 @@
                 jQuery('.forget-form .form-control').each(function() {
                     jQuery(this).attr('name', jQuery(this).attr('attrName'));
                 });
-                jQuery('.forget-form').submit();
+                // jQuery('.forget-form').submit();
+                var serializedData = $('.forget-form').serialize();
+                
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/users/password",
+                    data: serializedData,
+                    dataType: "html",
+                    success: function(response) {
+                        alert("Email Successfully send..")
+                        // console.log(response);
+                        location.reload();
+                    },
+            error: function(error){
+            return false;
+            }
+        });
             }
             return false;
         });
