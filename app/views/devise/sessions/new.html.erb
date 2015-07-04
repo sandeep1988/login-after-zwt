@@ -2,7 +2,7 @@
     <div id="login-block">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'login-form', novalidate:"novalidate" }) do |f| %>
         <h3 class="form-title">Login to your use account</h3>
-        <div class="alert alert-danger display-hide">
+        <div id="login-response-block" class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
             <span>Enter your username and password. </span>
         </div>
@@ -55,20 +55,24 @@
                 // jQuery('.login-form').submit();
                 var serializedData = $('.login-form').serialize();
                 
-        $.ajax({
-            type: "POST",
-            url: "/users/sign_in",
-            data: serializedData,
-            dataType: "html",
-            success: function(response) {
-                alert(response);
-                console.log(response);
-                // location.reload();
-            },
-            error: function(error){
-            return false;
-            }
-        });
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/users/sign_in",
+                    data: serializedData,
+                    dataType: "json",
+                    success: function(response) {
+                        var result = response[0];
+                        if (result.status == "Success") {
+                            window.location = '/';
+                        } else {
+                            jQuery('#login-response-block span').text(result.message);
+                            jQuery('#login-response-block').show();
+                        }
+                    },
+                        error: function(error){
+                        return false;
+                    }
+                });
             }
             return false;
         });
@@ -86,11 +90,21 @@
                     type: "POST",
                     url: "/users/password",
                     data: serializedData,
-                    dataType: "html",
+                    dataType: "json",
                     success: function(response) {
-                        alert("Email Successfully send..")
-                        // console.log(response);
-                        location.reload();
+                        var result = response[0];
+                        var getBlock = jQuery('#forget-response-block');
+                        if (result.status == "Success") {
+                            jQuery(getBlock).find('span').text(result.message);
+                            getBlock.removeClass('alert-danger');
+                            getBlock.addClass('alert-success');
+                            getBlock.show();
+                        } else { 
+                            jQuery(getBlock).find('span').text(result.message);
+                            getBlock.removeClass('alert-success');
+                            getBlock.addClass('alert-danger');
+                            getBlock.show();
+                        }
                     },
             error: function(error){
             return false;
