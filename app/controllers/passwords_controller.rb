@@ -6,11 +6,10 @@ class PasswordsController < Devise::PasswordsController
   end
 
   def create
-    #super
-    if User.all.collect(&:email).include? params[:username]
-      redirect_to  new_user_password_path  
+    if User.all.collect(&:email).include? params[:user][:email]
+      super
     else 
-      redirect_to root_path
+      redirect_to root_path 
       end
   end
 

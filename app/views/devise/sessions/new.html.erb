@@ -4,7 +4,7 @@
         <h3 class="form-title">Login to your use account</h3>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
-            <span>Enter any username and password. </span>
+            <span>Enter your username and password. </span>
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">Username</label>
@@ -44,8 +44,10 @@
 </div>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
-    jQuery(document).ready(function() {     
-        jQuery('#submit_action').click(function(e) { 
+    jQuery(document).ready(function() {    
+        // Login validation 
+        jQuery('#submit_action').click(function(event) { 
+            event.preventDefault();
             if (jQuery('.login-form').validate().form()) { 
                 jQuery('.login-form .form-control').each(function() {
                     jQuery(this).attr('name', jQuery(this).attr('attrName'));
@@ -54,9 +56,27 @@
             }
             return false;
         });
+        // Forgot validation
+        jQuery('#forgot-submit').click(function(event) {
+             event.preventDefault();
+            if (jQuery('.forget-form').validate().form()) { 
+                jQuery('.forget-form .form-control').each(function() {
+                    jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                });
+                jQuery('.forget-form').submit();
+            }
+            return false;
+        });
+        // Forgot Hide Show
         jQuery('#forget-password').click(function(e) { 
             jQuery('#forgot-block').show();
             jQuery('#login-block').hide();
+            jQuery('#forget-form').show();
+        });
+        // back-btn
+        jQuery('#back-btn').click(function(e) { 
+            jQuery('#login-block').show();
+            jQuery('#forgot-block').hide();
             jQuery('#forget-form').show();
         });
     });
