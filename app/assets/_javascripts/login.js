@@ -25,6 +25,7 @@ var Login = function() {
                 password: {
                     required: "Password is required."
                 }
+
             },
 
             invalidHandler: function(event, validator) { //display error alert on form submit   
@@ -65,22 +66,20 @@ var Login = function() {
             errorElement: 'span', //default input error message container
             errorClass: 'help-block', // default input error message class
             focusInvalid: false, // do not focus the last invalid input
-            ignore: "",
             rules: {
-                email: {
-                    required: true,
-                    email: true
+                username: {
+                    required: true
                 }
             },
 
             messages: {
-                email: {
+                username: {
                     required: "Email is required."
                 }
             },
 
             invalidHandler: function(event, validator) { //display error alert on form submit   
-
+                $('.alert-danger', $('.forget-form')).show();
             },
 
             highlight: function(element) { // hightlight error inputs
@@ -98,7 +97,7 @@ var Login = function() {
             },
 
             submitHandler: function(form) {
-                form.submit();
+                form.submit(); // form validation success, call ajax form submit
             }
         });
 
