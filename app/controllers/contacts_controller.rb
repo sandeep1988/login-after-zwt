@@ -1,6 +1,5 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-  layout :false, only: [:show, :table_ajax, :create, :edit, :update, :destroy]
   # GET /contacts
   # GET /contacts.json
   def index

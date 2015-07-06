@@ -1,6 +1,5 @@
 class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
-  layout :false, only: [:show, :table_ajax, :create, :edit, :update, :destroy]
   # GET /sales
   # GET /sales.json
   def index

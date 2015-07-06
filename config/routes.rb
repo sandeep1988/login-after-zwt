@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
     #devise_for :users, :controllers => {:registrations => "registrations"}
 devise_for :users, controllers: { sessions: "sessions", 
-  registrations: "registrations", passwords: "passwords", :confirmations => "confirmations"} 
+  registrations: "registrations", passwords: "passwords", :confirmations => "confirmations"}  do 
+  match '/edit', :to => 'devise/registrations#edit'
+  end
   get 'tag/index'
   resources :followuptypes
   resources :cases
   resources :contacts
   resources :sales
   get 'welcome/edit_user'
-  get '/my_profile', to: 'sales#my_profile'
+  #get '/my_profile', to: 'sales#my_profile'
   get '/search', to: 'sales#search'
   get '/dashboard', to: 'sales#dashboard'
   get 'welcome/forget_password_developer'
@@ -28,6 +30,9 @@ devise_scope :user do
   end
 end
 
+devise_scope :user do
+  get "/my_profile" => "registrations#edit"
+end
 #   authenticated :user do
 #   root :to => 'devise/sessions#new', :as => :authenticated_root
 # end

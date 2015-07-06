@@ -12,5 +12,4 @@ class WelcomeController < ApplicationController
     def set_sale
       @sale = Sale.find(1)
     end
-    # Never trust parameters from the scary internet, only allow the white list through.
 end

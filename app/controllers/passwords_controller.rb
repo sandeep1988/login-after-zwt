@@ -1,5 +1,4 @@
 class PasswordsController < Devise::PasswordsController
-	layout "login_layout"
 
 	def new
     super
@@ -11,7 +10,7 @@ class PasswordsController < Devise::PasswordsController
           result = [:status => "Success", :message => "Password Emailed successfully"]
               render json: result
         else
-          result = [:status => "Error", :message => "Invalid Credential"]
+          result = [:status => "Error", :message => "Invalid Email"]
             render json: result
         end
   end
@@ -28,9 +27,13 @@ class PasswordsController < Devise::PasswordsController
       flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
       set_flash_message(:notice, flash_message) if is_navigational_format?
 
-      respond_with resource, :location => after_resetting_password_path_for(resource)
+      result = [:status => "Success", :success_url => root_path ]
+      render json: result
+      #respond_with resource, :location => after_resetting_password_path_for(resource)
     else
-      respond_with resource
+      result = [:status => "Error", :message => "Please enter the same Password ."]
+      render json: result 
+      #respond_with resource
     end
   end
 

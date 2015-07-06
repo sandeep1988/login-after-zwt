@@ -1,6 +1,5 @@
 class CasesController < ApplicationController
   before_action :set_case, only: [:show, :edit, :update, :destroy]
-   layout :false, only: [:show, :table_ajax, :create, :edit, :update, :destroy]
   # GET /cases
   # GET /cases.json
   def index

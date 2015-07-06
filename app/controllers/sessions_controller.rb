@@ -1,5 +1,4 @@
 class SessionsController < Devise::SessionsController
-	layout "login_layout"
 def new
     super
  end
@@ -24,5 +23,6 @@ end
   def destroy
   	super
   end
+
 
 end

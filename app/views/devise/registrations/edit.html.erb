@@ -1,39 +1,207 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+ <!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN PAGE HEAD -->
+    <div class="page-head">
+        <div class="container-fluid">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>My Profile<small> manage your profile</small></h1>
+            </div>
+            <!-- END PAGE TITLE -->
+            <!-- BEGIN PAGE TOOLBAR -->
+            <div class="page-toolbar">
+                <!-- BEGIN THEME PANEL -->
+                
+            </div>
+            <!-- END PAGE TOOLBAR -->
+        </div>
+    </div>
+    <!-- END PAGE HEAD -->
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            Widget settings form goes here
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn blue">Save changes</button>
+                            <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="/dashboard">Dashboard</a><i class="fa fa-circle"></i>
+                </li>                                                
+                <li class="active">
+                    Kavish Jash
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="row margin-top-10">
+                <div class="col-md-12">
+                    <!-- BEGIN PROFILE SIDEBAR -->
+                    <div class="profile-sidebar" style="">
+                        <!-- PORTLET MAIN -->
+                        
+                        <div class="portlet light">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <span class="caption-subject font-green-sharp bold uppercase">Profile Info</span>
+                                </div>
+                            </div>
+                            <p>
+                                <strong>Name</strong> <br>
+                                Kavish Jash
+                            </p>                                   
+                            <p>
+                                <strong>Email</strong> <br>
+                                <a href="mailto:testing.demo@gmail.com">kavish@zealousweb.com</a> 
+                            </p>                                    
+                            <p>
+                                <strong>IM (Skype)</strong> <br>
+                                kavis_zwt 
+                            </p>                                    
+                            <p>
+                                <strong>Gmail ID</strong> <br>
+                                <a href="mailto:testing.demo@gmail.com">testing.demo@gmail.com</a>
+                            </p>
+                            <p>
+                                <strong>LinkedIn Profile</strong> <br>
+                                <a href="http://www.linkedin.com/testing" target="_blank">http://www.linkedin.com/testing</a>
+                            </p>
+                            <p>
+                                <strong>Phone</strong> <br>
+                                <a href="tel:866-123-1234">866-123-1234</a>
+                            </p>
+                        </div>
+                        <!-- END PORTLET MAIN -->
+                    </div>
+                    <!-- END BEGIN PROFILE SIDEBAR -->
+                    <!-- BEGIN PROFILE CONTENT -->
+                    <div class="profile-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="portlet light">
+                                    <div class="portlet-title tabbable-line">
+                                        <div class="caption caption-md">
+                                            <i class="icon-globe theme-font hide"></i>
+                                            <span class="caption-subject font-blue-madison bold uppercase">Edit your profile</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="portlet-body">
+                                        <!-- PERSONAL INFO TAB -->
+                                        <!-- <form role="form" id="form_sample_3" class="horizontal-form" method="post" action="javascript:;">
+                                            <div class="alert alert-success display-hide"> -->
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+                                        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                                          <div class="alert alert-success display-hide">
+                                                <button class="close" data-close="alert"></button>
+                                                Sales person information are successfully updated! 
+                                            </div>
+                                            <div class="alert alert-danger display-hide">
+                                                <button class="close" data-close="alert"></button>
+                                                You have some form errors. Please check below.
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">First Name <span class="required">*</span></label>
+                                                        <%= f.text_field :v_firstname, :placeholder=> "Your first name", :class =>"form-control"%>
+                                                    </div>
+                                                </div>                         
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Last Name <span class="required">*</span></label>
+                                                        <%= f.text_field :v_lastname, :placeholder=> "Your last name", :class =>"form-control"%>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Email <span class="required">*</span></label>
+                                                        <%= f.email_field :email, :placeholder=> "Your email id", :class =>"form-control"  %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Password <span class="required">*</span></label>
+                                                        <%= f.password_field :password, :placeholder=> "Your password", :class=>"form-control" %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">IM (Skype) <span class="required">*</span></label>
+                                                        <%= f.text_field :v_im_skype, :placeholder => "Your IM (Skype)", :class =>"form-control" %>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">IM (Skype) Password <span class="required">*</span></label>
+                                                         <%= f.password_field :v_im_password, :placeholder => "Your IM Password", :class =>"form-control" %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">        
+                                                    <div class="form-group">
+                                                        <label class="control-label"> Phone <span class="required">*</span></label>
+                                                        <%= f.text_field :v_phone, :placeholder => "Your Phone Number", :class =>"form-control" %>
+                                                    </div>                                        
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Gmail ID  </label>
+                                                        <%= f.email_field :v_gmail, :placeholder=> "Your Gmail ID ", :class =>"form-control"  %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-12">        
+                                                    <div class="form-group">
+                                                        <label class="control-label">LinkedIn Profile</label>
+                                                        <%= f.text_field :v_linkedin_url, :placeholder=> "Your LinkedIn Profile", :class =>"form-control"%>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="left">
+                                                <button type="submit" id="submit-personal-info-form" class="btn green-haze">
+                                                  Save Changes </button>
+                                                <a href="/sales" class="btn default">Cancel </a>
+                                            </div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PROFILE CONTENT -->
+                </div>
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->

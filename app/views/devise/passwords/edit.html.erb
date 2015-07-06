@@ -1,25 +1,26 @@
 <div class="content">
-<h3 class="form-title">Reset password</h3>
-
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put , id:"login-form", class: "login-form"}) do |f| %>
-  <%= devise_error_messages! %>
+  <%#= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
-
-  <div class="form-group">
-            <label class="control-label visible-ie8 visible-ie9">Password</label>
-            <div class="input-icon">
-                <i class="fa fa-lock"></i>
-                <input id="user_password" class="form-control placeholder-no-fix valid" type="password" name="password" attrName="user[password]" placeholder="Password" autocomplete="off" aria-invalid="false">
-            </div>
-  </div>
-
-<div class="form-group">
-            <label class="control-label visible-ie8 visible-ie9">Password</label>
-            <div class="input-icon">
-                <i class="fa fa-lock"></i>
-                <input id="password_confirmation" class="form-control placeholder-no-fix valid" type="password" name="password_confirmation" attrName="user[password_confirmation]" placeholder="Password Confirmation" autocomplete="off" aria-invalid="false">
-            </div>
-  </div>
+        <h3 class="form-title">Reset password</h3>
+        <div id="password-response-block" class="alert alert-danger display-hide">
+            <button class="close" data-close="alert"></button>
+            <span>Please Password the Password confirmation. </span>
+        </div>
+        <div class="form-group">
+                  <label class="control-label visible-ie8 visible-ie9">Password</label>
+                  <div class="input-icon">
+                      <i class="fa fa-lock"></i>
+                      <input id="user_password" class="form-control placeholder-no-fix valid" type="password" name="password" attrName="user[password]" placeholder="Password" autocomplete="off" aria-invalid="false">
+                  </div>
+        </div>
+        <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Password</label>
+                    <div class="input-icon">
+                        <i class="fa fa-lock"></i>
+                        <input id="password_confirmation" class="form-control placeholder-no-fix valid" type="password" name="password_confirmation" attrName="user[password_confirmation]" placeholder="Password Confirmation" autocomplete="off" aria-invalid="false">
+                    </div>
+      </div>
   <!-- <div class="form-group">
     <div class="input-icon"><i class="fa fa-lock"></i>
     <%#= f.password_field :password_confirmation, :placeholder => "Confirm Password", class: "form-control placeholder-no-fix",  autocomplete: "off" %>
@@ -29,16 +30,15 @@
   <!-- <div class="form-actions clearfix">
     <%#= f.submit "Change my password", class:"btn green-haze pull-right" %>
   </div> -->
-
-   <div class="form-actions clearfix">
+        <div class="form-actions clearfix">
                 <button type="button" id="submit_action" class="btn green-haze pull-right">
                     Change my password <i class="m-icon-swapright m-icon-white"></i>
                 </button>
-            </div>
-<% end %>
+        </div>
+  <% end %>
 </div>
 <%#= render "devise/shared/links" %>
-
+<!-- password Edit validation  -->
 <script>
     jQuery(document).ready(function() {    
         // Login validation 
@@ -48,7 +48,27 @@
                 jQuery('.login-form .form-control').each(function() {
                     jQuery(this).attr('name', jQuery(this).attr('attrName'));
                 });
-                jQuery('.login-form').submit();
+                // jQuery('.login-form').submit();
+           var serializedData = $('.login-form').serialize();
+                
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/users/password",
+                    data: serializedData,
+                    dataType: "json",
+                    success: function(response) {
+                        var result = response[0];
+                        if (result.status == "Success") {
+                            window.location = '/';
+                        } else {
+                            jQuery('#password-response-block span').text(result.message);
+                            jQuery('#password-response-block').show();
+                        }
+                    },
+                        error: function(error){
+                        return false;
+                    }
+                });
             }
             return false;
         });
