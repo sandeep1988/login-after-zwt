@@ -6,23 +6,51 @@
   <%= f.hidden_field :reset_password_token %>
 
   <div class="form-group">
-      <label class="control-label visible-ie8 visible-ie9">Password</label>
-      <div class="input-icon">
-          <i class="fa fa-lock"></i>
-          <input id="user_password" class="form-control placeholder-no-fix valid" type="password" name="password" attrName="user[password]" placeholder="Password" autocomplete="off" aria-invalid="false">
-      </div>
+            <label class="control-label visible-ie8 visible-ie9">Password</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input id="user_password" class="form-control placeholder-no-fix valid" type="password" name="password" attrName="user[password]" placeholder="Password" autocomplete="off" aria-invalid="false">
+            </div>
   </div>
 
-  <div class="form-group">
+<div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">Password</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input id="password_confirmation" class="form-control placeholder-no-fix valid" type="password" name="password_confirmation" attrName="user[password_confirmation]" placeholder="Password Confirmation" autocomplete="off" aria-invalid="false">
+            </div>
+  </div>
+  <!-- <div class="form-group">
     <div class="input-icon"><i class="fa fa-lock"></i>
-    <%= f.password_field :password_confirmation, :placeholder => "Confirm Password", class: "form-control placeholder-no-fix",  autocomplete: "off" %>
+    <%#= f.password_field :password_confirmation, :placeholder => "Confirm Password", class: "form-control placeholder-no-fix",  autocomplete: "off" %>
     </div>
-  </div>
+  </div> -->
 
+  <!-- <div class="form-actions clearfix">
+    <%#= f.submit "Change my password", class:"btn green-haze pull-right" %>
+  </div> -->
 
-  <div class="form-actions clearfix">
-    <%= f.submit "Change my password", class:"btn green-haze pull-right" %>
-  </div>
+   <div class="form-actions clearfix">
+                <button type="button" id="submit_action" class="btn green-haze pull-right">
+                    Change my password <i class="m-icon-swapright m-icon-white"></i>
+                </button>
+            </div>
 <% end %>
 </div>
 <%#= render "devise/shared/links" %>
+
+<script>
+    jQuery(document).ready(function() {    
+        // Login validation 
+        jQuery('#submit_action').click(function(event) { 
+            event.preventDefault();
+            if (jQuery('.login-form').validate().form()) { 
+                jQuery('.login-form .form-control').each(function() {
+                    jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                });
+                jQuery('.login-form').submit();
+            }
+            return false;
+        });
+    });
+</script>
