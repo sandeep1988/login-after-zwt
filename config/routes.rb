@@ -32,6 +32,7 @@ end
 
 devise_scope :user do
   get "/my_profile" => "registrations#edit"
+  get '/users/sign_out' => 'sessions#destroy'
 end
 #   authenticated :user do
 #   root :to => 'devise/sessions#new', :as => :authenticated_root
