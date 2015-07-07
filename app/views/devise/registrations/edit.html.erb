@@ -123,13 +123,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">First Name <span class="required">*</span></label>
-                                                        <%= f.text_field :v_firstname, :placeholder=> "Your first name", :class=>"form-control" %>
+                                                        <input class="form-control" type="text" placeholder="Your first name" name="v_firstname" attrName="user[v_firstname]" value = <%=current_user.v_firstname %> >
                                                     </div>
                                                 </div>                         
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Last Name <span class="required">*</span></label>
-                                                        <%= f.text_field :v_lastname, :placeholder=> "Your last name", :class=>"form-control" %>
+                                                        <input class="form-control" type="text" placeholder="Your last name" name="v_lastname" attrName="user[v_lastname]" value = <%=current_user.v_lastname %> >
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,13 +137,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Email <span class="required">*</span></label>
-                                                        <%= f.email_field :email, :placeholder=> "Your EmailId", :class=>"form-control" %>
+                                                        <input class="form-control" type="email" placeholder="Your EmailId" name="email" attrName="user[email]" value = <%=current_user.email %> >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Password <span class="required">*</span></label>
-                                                        <%= f.password_field :password, :placeholder=> "Your password", :class=>"form-control" %>
+                                                        <input class="form-control" type="password" placeholder="Your password" name="password" attrName="user[password]" value =<%=current_user.password %> >
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,13 +151,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">IM (Skype) <span class="required">*</span></label>
-                                                        <%= f.text_field :v_im_skype, :placeholder => "Your IM (Skype)", :class =>"form-control" %>
+                                                        <input class="form-control" type="text" placeholder="Your IM (Skype)" name="v_im_skype" attrName="user[v_im_skype]" value =<%=current_user.v_im_skype %> >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">IM (Skype) Password <span class="required">*</span></label>
-                                                         <%= f.password_field :v_im_password, :placeholder => "Your IM Password", :class =>"form-control" %>
+                                                         <input class="form-control" type="password" placeholder="Your IM Password" name="v_im_password" attrName="user[v_im_password]" value =<%=current_user.v_im_password %> >
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,13 +165,13 @@
                                                 <div class="col-md-6">        
                                                     <div class="form-group">
                                                         <label class="control-label"> Phone <span class="required">*</span></label>
-                                                        <%= f.text_field :v_phone, :placeholder => "Your Phone Number", :class =>"form-control" %>
+                                                        <input class="form-control" type="text" placeholder="Your Phone Number" name="v_phone" attrName="user[v_phone]" value =<%=current_user.v_phone %> >
                                                     </div>                                        
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Gmail ID  </label>
-                                                        <%= f.email_field :v_gmail, :placeholder=> "Your Gmail ID ", :class =>"form-control"  %>
+                                                        <input class="form-control" type="email" placeholder="Your Gmail ID" name="v_gmail" attrName="user[v_gmail]" value = <%=current_user.v_gmail %>>
 
                                                     </div>
                                                 </div>                                                
@@ -181,12 +181,12 @@
                                                 <div class="col-md-12">        
                                                     <div class="form-group">
                                                         <label class="control-label">LinkedIn Profile</label>
-                                                        <%= f.text_field :v_linkedin_url, :placeholder=> "Your LinkedIn Profile", :class =>"form-control"%>
+                                                        <input class="form-control" type="text" placeholder="Your LinkedIn Profile" name="v_linkedin_url" attrName="user[v_linkedin_url]" value = <%=current_user.v_linkedin_url %> >
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="left">
-                                                <button type="submit" id="submit-personal-info-form" class="btn green-haze">
+                                                <button type="submit" id="submit_action" class="btn green-haze">
                                                   Save Changes </button>
                                                 <a href="/" class="btn default">Cancel </a>
                                             </div>
@@ -205,3 +205,18 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+<script>
+    jQuery(document).ready(function() {    
+        // Login validation 
+        jQuery('#submit_action').click(function(event) { 
+            event.preventDefault();
+            if (jQuery('#edit_user').validate().form()) { 
+                jQuery('#edit_user .form-control').each(function() {
+                    jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                });
+                jQuery('#edit_user').submit();
+                }
+            return false;
+        });
+    });
+    </script>

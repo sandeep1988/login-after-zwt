@@ -11,7 +11,7 @@ var FormValidation = function () {
         // for more info visit the official plugin documentation: 
         // http://docs.jquery.com/Plugins/Validation
 
-        var form3 = $('#form_sample_3');
+        var form3 = $('#edit_user');
         var error3 = $('.alert-danger', form3);
         var success3 = $('.alert-success', form3);
 
@@ -32,32 +32,31 @@ var FormValidation = function () {
                     minlength: 2,
                     required: true
                 },
-                firstname: {
+                v_firstname: {
                     required: true
                 },  
-                lastname: {
-                    required: true
-                },
-                ei: {
+                v_lastname: {
                     required: true
                 },
                 email: {
-                    required: true,
-                    email: true
-                },
-                emailsign: {
                     required: true
                 },
-                password:{
+                password: {
+                    required: true,
+                },
+                v_im_skype: {
+                    required: true
+                },
+                v_im_password:{
                    required: true
                 },
-                skype:{
+                v_phone:{
                     required: true
                 },
-                skype_password:{
+                v_gmail:{
                     required: true
                 },
-                gmail_id:{
+                v_linkedin_url:{
                    required: true
                 },
                 linkedIn_profile:{
