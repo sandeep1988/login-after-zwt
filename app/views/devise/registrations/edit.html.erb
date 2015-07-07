@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>My Profile<small> manage your profile</small></h1>
+                <h1>My Profile<small> &nbsp;manage your profile</small></h1>
             </div>
             <!-- END PAGE TITLE -->
             <!-- BEGIN PAGE TOOLBAR -->
@@ -48,7 +48,7 @@
                     <a href="/dashboard">Dashboard</a><i class="fa fa-circle"></i>
                 </li>                                                
                 <li class="active">
-                    Kavish Jash
+                    <%=current_user.v_firstname %> <%=current_user.v_lastname %>
                 </li>
             </ul>
             <!-- END PAGE BREADCRUMB -->
@@ -67,27 +67,27 @@
                             </div>
                             <p>
                                 <strong>Name</strong> <br>
-                                Kavish Jash
+                                <%=current_user.v_firstname %> <%=current_user.v_lastname %>
                             </p>                                   
                             <p>
                                 <strong>Email</strong> <br>
-                                <a href="mailto:testing.demo@gmail.com">kavish@zealousweb.com</a> 
+                                <a href="mailto:testing.demo@gmail.com"><%=current_user.email %></a> 
                             </p>                                    
                             <p>
                                 <strong>IM (Skype)</strong> <br>
-                                kavis_zwt 
+                                <%=current_user.v_im_skype %> 
                             </p>                                    
                             <p>
                                 <strong>Gmail ID</strong> <br>
-                                <a href="mailto:testing.demo@gmail.com">testing.demo@gmail.com</a>
+                                <a href="mailto:testing.demo@gmail.com"><%=current_user.v_gmail %> </a>
                             </p>
                             <p>
                                 <strong>LinkedIn Profile</strong> <br>
-                                <a href="http://www.linkedin.com/testing" target="_blank">http://www.linkedin.com/testing</a>
+                                <a href="http://www.linkedin.com/testing" target="_blank"><%=current_user.v_linkedin_url %></a>
                             </p>
                             <p>
                                 <strong>Phone</strong> <br>
-                                <a href="tel:866-123-1234">866-123-1234</a>
+                                <a href="tel:866-123-1234"><%=current_user.v_phone %></a>
                             </p>
                         </div>
                         <!-- END PORTLET MAIN -->
@@ -123,13 +123,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">First Name <span class="required">*</span></label>
-                                                        <%= f.text_field :v_firstname, :placeholder=> "Your first name", :class =>"form-control"%>
+                                                        <%= f.text_field :v_firstname, :placeholder=> "Your first name", :class=>"form-control" %>
                                                     </div>
                                                 </div>                         
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Last Name <span class="required">*</span></label>
-                                                        <%= f.text_field :v_lastname, :placeholder=> "Your last name", :class =>"form-control"%>
+                                                        <%= f.text_field :v_lastname, :placeholder=> "Your last name", :class=>"form-control" %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,7 +137,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Email <span class="required">*</span></label>
-                                                        <%= f.email_field :email, :placeholder=> "Your email id", :class =>"form-control"  %>
+                                                        <%= f.email_field :email, :placeholder=> "Your EmailId", :class=>"form-control" %>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -188,7 +188,7 @@
                                             <div class="left">
                                                 <button type="submit" id="submit-personal-info-form" class="btn green-haze">
                                                   Save Changes </button>
-                                                <a href="/sales" class="btn default">Cancel </a>
+                                                <a href="/" class="btn default">Cancel </a>
                                             </div>
                                         <% end %>
                                     </div>
