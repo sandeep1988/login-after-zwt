@@ -53,7 +53,12 @@
                     jQuery(this).attr('name', jQuery(this).attr('attrName'));
                 });
                 jQuery('.login-form').submit();
-                // comment this for remove login page ajax
+            }
+            else{
+                jQuery('#login-response-block span').text("Invalid Credential");
+                jQuery('#login-response-block').show();
+                // comment this for remove login page ajax //
+                
                 // var serializedData = $('.login-form').serialize();
                 
                 // jQuery.ajax({
@@ -76,7 +81,10 @@
                 // });
             }
             return false;
+            jQuery('#login-response-block span').text("Invalid Credential");
+            jQuery('#login-response-block').show();
         });
+
         // Forgot validation
         jQuery('#forgot-submit').click(function(event) {
              event.preventDefault();
@@ -84,36 +92,36 @@
                 jQuery('.forget-form .form-control').each(function() {
                     jQuery(this).attr('name', jQuery(this).attr('attrName'));
                 });
-                // jQuery('.forget-form').submit();
-                var serializedData = $('.forget-form').serialize();
+                jQuery('.forget-form').submit();
+                // var serializedData = $('.forget-form').serialize();
                 
-                jQuery.ajax({
-                    type: "POST",
-                    url: "/users/password",
-                    data: serializedData,
-                    dataType: "json",
-                    success: function(response) {
-                        var result = response[0];
-                        var getBlock = jQuery('#forget-response-block');
-                        if (result.status == "Success") {
-                            jQuery(getBlock).find('span').text(result.message);
-                            getBlock.removeClass('alert-danger');
-                            getBlock.addClass('alert-success');
-                            getBlock.show();
-                            jQuery('.forgot-block p').hide();
-                            jQuery('.forgot-block .input-icon').hide();
-                            jQuery('.forgot-block #forgot-submit').hide();
-                        } else { 
-                            jQuery(getBlock).find('span').text(result.message);
-                            getBlock.removeClass('alert-success');
-                            getBlock.addClass('alert-danger');
-                            getBlock.show();
-                        }
-                    },
-            error: function(error){
-            return false;
-            }
-        });
+                // jQuery.ajax({
+                //     type: "POST",
+                //     url: "/users/password",
+                //     data: serializedData,
+                //     dataType: "json",
+                //     success: function(response) {
+                //         var result = response[0];
+                //         var getBlock = jQuery('#forget-response-block');
+                //         if (result.status == "Success") {
+                //             jQuery(getBlock).find('span').text(result.message);
+                //             getBlock.removeClass('alert-danger');
+                //             getBlock.addClass('alert-success');
+                //             getBlock.show();
+                //             jQuery('.forgot-block p').hide();
+                //             jQuery('.forgot-block .input-icon').hide();
+                //             jQuery('.forgot-block #forgot-submit').hide();
+                //         } else { 
+                //             jQuery(getBlock).find('span').text(result.message);
+                //             getBlock.removeClass('alert-success');
+                //             getBlock.addClass('alert-danger');
+                //             getBlock.show();
+                //         }
+                //     },
+        //     error: function(error){
+        //     return false;
+        //     }
+        // });
             }
             return false;
         });

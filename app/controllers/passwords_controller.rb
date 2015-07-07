@@ -5,14 +5,21 @@ class PasswordsController < Devise::PasswordsController
   end
 
   def create
+    #super
     self.resource = resource_class.send_reset_password_instructions(resource_params)
-        if successfully_sent?(resource)
-          result = [:status => "Success", :message => "Password Emailed successfully"]
-              render json: result
-        else
-          result = [:status => "Error", :message => "Invalid Email"]
-            render json: result
-        end
+    if successfully_sent?(resource)
+      respond_with({}, location: root_path(resource_name))
+        ## comment for remove ajax in forgot password create ###
+
+        #       result = [:status => "Success", :message => "Password Emailed successfully"]
+          #           render json: result
+    else
+        redirect_to root_path
+
+          ## comment for remove ajax in forgot password create ###
+          #       result = [:status => "Error", :message => "Invalid Email"]
+          #         render json: result
+         end
   end
 
   def edit
@@ -21,19 +28,17 @@ class PasswordsController < Devise::PasswordsController
 
   def update
     self.resource = resource_class.reset_password_by_token(resource_params)
-
     if resource.errors.empty?
       resource.unlock_access! if unlockable?(resource)
       flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
       set_flash_message(:notice, flash_message) if is_navigational_format?
-
-      result = [:status => "Success", :success_url => root_path ]
-      render json: result
-      #respond_with resource, :location => after_resetting_password_path_for(resource)
+        # result = [:status => "Success", :success_url => root_path ]
+        # render json: result
+      respond_with resource, :location => after_resetting_password_path_for(resource)
     else
-      result = [:status => "Error", :message => "Please enter the same Password ."]
-      render json: result 
-      #respond_with resource
+        # result = [:status => "Error", :message => "Please enter the same Password ."]
+        # render json: result 
+      respond_with resource
     end
   end
 

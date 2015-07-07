@@ -48,27 +48,29 @@
                 jQuery('.login-form .form-control').each(function() {
                     jQuery(this).attr('name', jQuery(this).attr('attrName'));
                 });
-                // jQuery('.login-form').submit();
-           var serializedData = $('.login-form').serialize();
+                jQuery('.login-form').submit();
+                jQuery('#password-response-block span').text("Invalid Password");
+                jQuery('#password-response-block').show();
+           // var serializedData = $('.login-form').serialize();
                 
-                jQuery.ajax({
-                    type: "POST",
-                    url: "/users/password",
-                    data: serializedData,
-                    dataType: "json",
-                    success: function(response) {
-                        var result = response[0];
-                        if (result.status == "Success") {
-                            window.location = '/';
-                        } else {
-                            jQuery('#password-response-block span').text(result.message);
-                            jQuery('#password-response-block').show();
-                        }
-                    },
-                        error: function(error){
-                        return false;
-                    }
-                });
+           //      jQuery.ajax({
+           //          type: "POST",
+           //          url: "/users/password",
+           //          data: serializedData,
+           //          dataType: "json",
+           //          success: function(response) {
+           //              var result = response[0];
+           //              if (result.status == "Success") {
+           //                  window.location = '/';
+           //              } else {
+           //                  jQuery('#password-response-block span').text(result.message);
+           //                  jQuery('#password-response-block').show();
+           //              }
+           //          },
+           //              error: function(error){
+           //              return false;
+           //          }
+           //      });
             }
             return false;
         });
