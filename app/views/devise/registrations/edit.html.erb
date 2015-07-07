@@ -67,11 +67,11 @@
                             </div>
                             <p>
                                 <strong>Name</strong> <br>
-                                <%=current_user.v_firstname %> <%=current_user.v_lastname %>
+                                <%=user_fullname(current_user) %>
                             </p>                                   
                             <p>
                                 <strong>Email</strong> <br>
-                                <a href="mailto:testing.demo@gmail.com"><%=current_user.email %></a> 
+                                <a href="mailto:testing.demo@gmail.com"><%= user_email(current_user) %></a> 
                             </p>                                    
                             <p>
                                 <strong>IM (Skype)</strong> <br>
@@ -137,7 +137,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Email <span class="required">*</span></label>
-                                                        <input class="form-control" type="email" placeholder="Your EmailId" name="email" attrName="user[email]" value = <%=current_user.email %> >
+                                                        <input class="form-control" type="email" placeholder="Your EmailId" name="email" attrName="user[email]" value = <%= user_email(current_user)%> >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -207,7 +207,7 @@
 <!-- END PAGE CONTAINER -->
 <script>
     jQuery(document).ready(function() {    
-        // Login validation 
+        // Edit User Page validation 
         jQuery('#submit_action').click(function(event) { 
             event.preventDefault();
             if (jQuery('#edit_user').validate().form()) { 

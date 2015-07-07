@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
     #devise_for :users, :controllers => {:registrations => "registrations"}
 devise_for :users, controllers: { sessions: "sessions", 
   registrations: "registrations", passwords: "passwords", :confirmations => "confirmations"}  do 

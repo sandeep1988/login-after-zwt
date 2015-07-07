@@ -1,5 +1,6 @@
 class CasesController < ApplicationController
   before_action :set_case, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_case
   # GET /cases
   # GET /cases.json
   def index
@@ -76,4 +77,10 @@ class CasesController < ApplicationController
     def case_params
       params[:case]
     end
+
+  private
+      def invalid_case
+      logger.error "Attempt to access invalid case #{params[:id]}"
+      redirect_to cases_path, notice: 'Invalid case'
+      end
 end
