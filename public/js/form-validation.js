@@ -41,9 +41,6 @@ var FormValidation = function () {
                 email: {
                     required: true
                 },
-                password: {
-                    required: true,
-                },
                 v_im_skype: {
                     required: true
                 },

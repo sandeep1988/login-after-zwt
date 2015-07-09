@@ -1,22 +1,19 @@
 class SessionsController < Devise::SessionsController
-def new
+  # rescue_from ActiveRecord::RecordNotFound, with: :invalid_case
+  def new
+    flash[:notice] = "Test flash message"
     super
- end
-
-def create
-  # check user
-	if user_signed_in?
-		redirect_to authenticated_root_path
-    ### comment this for remove ajax
-    # result = [:status => "Success", :success_url => authenticated_root_path ]
-    # render json: result
-	else
-    redirect_to root_path
-    ### comment this for remove ajax
-    # result = [:status => "Error", :message => "Invalid Credential"]
-    # render json: result
   end
-end
+
+  def create
+    # check user
+  	if user_signed_in?
+  		redirect_to authenticated_root_path
+  	else
+      flash[:fail] = 'Invalid Username or Password'
+      redirect_to root_path
+    end
+  end
 
   def edit
   	super
@@ -26,5 +23,10 @@ end
   	super
   end
 
+# private
+#       def invalid_case
+#       logger.error "Attempt to access invalid case #{params[:id]}"
+#       redirect_to root_path, notice: 'Invalid case'
+#       end
 
 end
