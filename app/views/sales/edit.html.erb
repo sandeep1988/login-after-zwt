@@ -71,39 +71,46 @@
                             </div>
                             <p>
                                 <strong>Name</strong> <br>
-                                Kavish Jash
+                                <%= @salesuser.v_firstname %> <%= @salesuser.v_lastname %>
                             </p>                                   
                             <p>
                                 <strong>Email</strong> <br>
-                                <a href="mailto:testing.demo@gmail.com">kavish@zealousweb.com</a> 
+                                <a href="mailto:testing.demo@gmail.com">
+                                <%= @salesuser.email %></a> 
                             </p>
-                            <p>
+                            <!-- <p>
                                 <strong>Password</strong> <br>
-                                this@admin 
-                            </p>
+                                <%= @salesuser.password %></a> 
+                            </p> -->
                             <p>
                                 <strong>Skype</strong> <br>
-                                kavis_zwt 
+                                <%= @salesuser.v_im_skype %>
                             </p>
                             <p>
                                 <strong>Skype Password</strong> <br>
-                                this@admin  
+                                <%= @salesuser.v_im_password %> 
                             </p>
                             <p>
                                 <strong>Phone</strong> <br>
-                                <a href="tel:866-123-1234">866-123-1234</a>
+                                <a href="tel:866-123-1234">
+                                    <%= @salesuser.v_phone %> 
+                                </a>
                             </p>
                             <p>
                                 <strong>Gmail ID</strong> <br>
-                                <a href="mailto:testing.demo@gmail.com">testing.demo@gmail.com</a>
+                                <a href="mailto:testing.demo@gmail.com">
+                                <%= @salesuser.v_gmail %> 
+                                </a>
                             </p>
                             <p>
                                 <strong>LinkedIn Profile</strong> <br>
-                                <a href="http://www.linkedin.com/testing" target="_blank">http://www.linkedin.com/testing</a>
+                                <a href="http://www.linkedin.com/testing" target="_blank">
+                                <%= @salesuser.v_linkedin_url %></a>
                             </p>    
                             <p>
                                 <strong>Added On </strong> <br>
-                                5th may, 2015
+                                <%= @salesuser.created_at.to_formatted_s(:long) %>
+                                <!-- 5th may, 2015 -->
                             </p>                                
                         </div>
                         <!-- END PORTLET MAIN -->
@@ -121,28 +128,31 @@
                                         </div>
                                         
                                     </div>
+
+                                    <div id="error_explanation">
+                                        <% if flash[:notice] %>
+                                            <div id="login-response-block" class="alert alert-danger display-hide" style="display:block;">
+                                                <button class="close" data-close="alert"></button>
+                                                <span><%= flash[:notice] %></span>
+                                            </div>
+                                        <% end %>
+                                    </div>
+
                                     <div class="portlet-body">
                                         <!-- PERSONAL INFO TAB -->
-                                        <form role="form" id="form_sample_3" class="horizontal-form" method="post" action="javascript:;">
-                                            <div class="alert alert-success display-hide">
-                                                <button class="close" data-close="alert"></button>
-                                                Sales person information are successfully updated! 
-                                            </div>
-                                            <div class="alert alert-danger display-hide">
-                                                <button class="close" data-close="alert"></button>
-                                                You have some form errors. Please check below.
-                                            </div>
+                                        <!-- <form id="edit_sales" class="edit_sales" action="/sales/update_sales"> -->
+                                        <%= form_for(@salesuser, :url => sales_update_sales_path(@salesuser), :html => {:class => 'edit-sales-form', :id => 'edit-sales-form' }) do |f| %>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">First Name <span class="required">*</span></label>
-                                                        <input type="text" value="Kavish" name="firstname" placeholder="Your first name" class="form-control"/>
+                                                        <%= f.text_field :v_firstname, attrName: "user[v_firstname]", name: "v_firstname", class:"form-control", placeholder:"Your first name" %>
                                                     </div>
-                                                </div>                                                    
+                                                </div>                         
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Last Name <span class="required">*</span></label>
-                                                        <input type="text" value="Jash" name="lastname" placeholder="Your last name" class="form-control"/>
+                                                        <%= f.text_field :v_lastname, attrName: "user[v_lastname]", name: "v_lastname", class:"form-control", placeholder:"Your last name" %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,68 +160,69 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Email <span class="required">*</span></label>
-                                                        <input type="text" name="email" placeholder="Your email id" value="kavish@zealousweb.com" class="form-control"/>
+                                                        <%= f.email_field :email, attrName: "user[email]", name: "email", class:"form-control", placeholder:"Your EmailId" %>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">Password <span class="required">*</span></label>
-                                                        <input type="password" name="password" placeholder="Your password" value="this@admin" class="form-control"/>
+                                                        <label class="control-label">Password</label>
+                                                         <%= f.password_field :password, attrName: "user[password]", name: "password", class:"form-control", placeholder:"Your password" %>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">Skype Id <span class="required">*</span></label>
-                                                        <input type="text" name="skype" placeholder="Your Skype Id" value="kavis_zwt " class="form-control"/>
+                                                        <label class="control-label">Skype <span class="required">*</span></label>
+                                                        <%= f.text_field :v_im_skype, attrName: "user[v_im_skype]", name: "v_im_skype", class:"form-control", placeholder:"Your Skype" %>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">Skype Password <span class="required">*</span></label>
-                                                        <input type="password" name="skype_password" placeholder="Your Skype Password" value="this@admin" class="form-control"/>
+                                                        <label class="control-label">Skype Password </label>
+                                                        <%= f.password_field :v_im_password, attrName: "user[v_im_password]", name: "v_im_password", class:"form-control", placeholder:"Your Skype Password" %>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">        
                                                     <div class="form-group">
-                                                        <label class="control-label">Phone <span class="required">*</span></label>
-                                                        <input type="text" class="form-control" name="ei" placeholder="Your Phone Number" value="866-123-1234"/>
-                                                    </div>                                                            
+                                                        <label class="control-label"> Phone <span class="required">*</span></label>
+                                                       <%= f.text_field :v_phone, attrName: "user[v_phone]", name: "v_phone", class:"form-control", placeholder:"Your Phone Number" %>
+                                                    </div>                                        
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">Gmail ID  </label>
-                                                        <input type="text" name="gmail_id" placeholder="Your Gmail ID " value="testing.demo@gmail.com" class="form-control"/>
+                                                        <label class="control-label">Gmail ID<span class="required">*</span></label>
+                                                        <%= f.email_field :v_gmail, attrName: "user[v_gmail]", name: "v_gmail", class:"form-control", placeholder:"Your Gmail ID" %>
+
                                                     </div>
-                                                </div>                                                        
+                                                </div>                                              
                                             </div>
                                             
                                             <div class="row">
                                                 <div class="col-md-6">        
                                                     <div class="form-group">
-                                                        <label class="control-label">LinkedIn Profile</label>
-                                                        <input type="text" name="linkedIn_profile" placeholder="Your LinkedIn Profile" value="http://www.linkedin.com/testing" class="form-control"/>
+                                                        <label class="control-label">LinkedIn Profile<span class="required">*</span></label>
+                                                        <%= f.text_field :v_linkedin_url, attrName: "user[v_linkedin_url]", name: "v_gmail", class:"form-control", placeholder:"Your LinkedIn Profile" %>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">                                                            
+                                                <div class="col-md-6">                      
                                                     <div class="form-group">
                                                         <label class="control-label">Status <span class="required">*</span></label>
-                                                          <select class="form-control select2me" name="followed_up_type">
-                                                            <option value="Active">Active</option>
-                                                            <option value="Inactive">Inactive</option>
-                                                          </select>
+                                                        <select class="form-control select2me" name="e_type">
+                                                            <option value="true">Active</option>
+                                                            <option value="false">Inactive</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="left">
-                                                <a href="#" id="submit-personal-info-form" class="btn green-haze">Save Changes </a>
-                                                <input type="submit" class="btn default" value="Validate" />
-                                                <a href="/sales" class="btn default">Cancel </a>
+                                                <button type="submit" id="submit_action" class="btn green-haze">
+                                                  Save Changes </button>
+                                                <a href="/" class="btn default">Cancel </a>
                                             </div>
-                                        </form>
+                                        <% end %>
                                     </div>
                                 </div>
                             </div>
@@ -226,3 +237,19 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->       
+
+<script>
+    jQuery(document).ready(function() {    
+        // Edit User Page validation 
+        jQuery('#submit_action').click(function(event) { 
+            event.preventDefault();
+            if (jQuery('#edit-sales-form').validate().form()) { 
+                jQuery('#edit-sales-form .form-control').each(function() {
+                    jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                });
+                jQuery('#edit-sales-form').submit();
+                }
+            return false;
+        });
+    });
+</script>

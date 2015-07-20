@@ -32,16 +32,16 @@ class PasswordsController < Devise::PasswordsController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
-  end
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation)
+    end
 
  protected
     # The path used after sending reset password instructions
    def after_resetting_password_path_for(resource)
      root_path(resource)
    end
-
+   
     # Check if a reset_password_token is provided in the request
     def assert_reset_token_passed
         if params[:reset_password_token].blank?

@@ -1,7 +1,9 @@
 <div class="content">
     <div id="login-block">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'login-form', novalidate:"novalidate" }) do |f| %>
-        <h3 class="form-title">Login to your use account</h3>
+
+         <h3 <% if flash[:action] == 'forgot' %>style="display:none"<% end %> class="form-title">Login to your use account</h3>
+        
        <% if flash[:fail] %>
         <div id="login-response-block" class="alert alert-danger display-hide" style="display:block;">
             <button class="close" data-close="alert"></button>
@@ -14,7 +16,8 @@
             <span><%= flash[:success] %></span>
         </div>
         <% end %>
-
+        
+            <div class="form-block" <% if flash[:action] == 'forgot' %>style="display:none" <% end %> >
             <div class="form-group">
                 <label class="control-label visible-ie8 visible-ie9">Username</label>
                 <div class="input-icon">
@@ -37,16 +40,19 @@
                 <button type="button" id="submit_action" class="btn green-haze pull-right">
                     Log in <i class="m-icon-swapright m-icon-white"></i>
                 </button>
+                
             </div>
-    <% end %>
+        </div>
+        <% end %>
+   
     <!-- END LOGIN FORM -->
     <!-- BEGIN FORGOT PASSWORD FORM -->
-    <div class="forget-password">
+    <div class="forget-password" <% if flash[:action] == 'forgot' %>style="display:none"<% end %>>
         <h4>Forgot your password ?</h4>
         <%= render :partial => "devise/shared/links" %>
     </div>
     </div>
-    <div id="forgot-block" style="display:none;">
+    <div id="forgot-block" <% if flash[:action] != 'forgot' %> style="display:none;" <% end %>>
     <%= render :partial => "devise/passwords/form" %> 
     </div>            
 </div>
@@ -62,31 +68,10 @@
                 });
                 jQuery('.login-form').submit();
             }
-            else {
+            else{
                 jQuery('#login-response-block span').text("Invalid Credential");
                 jQuery('#login-response-block').show();
-                // comment this for remove login page ajax //
                 
-                // var serializedData = $('.login-form').serialize();
-                
-                // jQuery.ajax({
-                //     type: "POST",
-                //     url: "/users/sign_in",
-                //     data: serializedData,
-                //     dataType: "json",
-                //     success: function(response) {
-                //         var result = response[0];
-                //         if (result.status == "Success") {
-                //             window.location = '/';
-                //         } else {
-                //             jQuery('#login-response-block span').text(result.message);
-                //             jQuery('#login-response-block').show();
-                //         }
-                //     },
-                //         error: function(error){
-                //         return false;
-                //     }
-                // });
             }
             return false;
             jQuery('#login-response-block span').text("Invalid Credential");
@@ -101,35 +86,7 @@
                     jQuery(this).attr('name', jQuery(this).attr('attrName'));
                 });
                 jQuery('.forget-form').submit();
-                // var serializedData = $('.forget-form').serialize();
                 
-                // jQuery.ajax({
-                //     type: "POST",
-                //     url: "/users/password",
-                //     data: serializedData,
-                //     dataType: "json",
-                //     success: function(response) {
-                //         var result = response[0];
-                //         var getBlock = jQuery('#forget-response-block');
-                //         if (result.status == "Success") {
-                //             jQuery(getBlock).find('span').text(result.message);
-                //             getBlock.removeClass('alert-danger');
-                //             getBlock.addClass('alert-success');
-                //             getBlock.show();
-                //             jQuery('.forgot-block p').hide();
-                //             jQuery('.forgot-block .input-icon').hide();
-                //             jQuery('.forgot-block #forgot-submit').hide();
-                //         } else { 
-                //             jQuery(getBlock).find('span').text(result.message);
-                //             getBlock.removeClass('alert-success');
-                //             getBlock.addClass('alert-danger');
-                //             getBlock.show();
-                //         }
-                //     },
-        //     error: function(error){
-        //     return false;
-        //     }
-        // });
             }
             return false;
         });
@@ -145,8 +102,12 @@
         // back-btn
         jQuery('#back-btn').click(function(e) { 
             jQuery('#login-block').show();
-            jQuery('#forgot-block').hide();
-            jQuery('#forget-form').show();
+            jQuery('#forgot-block').show();
+            jQuery('#forget-form').hide();
+            jQuery('.form-title').show();
+            jQuery('.forget-password').show();
+            jQuery('.form-block').show();
+            jQuery('#login-response-block').hide();
         });
     });
 </script>

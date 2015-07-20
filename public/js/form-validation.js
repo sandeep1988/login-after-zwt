@@ -2,9 +2,300 @@ var FormValidation = function () {
 
     // basic validation
    
-
+    // sales person create form
     // validation using icons
     
+var handleValidation8 = function() {
+        // for more info visit the official plugin documentation: 
+        // http://docs.jquery.com/Plugins/Validation
+
+        var form8 = $('#edit-sales-form');
+        var error8 = $('.alert-danger', form8);
+        var success8 = $('.alert-success', form8);
+
+        //IMPORTANT: update CKEDITOR textarea with actual content before submit
+        /*form3.on('submit', function() {
+                for(var instanceName in CKEDITOR.instances) {
+                    CKEDITOR.instances[instanceName].updateElement();
+                }
+            })*/
+
+        form8.validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block help-block-error', // default input error message class
+            focusInvalid: false, // do not focus the last invalid input
+            ignore: "", // validate all fields including form hidden input
+            rules: {
+                username: {
+                    minlength: 2,
+                    required: true
+                },
+                v_firstname: {
+                    required: true
+                },  
+                v_lastname: {
+                    required: true
+                },
+                email: {
+                    required: true
+                },
+                v_im_skype: {
+                    required: true
+                },
+                v_phone:{
+                    required: true
+                },
+                v_gmail:{
+                    required: true
+                },
+                v_linkedin_url:{
+                   required: true
+                },
+                linkedIn_profile:{
+                   required: true
+                },
+                tags:{
+                    required: true
+                },
+                referred_by:{
+                    required: true
+                },
+                select_country:{
+                    required: true
+                },
+                phone:{
+                    required: true
+                },
+                cellnumber:{
+                   required: true
+                },
+                linkedin_profile:{
+                   required: true
+                },               
+                websiteurl:{
+                   required: true
+                },
+                companyname:{
+                   required: true
+                },
+                description:{
+                   required: true
+                },
+                referenceurls:{
+                   required: true
+                },
+                notes:{
+                   required: true
+                },
+                followed_up_by:{
+                   required: true
+                },
+                next_follow_up_By:{
+                    required: true
+                },
+                outcome:{
+                    required: true
+                }
+            },
+
+
+            errorPlacement: function (error, element) { // render error placement for each input type
+                if (element.parent(".input-group").size() > 0) {
+                    error.insertAfter(element.parent(".input-group"));
+                } else if (element.attr("data-error-container")) { 
+                    error.appendTo(element.attr("data-error-container"));
+                } else if (element.parents('.radio-list').size() > 0) { 
+                    error.appendTo(element.parents('.radio-list').attr("data-error-container"));
+                } else if (element.parents('.radio-inline').size() > 0) { 
+                    error.appendTo(element.parents('.radio-inline').attr("data-error-container"));
+                } else if (element.parents('.checkbox-list').size() > 0) {
+                    error.appendTo(element.parents('.checkbox-list').attr("data-error-container"));
+                } else if (element.parents('.checkbox-inline').size() > 0) { 
+                    error.appendTo(element.parents('.checkbox-inline').attr("data-error-container"));
+                } else {
+                    error.insertAfter(element); // for other inputs, just perform default behavior
+                }
+            },
+
+            invalidHandler: function (event, validator) { //display error alert on form submit   
+                success8.hide();
+                error8.show();
+                Metronic.scrollTo(error8, -200);
+            },
+
+            highlight: function (element) { // hightlight error inputs                    
+                $(element).closest('.form-group').addClass('has-error'); // set error class to the control group
+            },
+
+            unhighlight: function (element) { // revert the change done by hightlight
+                $(element).closest('.form-group').removeClass('has-error'); // set error class to the control group
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error'); // set success class to the control group
+            },
+
+            submitHandler: function (form) {
+                success8.show();
+                error8.hide();
+
+                form.submit(); // submit the form
+            }
+
+        });
+
+    }
+
+
+
+
+var handleValidation7 = function() {
+        // for more info visit the official plugin documentation: 
+        // http://docs.jquery.com/Plugins/Validation
+
+        var form7 = $('#new_sales');
+        var error7 = $('.alert-danger', form7);
+        var success7 = $('.alert-success', form7);
+
+        //IMPORTANT: update CKEDITOR textarea with actual content before submit
+        /*form3.on('submit', function() {
+                for(var instanceName in CKEDITOR.instances) {
+                    CKEDITOR.instances[instanceName].updateElement();
+                }
+            })*/
+
+        form7.validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block help-block-error', // default input error message class
+            focusInvalid: false, // do not focus the last invalid input
+            ignore: "", // validate all fields including form hidden input
+            rules: {
+                username: {
+                    minlength: 2,
+                    required: true
+                },
+                v_firstname: {
+                    required: true
+                },  
+                v_lastname: {
+                    required: true
+                },
+                email: {
+                    required: true
+                },
+                password: {
+                    required: true
+                },
+                v_im_skype: {
+                    required: true
+                },
+                v_im_password: {
+                    required: true  
+                },
+                v_phone:{
+                    required: true
+                },
+                v_gmail:{
+                    required: true
+                },
+                v_linkedin_url:{
+                   required: true
+                },
+                linkedIn_profile:{
+                   required: true
+                },
+                tags:{
+                    required: true
+                },
+                referred_by:{
+                    required: true
+                },
+                select_country:{
+                    required: true
+                },
+                phone:{
+                    required: true
+                },
+                cellnumber:{
+                   required: true
+                },
+                linkedin_profile:{
+                   required: true
+                },               
+                websiteurl:{
+                   required: true
+                },
+                companyname:{
+                   required: true
+                },
+                description:{
+                   required: true
+                },
+                referenceurls:{
+                   required: true
+                },
+                notes:{
+                   required: true
+                },
+                followed_up_by:{
+                   required: true
+                },
+                next_follow_up_By:{
+                    required: true
+                },
+                outcome:{
+                    required: true
+                }
+            },
+
+
+            errorPlacement: function (error, element) { // render error placement for each input type
+                if (element.parent(".input-group").size() > 0) {
+                    error.insertAfter(element.parent(".input-group"));
+                } else if (element.attr("data-error-container")) { 
+                    error.appendTo(element.attr("data-error-container"));
+                } else if (element.parents('.radio-list').size() > 0) { 
+                    error.appendTo(element.parents('.radio-list').attr("data-error-container"));
+                } else if (element.parents('.radio-inline').size() > 0) { 
+                    error.appendTo(element.parents('.radio-inline').attr("data-error-container"));
+                } else if (element.parents('.checkbox-list').size() > 0) {
+                    error.appendTo(element.parents('.checkbox-list').attr("data-error-container"));
+                } else if (element.parents('.checkbox-inline').size() > 0) { 
+                    error.appendTo(element.parents('.checkbox-inline').attr("data-error-container"));
+                } else {
+                    error.insertAfter(element); // for other inputs, just perform default behavior
+                }
+            },
+
+            invalidHandler: function (event, validator) { //display error alert on form submit   
+                success7.hide();
+                error7.show();
+                Metronic.scrollTo(error7, -200);
+            },
+
+            highlight: function (element) { // hightlight error inputs                    
+                $(element).closest('.form-group').addClass('has-error'); // set error class to the control group
+            },
+
+            unhighlight: function (element) { // revert the change done by hightlight
+                $(element).closest('.form-group').removeClass('has-error'); // set error class to the control group
+            },
+
+            success: function (label) {
+                label.closest('.form-group').removeClass('has-error'); // set success class to the control group
+            },
+
+            submitHandler: function (form) {
+                success7.show();
+                error7.hide();
+
+                form.submit(); // submit the form
+            }
+
+        });
+
+    }
+
 
     // advance validation
     var handleValidation3 = function() {
@@ -43,9 +334,6 @@ var FormValidation = function () {
                 },
                 v_im_skype: {
                     required: true
-                },
-                v_im_password:{
-                   required: true
                 },
                 v_phone:{
                     required: true
@@ -645,6 +933,8 @@ var FormValidation = function () {
             handleValidation4();
             handleValidation5();
             handleValidation6();
+            handleValidation7();
+            handleValidation8();
         }
 
     };

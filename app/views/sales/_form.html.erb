@@ -17,7 +17,6 @@
         </div>
     </div>    
     <!-- END PAGE HEAD -->
-    
     <div class="page-content">
         <div class="container-fluid">
             <ul class="page-breadcrumb breadcrumb">
@@ -43,8 +42,9 @@
                         </div>
                         <div class="portlet-body form">
                             <!-- BEGIN FORM-->
-                            <form role="form" id="form_sample_3" class="horizontal-form" method="post" action="javascript:;">
-                                <div class="alert alert-success display-hide">
+                            <!-- <form role="form" id="form_sample_3" class="horizontal-form" method="post" action="javascript:;"> -->
+                            <form id="new_sales" class="new_sales" method="post" accept-charset="UTF-8" action="/welcome">
+                                <div class="alert alert-success display-hide" class="horizontal-form">
                                     <button class="close" data-close="alert"></button>
                                     Sales person information are successfully Added! 
                                 </div>
@@ -56,13 +56,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">First Name <span class="required">*</span></label>
-                                            <input type="text" value="" name="firstname" placeholder="Your first name" class="form-control"/>
+                                            <input type="text"  name="v_firstname" attrName="user[v_firstname]" placeholder="Your first name" class="form-control"/>
                                         </div>
                                     </div>                                                    
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Last Name <span class="required">*</span></label>
-                                            <input type="text" value="" name="lastname" placeholder="Your last name" class="form-control"/>
+                                            <input type="text"  name="v_lastname" attrName="user[v_lastname]"placeholder="Your last name" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -70,13 +70,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Email <span class="required">*</span></label>
-                                            <input type="text" name="email" placeholder="Your email id" value="" class="form-control"/>
+                                            <input type="text" name="email" attrName="user[email]" placeholder="Your email id" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Password <span class="required">*</span></label>
-                                            <input type="password" name="password" placeholder="Your password" value="" class="form-control"/>
+                                            <input type="password" name="password" attrName="user[password]" placeholder="Your password"  class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -84,13 +84,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Skype Id <span class="required">*</span></label>
-                                            <input type="text" name="skype" placeholder="Your Skype Id" value="" class="form-control"/>
+                                            <input type="text" name="v_im_skype" attrName="user[v_im_skype]"
+                                            placeholder="Your Skype Id"  class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Skype Password  <span class="required">*</span></label>
-                                            <input type="password" name="skype_password" placeholder="Your Skype Password" value="" class="form-control"/>
+                                            <input type="password" name="v_im_password" attrName="user[v_im_password]" placeholder="Your Skype Password"  class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -98,13 +99,13 @@
                                     <div class="col-md-6">        
                                         <div class="form-group">
                                             <label class="control-label">Phone <span class="required">*</span></label>
-                                            <input type="text" class="form-control" name="ei" placeholder="Your Phone Number" value=""/>
+                                            <input type="text" class="form-control" name="v_phone" attrName="user[v_phone]" placeholder="Your Phone Number" />
                                         </div>                                                            
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Gmail ID </label>
-                                            <input type="text" name="gmail_id" placeholder="Your Gmail ID" value="" class="form-control"/>
+                                            <input type="text" name="v_gmail" attrName="user[v_gmail]" placeholder="Your Gmail ID"  class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
@@ -113,13 +114,13 @@
                                     <div class="col-md-6">        
                                         <div class="form-group">
                                             <label class="control-label">LinkedIn Profile</label>
-                                            <input type="text" name="linkedIn_profile" placeholder="Your LinkedIn Profile" value="" class="form-control"/>
+                                            <input type="text" name="v_linkedin_url" attrName="user[v_linkedin_url]" placeholder="Your LinkedIn Profile"  class="form-control"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">                                                            
+                                    <div class="col-md-6">                      
                                         <div class="form-group">
                                             <label class="control-label">Status <span class="required">*</span></label>
-                                              <select class="form-control select2me" name="followed_up_type">
+                                              <select class="form-control select2me" name="e_status" attrName="user[e_status]">
                                                 <option value="Active">Active</option>
                                                 <option value="Inactive">Inactive</option>
                                               </select>
@@ -127,9 +128,9 @@
                                     </div>
                                 </div>
                                 <div class="left">
-                                    <a href="#" id="submit-personal-info-form" class="btn green-haze">Submit</a>
-                                    <input type="submit" class="btn default" value="Validate" />
-                                    <a href="/sales" class="btn default">Cancel</a>
+                                    <!-- <a href="#" id="submit-personal-info-form" class="btn green-haze">Submit</a> -->
+                                    <%= submit_tag "Submit", :class=>"btn green-haze", :id=>"submit_sales_action" %>
+                                    <a href="/" class="btn default">Cancel</a>
                                 </div>
                             </form>
                             
@@ -143,3 +144,17 @@
     </div>
  </div>
  <!-- END PAGE CONTENT -->        
+ <script>
+    jQuery(document).ready(function() {    
+        // Login validation 
+        jQuery('#submit_sales_action').click(function(event) { 
+            event.preventDefault();
+            if (jQuery('#new_sales').validate().form()) { 
+                jQuery('#new_sales .form-control').each(function() {
+                    jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                });
+                jQuery('#new_sales').submit();
+            }
+        });
+    });
+</script>

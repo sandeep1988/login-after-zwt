@@ -3,9 +3,16 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-   # validates :v_im_skype, :uniqueness => { :message => "Skype name is has already been taken" }
-   # validates :v_gmail, :uniqueness => { :message => "Gmail is has already been taken" }
+  validates :password, :presence => true, :on => :create
   validates_uniqueness_of :v_im_skype
   validates_uniqueness_of :v_gmail
   enum e_type: [ :Admin, :User]
+  has_many :cases
+
+
+	def as_json(options={})
+  super(:only => [:v_firstname,:email,:v_phone]
+  )
+end
+
 end

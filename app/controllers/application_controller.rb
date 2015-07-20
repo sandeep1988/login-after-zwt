@@ -1,12 +1,11 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-	# prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
   protect_from_forgery with: :null_session
-  #before_filter :authenticate_user!
   layout :another_by_method
-
-  private
+  #before_filter :authenticate_user!
+  
+private
   def another_by_method
     if current_user.nil?
       "login_layout"

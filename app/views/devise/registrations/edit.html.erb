@@ -11,7 +11,6 @@
             <!-- BEGIN PAGE TOOLBAR -->
             <div class="page-toolbar">
                 <!-- BEGIN THEME PANEL -->
-                
             </div>
             <!-- END PAGE TOOLBAR -->
         </div>
@@ -107,24 +106,14 @@
                                     </div>
                                     <div class="portlet-body">
                                         <!-- PERSONAL INFO TAB -->
-                                        <!-- <form role="form" id="form_sample_3" class="horizontal-form" method="post" action="javascript:;">
-                                            <div class="alert alert-success display-hide"> -->
                                         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
                                             <%= devise_error_messages! %>
-                                           <!-- <div class="alert alert-success display-hide">
-                                                <button class="close" data-close="alert"></button>
-                                                Sales person information are successfully updated! 
-                                            </div> 
-                                            <div class="alert alert-danger display-hide">
-                                                <button class="close" data-close="alert"></button>
-                                                You have some form errors. Please check below.
-                                            </div> --> 
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">First Name <span class="required">*</span></label>
                                                         <%= f.text_field :v_firstname, attrName: "user[v_firstname]", name: "v_firstname", class:"form-control", placeholder:"Your first name" %>
+                                                        
                                                     </div>
                                                 </div>                         
                                                 <div class="col-md-6">
@@ -206,6 +195,8 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+
+<!-- Javascript for user edit page validation -->
 <script>
     jQuery(document).ready(function() {    
         // Edit User Page validation 
@@ -220,4 +211,4 @@
             return false;
         });
     });
-    </script>
+</script>
