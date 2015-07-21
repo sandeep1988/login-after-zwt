@@ -45,10 +45,11 @@
 							</div>
 						</div>
 						<div class="portlet-body">
-						<form name="search-form" action="/search_user" method ="post" id="search-form">
+						<form name="search-form" action="/sales" method ="get" id="search-form">
 							<div class="table-container">
 								<div class="row">
 									<div class="col-md-8 col-sm-12"> Page
+
 										<% if !@sales.total_pages == @sales.current_page || @sales.current_page == "1" %>
 											<a title="Prev" class="btn btn-sm default prev disabled " href="/sales?page=1&per_page=10"><i class="fa fa-angle-left"></i></a>
 										<% else %>
@@ -82,6 +83,7 @@
 										<tr role="row" class="heading">
 											<th width="2%" class="sorting_disabled" >
 												<input type="checkbox" class="group-checkable">
+												<%#= check_box_tag "sales_ids[]", :class =>"group-checkable" %>
 											</th>
 											<th>First name</th>
 		                                    <th>Email</th>
@@ -112,7 +114,7 @@
 												<div class="margin-bottom-5">
 													<button typ="submit" class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Search</button>
 												</div>
-												<button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i> Reset</button>
+												<button type="reset"  class="btn btn-sm red filter-cancel" ><i class="fa fa-times"></i> Reset</button>
 											</td>
 										</tr>
 										</thead>
@@ -176,3 +178,20 @@
 <script src="/js/table-ajax.js"></script>
 <!-- <script src="/js/ui-alert-dialog-api.js"></script> -->
 <!--<script>jQuery(document).ready(function() { SalesTableAjax.init(); });</script>   -->
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.group-checkable').click(function(event) {  //on click
+        if(this.checked) { // check select status
+            $(':checkbox').each(function() { //loop through each checkbox
+                this.checked = true;  //select all checkboxes with class "checkbox1"              
+            });
+        }else{
+            $(':checkbox').each(function() { //loop through each checkbox
+                this.checked = false; //deselect all checkboxes with class "checkbox1"                      
+            });        
+        }
+    });
+   
+});
+</script>
