@@ -120,7 +120,6 @@ class SalesController < ApplicationController
   end
 
   def destroy_user
-
     @sales_person = User.find(params[:format])
     if @sales_person.destroy
       redirect_to root_url, notice: "sales person deleted."
@@ -137,7 +136,25 @@ class SalesController < ApplicationController
   end
 
   def search_user
-     @per_page = params[:per_page] || User.per_page || 10
+    if  params[:e_status_user] == "active"
+        params[:sales_ids].each do |active_users| 
+        user = User.find(active_users)
+        user.update_column(:e_status, 1) 
+      end
+    end
+    if  params[:e_status_user] == "inactive"
+        params[:sales_ids].each do |inactive_users| 
+        user = User.find(inactive_users)
+        user.update_column(:e_status, 0) 
+      end
+    end 
+    if  params[:e_status_user] == "delete"
+        params[:sales_ids].each do |delete_users| 
+        user = User.find(delete_users)
+        user.destroy 
+      end
+    end 
+    @per_page = params[:per_page] || User.per_page || 10
     if !params[:v_firstname].blank? && !params[:email].blank? && !params[:v_phone].blank? && !params[:e_status].blank?
        @sales = User.where("v_firstname like ? and email like ? and v_phone like ? and e_status like ?", "%#{params[:v_firstname]}%", "%#{params[:email]}%", "%#{params[:v_phone]}%", "%#{params[:e_status]}%" ).paginate( :per_page => @per_page, :page => params[:page])
       
