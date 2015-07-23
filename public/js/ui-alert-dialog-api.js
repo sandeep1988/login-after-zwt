@@ -14,9 +14,11 @@ var UIAlertDialogApi = function () {
             });
             //end #demo_2
         
-            $('#demo_3').click(function(){
+            $('.user_delete').click(function(){
+                var user_ids = ($(this).attr("attr-delete"));
+                var full_url = location.protocol + "//" + location.host + user_ids
                 bootbox.confirm("Are you sure?", function(result) {
-                   alert("Confirm result: "+result);
+                  window.location.assign(full_url)
                 }); 
             });
             //end #demo_3

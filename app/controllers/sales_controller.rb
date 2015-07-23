@@ -192,17 +192,16 @@ class SalesController < ApplicationController
   # DELETE /sales/1
   # DELETE /sales/1.json
   def destroy
-
     @sales_person = User.find(params[:format])
     if @sales_person.destroy
-      redirect_to sales_url, notice: "sales person deleted."
+      redirect_to sales_url 
     end
   end
 
   def destroy_user
-    @sales_person = User.find(params[:format])
+    @sales_person = User.find(params[:id])
     if @sales_person.destroy
-      redirect_to root_url, notice: "sales person deleted."
+      redirect_to sales_url, notice: "sales person deleted."
     end
   end
   
@@ -214,93 +213,6 @@ class SalesController < ApplicationController
   
   def search
   end
-
-  # def search_user
-  #   if  params[:e_status_user] == "active"
-  #       params[:sales_ids].each do |active_users| 
-  #       user = User.find(active_users)
-  #       user.update_column(:e_status, 1) 
-  #     end
-  #   end
-  #   if  params[:e_status_user] == "inactive"
-  #       params[:sales_ids].each do |inactive_users| 
-  #       user = User.find(inactive_users)
-  #       user.update_column(:e_status, 0) 
-  #     end
-  #   end 
-  #   if  params[:e_status_user] == "delete"
-  #       params[:sales_ids].each do |delete_users| 
-  #       user = User.find(delete_users)
-  #       user.destroy 
-  #     end
-  #   end 
-  #   @per_page = params[:per_page] || User.per_page || 10
-  #   if !params[:v_firstname].blank? && !params[:email].blank? && !params[:v_phone].blank? && !params[:e_status].blank?
-  #      @sales = User.where("v_firstname like ? and email like ? and v_phone like ? and e_status like ?", "%#{params[:v_firstname]}%", "%#{params[:email]}%", "%#{params[:v_phone]}%", "%#{params[:e_status]}%" ).paginate( :per_page => @per_page, :page => params[:page])
-      
-  #     elsif 
-  #       !params[:v_firstname].blank? && !params[:email].blank? && !params[:e_status].blank? && params[:v_phone].blank? 
-        
-  #         @sales = User.where("v_firstname like ? and email like ? and e_status like ?", "%#{params[:v_firstname]}%", "%#{params[:email]}%" ,"%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-          
-  #     elsif 
-  #       params[:v_firstname].blank? && !params[:email].blank? && !params[:v_phone].blank? && !params[:e_status].blank? 
-      
-  #       @sales = User.where("email like ? and v_phone like ? and e_status like ?", "%#{params[:email]}%", "%#{params[:v_phone]}%" ,"%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-        
-  #     elsif 
-  #       !params[:v_firstname].blank? && params[:email].blank? && !params[:v_phone].blank? & !params[:e_status].blank? 
-        
-  #       @sales = User.where("v_phone like ? and v_firstname like ? and e_status like ?", "%#{params[:v_phone]}%", "%#{params[:v_firstname]}%" ,"%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-
-  #     elsif 
-  #       !params[:v_firstname].blank? && !params[:email].blank? && !params[:v_phone].blank? & params[:e_status] == "1"
-      
-  #       @sales = User.where("v_phone like ? and v_firstname like ?, and email like ?  ", "%#{params[:v_phone]}%", "%#{params[:v_firstname]}%" ,"%#{params[:email]}%").paginate( :per_page => @per_page, :page => params[:page])
-
-  #     elsif 
-  #       !params[:v_firstname].blank? && params[:email].blank? && params[:v_phone].blank? 
-        
-  #         @sales = User.where("v_firstname like ? && e_status like ?", "%#{params[:v_firstname]}%", "%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-          
-  #     elsif 
-  #       params[:v_firstname].blank? && !params[:email].blank? && params[:v_phone].blank? 
-        
-  #         @sales = User.where("email like ? && e_status like ?", "%#{params[:email]}%", "%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-          
-  #     elsif 
-  #       params[:v_firstname].blank? && params[:email].blank? && !params[:v_phone].blank?  
-        
-  #         @sales = User.where("v_phone like ? && e_status like ?", "%#{params[:v_phone]}%", "%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-      
-  #     elsif 
-  #       params[:v_firstname].blank? && params[:email].blank? && params[:v_phone].blank? && !params[:e_status].blank? 
-        
-  #         @sales = User.where("e_status like ?", "%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-
-  #     elsif 
-  #       params[:v_firstname].blank? && params[:email].blank? && !params[:v_phone].blank? && !params[:e_status].blank? 
-        
-  #         @sales = User.where("v_phone like ? and e_status like ? ", "%#{params[:v_phone]}%", "%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-          
-  #     elsif 
-  #       params[:v_firstname].blank? && !params[:email].blank? && params[:v_phone].blank? && !params[:e_status].blank? 
-  #         @sales = User.where("email like ? and e_status like ? ", "%#{params[:email]}%", "%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-
-  #     elsif 
-  #       !params[:v_firstname].blank? && params[:email].blank? && params[:v_phone].blank? && !params[:e_status].blank?
-  #         @sales = User.where("v_firstname like ? and e_status like ? ", "%#{params[:v_firstname]}%", "%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-  #     elsif 
-  #       params[:v_firstname].blank? && params[:email].blank? && params[:v_phone].blank? && params[:e_status] == "1"
-  #         @sales = User.where("e_status like ? ","%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
-  #     elsif   
-  #         params[:v_firstname].blank? && params[:email].blank? && params[:v_phone].blank?  
-  #           redirect_to sales_path
-  #   else
-  #     @per_page = params[:per_page] || User.per_page || 10
-  #     @sales = User.all.paginate( :per_page => @per_page, :page => params[:page])
-  #   end
-  # end
 
  def list_ajax
     @sales = User.all.paginate(:page => params[:page], :per_page => 10)

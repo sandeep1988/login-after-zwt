@@ -143,18 +143,24 @@
         </div>
     </div>
  </div>
- <!-- END PAGE CONTENT -->        
- <script>
-    jQuery(document).ready(function() {    
-        // Login validation 
-        jQuery('#submit_sales_action').click(function(event) { 
-            event.preventDefault();
-            if (jQuery('#new_sales').validate().form()) { 
-                jQuery('#new_sales .form-control').each(function() {
-                    jQuery(this).attr('name', jQuery(this).attr('attrName'));
-                });
-                jQuery('#new_sales').submit();
-            }
-        });
+ <!-- END PAGE CONTENT -->   
+
+  <script>
+            jQuery(document).ready(function() {       
+                // initiate layout and plugins
+                Metronic.init(); // init metronic core components
+            }); 
+
+            jQuery(document).ready(function() {    
+                // Login validation 
+                jQuery('#submit_sales_action').click(function(event) { 
+                    event.preventDefault();
+                    if (jQuery('#new_sales').validate().form()) { 
+                        jQuery('#new_sales .form-control').each(function() {
+                            jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                        });
+                        jQuery('#new_sales').submit();
+                    }
+            });
     });
 </script>

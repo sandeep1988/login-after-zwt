@@ -28,7 +28,8 @@ devise_for :users, controllers: { sessions: "sessions",
   post '/cases/list_ajax'
   post '/contacts/list_ajax'
   post '/sales/update_sales'
-  get '/sales/destroy_user'
+  match "/sales/destroy/:id" => "sales#destroy_user", via: [:get, :post, :put]
+  # get '/sales/destroy_user/:id'
   match "/sales/:id" => "sales#update", via: [:get, :post, :put]
 devise_scope :user do
   authenticated :user do
