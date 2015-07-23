@@ -1,5 +1,6 @@
 class SalesController < ApplicationController
   #before_action :set_sale, only: [:show, :edit, :update, :destroy]
+    helper_method :sort_column, :sort_direction
   skip_before_filter  :verify_authenticity_token
   layout "application"
   # GET /sales
@@ -91,7 +92,7 @@ class SalesController < ApplicationController
           @sales = User.where("e_status like ? ","%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
     else
       @per_page = params[:per_page] || User.per_page || 10
-      @sales = User.all.paginate( :per_page => @per_page, :page => params[:page]).order(params[:sort])
+      @sales = User.all.paginate( :per_page => @per_page, :page => params[:page]).order(sort_column + ' ' + sort_direction)
     end
   end
   # GET /sales/1
@@ -226,6 +227,14 @@ private
   end
   def account_update_params
     params.require(:user).permit(:v_firstname, :v_lastname, :email, :password, :v_im_skype, :v_im_password, :v_phone, :v_gmail, :v_linkedin_url, :v_phone, :e_type, :e_status)
+  end
+
+  def sort_column
+      User.column_names.include?(params[:sort]) ? params[:sort] : "v_firstname"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 
 end
