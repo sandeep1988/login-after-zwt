@@ -91,7 +91,7 @@ class SalesController < ApplicationController
           @sales = User.where("e_status like ? ","%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
     else
       @per_page = params[:per_page] || User.per_page || 10
-      @sales = User.all.paginate( :per_page => @per_page, :page => params[:page])
+      @sales = User.all.paginate( :per_page => @per_page, :page => params[:page]).order(params[:sort])
     end
   end
   # GET /sales/1
@@ -201,7 +201,8 @@ class SalesController < ApplicationController
   def destroy_user
     @sales_person = User.find(params[:id])
     if @sales_person.destroy
-      redirect_to sales_url, notice: "sales person deleted."
+      redirect_to sales_url
+      # , notice: "sales person deleted
     end
   end
   
