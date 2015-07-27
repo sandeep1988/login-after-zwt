@@ -67,7 +67,7 @@
 									       			&nbsp;records <span class="seperator">|</span> Found total <%= User.all.count %> records
 								   	</div>
 								   	<div class="table-group-actions pull-right">
-									<span></span>
+									<span id="count-chkbox"></span>
 										<select name="e_status_user" class="table-group-action-input form-control input-inline input-small input-sm">
 											<option value="">Select...</option>
 											<option value="active">Active</option>
@@ -196,6 +196,13 @@ $(document).ready(function() {
             });        
         }
     });
-   
+
+	$('input[type="checkbox"]').click(function(){
+		var count_checkbox = $('#sales_ids_:checked').length
+	    $("#count-chkbox").text(count_checkbox);
+	    $("#count-chkbox").append(" records selected:");
+	    if ($('#sales_ids_:checked').length <= 0)
+	    	$("#count-chkbox").append(" records selected:").hide(); 
+	});
 });
 </script>

@@ -18,7 +18,12 @@ var UIAlertDialogApi = function () {
                 var user_ids = ($(this).attr("attr-delete"));
                 var full_url = location.protocol + "//" + location.host + user_ids
                 bootbox.confirm("Are you sure?", function(result) {
-                  window.location.assign(full_url)
+                    if (result == false ) {
+                        var fail_url = location.protocol + "//" + location.host + "/sales"
+                        window.location.assign(fail_url)
+                    } else {
+                        window.location.assign(full_url)
+                    }
                 }); 
             });
             //end #demo_3

@@ -7,9 +7,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :v_im_skype
   validates_uniqueness_of :v_gmail
   enum e_type: [ :Admin, :User]
-  has_many :cases
-
-
+  has_many :contacts
+  
 	def as_json(options={})
   super(:only => [:v_firstname,:email,:v_phone]
   )

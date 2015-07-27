@@ -23,17 +23,29 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(contact_params)
+    # # if Contact.all.collect(&:email).include?(params[:contact][:email])
+    # #     flash[:notice] = "Email Already created"
+    #   else 
+        @contact = Contact.new(contact_params)
+        @contact.i_reffered_source_id = params[:i_reffered_source_id]
+        @contact.v_contact_type = params[:v_contact_type]
+        @contact.e_status = params[:contact][:e_status] == "Active" ? "1" : "0"
+        @contact.v_country = params[:v_country].blank? ? "india" : params[:v_country]
+        @contact.user_id = current_user.id
+          # check condition for contact_type 
+          if @contact.v_contact_type == "Outsourcing Firm"
+            @contact.v_contact_type = "1"
+          else 
+            @contact.v_contact_type = "0"
+          end
 
-    respond_to do |format|
-      if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
-        format.json { render :show, status: :created, location: @contact }
-      else
-        format.html { render :new }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
-    end
+          if @contact.save
+            # Tag store in Tag table after create contact
+              Tag.create(:v_title => params[:contact][:v_tags])
+            redirect_to contacts_path
+          else
+            render action: 'new'
+          end
   end
 
   # PATCH/PUT /contacts/1
@@ -68,6 +80,9 @@ class ContactsController < ApplicationController
   def details
   end
 
+  def contact
+    @contact = Contact.new
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
@@ -75,7 +90,13 @@ class ContactsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # def contact_params
+    #   params.require(:contact).permit(:first_name ,:last_name, :email, :user_id, :v_company_name, :v_im_skype, :v_website_url, :v_linkedin_url, :v_phone, :v_cell_number, :v_tags, :i_reffered_source_id, :e_status, :v_contact_type, :v_country)
+    # end
+
+    private
+    
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :compnay_name, :Contact, :Type)
+      params.require(:contact).permit(:first_name ,:last_name, :email, :user_id, :v_company_name, :v_im_skype, :v_website_url, :v_linkedin_url, :v_phone, :v_cell_number, :v_tags, :i_reffered_source_id, :e_status, :v_contact_type, :v_country)
     end
 end

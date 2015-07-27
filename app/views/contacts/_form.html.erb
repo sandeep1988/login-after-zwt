@@ -71,7 +71,8 @@
                                     </div>
                                     <div class="portlet-body">
                                         <!-- PERSONAL INFO TAB -->
-                                        <form role="form" id="form_sample_3" method="post" action="javascript:;">
+                                        <!-- <form role="form" id="form_sample_3" method="post" action="javascript:;"> -->
+                                          <%= form_for(@contact) do |f| %>
                                             <div class="alert alert-success display-hide">
                                                 <button class="close" data-close="alert"></button>
                                                  Contact is successfully added! 
@@ -84,13 +85,16 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">First Name <span class="required">*</span></label>
-                                                        <input type="text" value="" placeholder=" first name" class="form-control"  name="username"/>
+                                                        <%#= f.text_field :first_name, placeholder:"Your first name", class: "form-control" %>
+                                                        <!-- <input id="first_name" class="form-control" type="text" name="first_name" placeholder="Your first name" attrName="contact[first_name]"> -->
+                                                        <input class="form-control" type="text" placeholder="Your first name" attrname="contact[first_name]" name="first_name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">    
                                                     <div class="form-group">
                                                         <label class="control-label">Last Name <span class="required">*</span></label>
-                                                        <input type="text" value="" name="lastname" placeholder=" last name" class="form-control"/>
+                                                         <%#= f.text_field :last_name, placeholder:"Your last name", class: "form-control" %>
+                                                         <input class="form-control" type="text" placeholder="Your last name" attrname="contact[last_name]" name="last_name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -100,13 +104,15 @@
 
                                                     <div class="form-group">
                                                         <label class="control-label">Company Name <span class="required">*</span></label>
-                                                        <input type="text" name="companyname" placeholder=" Company Name " value="" class="form-control"/>
+                                                        <%#= f.text_field :v_company_name, placeholder:"Your company name", class: "form-control" %>
+                                                        <input class="form-control" type="text" placeholder="Your Company Name" attrname="contact[v_company_name]" name="v_company_name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Email <span class="required">*</span></label>
-                                                        <input type="text" name="email" placeholder=" email id" value="" class="form-control"/>
+                                                        <%#= f.email_field :email, placeholder:"Your email id", class: "form-control" %>
+                                                        <input class="form-control" type="email" placeholder="Your Email ID" attrname="contact[email]" name="email">
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,13 +121,14 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Skype Id <span class="required">*</span></label>
-                                                        <input type="text" name="skype" placeholder="Skype Id" value="" class="form-control"/>
+                                                        <%#= f.text_field :v_im_skype, placeholder:"Your Skype Id", class: "form-control" %>
+                                                        <input class="form-control" type="text" placeholder="Your Skype ID" attrname="contact[v_im_skype]" name="v_im_skype">
                                                     </div>   
                                                 </div>
                                                 <div class="col-md-6">      
                                                     <div class="form-group">
                                                         <label class="control-label">Country <span class="required">*</span></label>
-                                                            <select class="form-control select2me" name="select_country">
+                                                            <select class="form-control select2me" name="v_country">
                                                                 <option value="">Select Country</option>
                                                                 <option value="Afganistan">Afghanistan</option>
                                                                 <option value="Albania">Albania</option>
@@ -378,13 +385,15 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Cell Number <span class="required">*</span></label>
-                                                        <input type="text" class="form-control" name="cellnumber" placeholder=" Cell Number" value=""/>
+                                                        <%#= f.text_field :v_cell_number, placeholder:"Your Cell Number", class: "form-control" %>
+                                                        <input class="form-control" type="text" placeholder="Your Cell Number" attrname="contact[v_cell_number]" name="v_cell_number">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">  
                                                     <div class="form-group">
                                                         <label class="control-label">Phone (Office)</label>
-                                                        <input type="text" class="form-control" name="phone" placeholder=" Phone (Office)" value=""/>
+                                                        <%#= f.text_field :v_phone, placeholder:"Phone (Office)", class: "form-control" %>
+                                                       <input class="form-control" type="text" placeholder="Phone (Office)" attrname="contact[v_phone]" name="v_phone">
                                                     </div>
                                                     
                                                 </div>
@@ -393,13 +402,15 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">LinkedIn Profile</label>
-                                                        <input type="text" name="linkedin_profile" placeholder=" LinkedIn Profile" value="" class="form-control"/>
+                                                        <%#= f.text_field :v_linkedin_url, placeholder:"Your LinkedIn Profile", class: "form-control" %>
+                                                        <input class="form-control" type="text" placeholder="Your LinkedIn Profile" attrname="contact[v_linkedin_url]" name="v_linkedin_url">
                                                     </div>                                                            
                                                 </div>
                                                 <div class="col-md-6">        
                                                     <div class="form-group">
                                                         <label class="control-label">Website URL </label>
-                                                        <input type="text" name="websiteurl" placeholder="Website URL" value="" class="form-control"/>
+                                                        <%#= f.text_field :v_website_url, placeholder:"Website URL", class: "form-control" %>
+                                                        <input class="form-control" type="text" placeholder="Website URL " attrname="contact[v_website_url]" name="v_website_url">
                                                     </div>
                                                 </div>
                                             </div>
@@ -408,13 +419,14 @@
                                                 <div class="col-md-6">            
                                                     <div class="form-group">
                                                         <label class="control-label">Tags <span class="required">*</span></label>
-                                                        <input id="tags_2" type="text" class="form-control tags medium" placeholder="Tags.." value=""/>
+                                                       <!-- <input class="form-control" type="text" placeholder="Tags" attrname="contact[v_tags]" name="v_tags"> -->
+                                                       <input class="form-control" id="tags_2" type="text" placeholder="Tags" attrname="contact[v_tags]" name="v_tags"> 
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-6">                                                            
                                                     <div class="form-group">
                                                         <label class="control-label">Referred By <span class="required">*</span></label>
-                                                          <select class="form-control select2me" name="followed_up_type">
+                                                          <select class="form-control select2me" name="i_reffered_source_id">
                                                             <option value="LinkedIn">LinkedIn</option>
                                                             <option value="Friend">Friend</option>                                                                    
                                                             <option value="Internet">Internet</option>
@@ -426,7 +438,7 @@
                                                 <div class="col-md-6">     
                                                     <div class="form-group">
                                                         <label class="control-label">Contact Type <span class="required">*</span></label>                                                            
-                                                        <select class="form-control select2me" name="contact_type">        
+                                                        <select class="form-control select2me" name="v_contact_type">        
                                                             <option value="End Client">End Client</option>        
                                                             <option value="Outsourcing Firm">Outsourcing Firm</option>
                                                         </select>                                                                
@@ -435,20 +447,21 @@
                                                 <div class="col-md-6">                                                            
                                                     <div class="form-group">
                                                         <label class="control-label">Status <span class="required">*</span></label>
-                                                          <select class="form-control select2me" name="followed_up_type">
-                                                            <option value="Active">Active</option>
-                                                            <option value="Inactive">Inactive</option>
-                                                          </select>
+                                                        <!--  <%#= f.select :e_status, [ ["Active", "active"], ["Inactive", "inactive"]], {:multiple => false, :class => "form-control"}%> -->
+                                                        <select class="form-control select2me" name="e_status" attrName="contact[e_status]">
+                                                        <option value="Active">Active</option>
+                                                        <option value="Inactive">Inactive</option>
+                                              </select>
                                                     </div>
                                                 </div>  
                                             </div>  
 
                                             <div class="margiv-top-10">
-                                                <a href="#" id="submit-personal-info-form" class="btn green-haze">Submit</a>
-                                                <input type="submit" class="btn default" value="Validate">
+                                                <!-- <a href="#" id="submit-personal-info-form" class="btn green-haze">Submit</a> -->
+                                                <%= submit_tag "Submit", :class=>"btn green-haze", :id => "submit_contact_action" %>
                                                 <a href="/contacts" class="btn default">Cancel </a>
                                             </div>
-                                        </form>
+                                        <% end %>
                                     </div>
                                 </div>
                             </div>
@@ -464,9 +477,22 @@
 </div>
 <!-- END PAGE CONTAINER --> 
 <script src="/plugins/jquery-tags-input/jquery.tagsinput.min.js" type="text/javascript"></script>
-<script src="/js/components-form-tools.js"></script>     
+<script src="/js/components-form-tools.js"></script>  
+<script src="/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
 <script>
     jQuery(document).ready(function() {       
-        ComponentsFormTools.init();
+                // initiate layout and plugins
+                Metronic.init(); // init metronic core components
+                ComponentsFormTools.init();
+                // Contact form  validation 
+                jQuery('#submit_contact_action').click(function(event) { 
+                    event.preventDefault();
+                    if (jQuery('#new_contact').validate().form()) { 
+                        jQuery('#new_contact .form-control').each(function() {
+                            jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                        });
+                        jQuery('#new_contact').submit();
+                    }
+            });
     });
 </script>       
