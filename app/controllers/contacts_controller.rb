@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy, :update_contacts]
   skip_before_filter  :verify_authenticity_token
+  helper_method :sort_column, :sort_direction
   # GET /contacts
   # GET /contacts.json
   def index
