@@ -17,6 +17,7 @@ var UIAlertDialogApi = function () {
             $('.user_delete').click(function(){
                 var user_ids = ($(this).attr("attr-delete"));
                 var full_url = location.protocol + "//" + location.host + user_ids
+                alert(full_url);
                 bootbox.confirm("Are you sure?", function(result) {
                     if (result == false ) {
                         var fail_url = location.protocol + "//" + location.host + "/sales"
@@ -27,6 +28,20 @@ var UIAlertDialogApi = function () {
                 }); 
             });
             //end #demo_3
+
+            $('.contact_delete').click(function(){
+                var contact_ids = ($(this).attr("attr-delete"));
+                var full_url = location.protocol + "//" + location.host + contact_ids
+                bootbox.confirm("Are you sure?", function(result) {
+                    if (result == false ) {
+                        var fail_url = location.protocol + "//" + location.host + "/contacts"
+                        window.location.assign(fail_url)
+                    } else {
+                        window.location.assign(full_url)
+                    }
+                }); 
+            });
+
 
             $('#demo_4').click(function(){
                 bootbox.prompt("What is your name?", function(result) {

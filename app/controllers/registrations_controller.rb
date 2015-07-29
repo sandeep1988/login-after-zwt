@@ -15,9 +15,9 @@ class RegistrationsController  < Devise::RegistrationsController
     end
   end
 
-def update
-  super
-end
+  def update
+    super
+  end
   
 
   def edit
@@ -26,7 +26,6 @@ end
 
   def destroy
     super
-  #redirect_to root_path
   end
 
   private
