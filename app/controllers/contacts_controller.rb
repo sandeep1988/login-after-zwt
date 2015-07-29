@@ -24,39 +24,35 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
-    @edit_contact = Contact.find(params[:id])
-    # redirect_to contacts_update_contacts_path(:id => @edit_contact) 
+    @edit_contact = Contact.find(params[:id]) 
   end
 
   # POST /contacts
   # POST /contacts.json
   def create
-      @contact = Contact.new(contact_params)
-      @contact.i_reffered_source_id = params[:i_reffered_source_id]
-      @contact.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? "1" : "0"
-      @contact.e_status = params[:contact][:e_status] == "Active" ? "1" : "0"
-      @contact.v_country = params[:v_country].blank? ? "india" : params[:v_country]
-      @contact.user_id = current_user.id
-        if @contact.save
-          # Tag store in Tag table after create contact
-            Tag.create(:v_title => params[:contact][:v_tags])
-          redirect_to contacts_path
-        else
-          render action: 'new'
-        end
+    @contact = Contact.new(contact_params)
+    @contact.i_reffered_source_id = params[:i_reffered_source_id]
+    @contact.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? 1 : 0
+    @contact.e_status = params[:contact][:e_status] == "Active" ? 1 : 0
+    @contact.v_country = params[:v_country].blank? ? "india" : params[:v_country]
+    @contact.user_id = current_user.id
+      if @contact.save
+        # Tag store in Tag table after create contact
+          Tag.create(:v_title => params[:contact][:v_tags])
+            redirect_to contacts_path
+      else
+        render action: 'new'
+      end
   end
 
   # PATCH/PUT /contacts/1
   # PATCH/PUT /contacts/1.json
   def update
     @contact_person = Contact.find(params[:format])
-    #@contact_person.v_country = params[:contact][:v_country].blank? ? "India" : params[:v_country]
-   # @contact_person.e_status = params[:contact][:e_status] == "1" ? true : false
-   #  @contact_person.v_contact_type = params[:contact][:v_contact_type] == "Outsourcing Firm" ? "1" : "0"
-   @contact_person.v_contact_type =  params[:contact][:v_contact_type] == "End Client" ? 0 : 1
-   @contact_person.e_status = params[:contact][:e_status] == "Active" ? "Active" : "Inactive"
+    @contact_person.v_contact_type =  params[:contact][:v_contact_type] == "End Client" ? 0 : 1
+    @contact_person.e_status = params[:contact][:e_status] == "Active" ? 1 : 0
     @contact_person.update_attributes(contact_params)
-    redirect_to contacts_path
+      redirect_to contacts_path
   end
 
   # DELETE /contacts/1
