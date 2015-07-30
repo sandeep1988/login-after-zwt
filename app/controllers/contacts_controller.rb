@@ -6,27 +6,63 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @per_page = params[:per_page] || User.per_page || 10
-    if params[:e_status_user].blank? && params[:last_name].blank? && params[:email].blank? && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
+
+    if  params[:e_status] == "active"
+        @per_page = params[:per_page] || Contact.per_page || 10
+        @contacts = Contact.all.paginate( :per_page => @per_page, :page => params[:page])
+          params[:contacts_ids].each do |active_contacts| 
+          contact = Contact.find(active_contacts)
+          contact.update_column(:e_status, 0) 
+          end
+      elsif  params[:e_status] == "inactive"
+        @per_page = params[:per_page] || Contact.per_page || 10
+        @contacts = Contact.all.paginate( :per_page => @per_page, :page => params[:page])
+          params[:contacts_ids].each do |inactive_contacts| 
+          contact = Contact.find(inactive_contacts)
+          contact.update_column(:e_status, 1) 
+      end
+
+      elsif  params[:e_status] == "delete"
+        @per_page = params[:per_page] || Contact.per_page || 10
+        @contacts = Contact.all.paginate( :per_page => @per_page, :page => params[:page])
+          params[:contacts_ids].each do |delete_contacts| 
+          contact = Contact.find(delete_contacts)
+          if contact.destroy 
+            redirect_to contacts_path
+          end
+      end
+
+    elsif params[:v_contact_type].blank? && params[:last_name].blank? && params[:email].blank? && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
       @contacts = Contact.where("first_name like ?", "%#{params[:first_name]}%").paginate( :per_page => @per_page, :page => params[:page])
     elsif
-        params[:e_status_user].blank? && params[:last_name] && params[:email].blank? && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
+        params[:v_contact_type].blank? && params[:last_name] && params[:email].blank? && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
 
       @contacts = Contact.where("first_name like ? and last_name like ? ", "%#{params[:first_name]}%", "%#{params[:last_name]}%").paginate( :per_page => @per_page, :page => params[:page])
 
     elsif
-        params[:e_status_user].blank? && params[:last_name] && params[:email] && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
+        params[:v_contact_type].blank? && params[:last_name] && params[:email] && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
 
       @contacts = Contact.where("first_name like ? and last_name like ? and email like ? ", "%#{params[:first_name]}%", "%#{params[:last_name]}%", "%#{params[:email]}%").paginate( :per_page => @per_page, :page => params[:page])
 
     elsif
-        params[:e_status_user].blank? && params[:last_name] && params[:email] && params[:v_country] && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
+        params[:v_contact_type].blank? && params[:last_name] && params[:email] && params[:v_country] && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
 
       @contacts = Contact.where("first_name like ? and last_name like ? and email like ? and v_country like ? ", "%#{params[:first_name]}%", "%#{params[:last_name]}%", "%#{params[:email]}%", "%#{params[:v_country]}%").paginate( :per_page => @per_page, :page => params[:page])
 
     elsif
-        params[:e_status_user].blank? && params[:last_name] && params[:email] && params[:v_country] && params[:v_tags] && params[:i_reffered_source_id].blank? && params[:first_name]
+        params[:v_contact_type].blank? && params[:last_name] && params[:email] && params[:v_country] && params[:v_tags] && params[:i_reffered_source_id].blank? && params[:first_name]
 
       @contacts = Contact.where("first_name like ? and last_name like ? and email like ? and v_country like ? and v_tags like ?", "%#{params[:first_name]}%", "%#{params[:last_name]}%", "%#{params[:email]}%", "%#{params[:v_country]}%", "%#{params[:v_tags]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+      elsif
+        params[:v_contact_type] == "0" ? "0" : "1" && params[:last_name] && params[:email] && params[:v_country] && params[:v_tags] && params[:i_reffered_source_id].blank? && params[:first_name]
+
+      @contacts = Contact.where("first_name like ? and last_name like ? and email like ? and v_country like ? and v_tags like ? and v_contact_type like ?", "%#{params[:first_name]}%", "%#{params[:last_name]}%", "%#{params[:email]}%", "%#{params[:v_country]}%", "%#{params[:v_tags]}%", "%#{params[:v_contact_type]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+       elsif
+        params[:v_contact_type] && params[:last_name] && params[:email] && params[:v_country] && params[:v_tags] && params[:i_reffered_source_id] && params[:first_name]
+
+      @contacts = Contact.where("first_name like ? and last_name like ? and email like ? and v_country like ? and v_tags like ? and v_contact_type like ? and i_reffered_source_id like ?", "%#{params[:first_name]}%", "%#{params[:last_name]}%", "%#{params[:email]}%", "%#{params[:v_country]}%", "%#{params[:v_tags]}%", "%#{params[:v_contact_type]}%", "%#{params[:i_reffered_source_id]}%").paginate( :per_page => @per_page, :page => params[:page])
     else   
         @contacts = Contact.all.paginate( :per_page => @per_page, :page => params[:page]).order(sort_column + ' ' + sort_direction)
     end

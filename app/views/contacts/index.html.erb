@@ -68,7 +68,7 @@
 								   	</div>
 								   	<div class="table-group-actions pull-right">
 									<span id="count-chkbox"></span>
-										<select name="e_status_user" class="table-group-action-input form-control input-inline input-small input-sm">
+										<select name="e_status" class="table-group-action-input form-control input-inline input-small input-sm">
 											<option value="">Select...</option>
 											<option value="active">Active</option>
 											<option value="inactive">Inactive</option>
@@ -112,17 +112,18 @@
 										<%= text_field_tag :v_tags, params[:v_tags], :class=>"form-control form-filter input-sm" %>
 									</td>	
 									<td>
-										<select name="order_status" class="form-control form-filter input-sm">
+										<select name="v_contact_type" class="form-control form-filter input-sm">
 											<option value="">Select...</option>
 											<option value="1">Outsourcing Firm</option>
-											<option value="0">End Client</option>								
+											<option value="0">End Client</option>						
 										</select>
 									</td>
                                     <td>
-										<select name="order_status" class="form-control form-filter input-sm">
+										<select name="i_reffered_source_id" class="form-control form-filter input-sm">
 											<option value="">Select...</option>
 											<option value="linkedIn">LinkedIn</option>
-											<option value="google_search">Google Search</option>								
+											<option value="Internet">Google Search</option>	
+											<option value="friend">Friend</option>							
 										</select>
 									</td>
 									<td>
