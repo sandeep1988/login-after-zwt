@@ -8,7 +8,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: zeal_sales1
+  database: zeal_sales12
   pool: 5
   username: root
   password: this.admin
