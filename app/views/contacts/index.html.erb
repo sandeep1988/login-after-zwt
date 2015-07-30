@@ -148,10 +148,13 @@
 											<td><%= contacts.v_country %></td>
 											<td><%= contacts.v_tags %></td>
 											<td> 
-										<% if contacts.v_contact_type == 0 %> 
-										<span class="label label-sm label-success">End Client
+										<% if contacts.v_contact_type == 2 %> 
+											<span class="label label-sm label-success"> Outsourcing Firm
 										<% else %>
-										<span class="label label-sm label-danger">Outsourcing Firm </span><% end %></td>
+											<span class="label label-sm label-danger"> End Client</span>
+											
+										<% end %>
+										</td>
 										<td><%=contacts.i_reffered_source_id%></td>
 										<td>
 											<a class="btn btn-xs default" href="/contacts/<%= contacts.id%>/edit">

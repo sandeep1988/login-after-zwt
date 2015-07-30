@@ -32,7 +32,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     @contact.i_reffered_source_id = params[:i_reffered_source_id]
-    @contact.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? 1 : 0
+    @contact.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? 2 : 1
     @contact.e_status = params[:contact][:e_status] == "Active" ? 1 : 0
     @contact.v_country = params[:v_country].blank? ? "india" : params[:v_country]
     @contact.user_id = current_user.id
@@ -49,7 +49,7 @@ class ContactsController < ApplicationController
   # PATCH/PUT /contacts/1.json
   def update
     @contact_person = Contact.find(params[:format])
-    @contact_person.v_contact_type =  params[:contact][:v_contact_type] == "End Client" ? 0 : 1
+    @contact_person.v_contact_type =  params[:contact][:v_contact_type] === "Outsourcing Firm" ? "2" : "1"
     @contact_person.e_status = params[:contact][:e_status] == "Active" ? 1 : 0
     @contact_person.update_attributes(contact_params)
       redirect_to contacts_path
@@ -82,7 +82,7 @@ class ContactsController < ApplicationController
     @contact_person = Contact.find(params[:format])
     @contact_person.v_country = params[:v_country].blank? ? "india" : params[:v_country]
     @contact_person.e_status = params[:contact][:e_status] == "Active" ? "1" : "0"
-    @contact_person.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? "1" : "0"
+    @contact_person.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? "2" : "1"
     @contact_person.update_attributes(params[:contact])
     redirect_to contacts_path
   end
