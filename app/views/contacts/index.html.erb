@@ -97,38 +97,38 @@
 									<td>
 									</td>
 									<td>
-										<input type="text" class="form-control form-filter input-sm" name="order_id">
+										<%= text_field_tag :first_name, params[:first_name], :class=>"form-control form-filter input-sm" %>
 									</td>
 									<td>
-										<input type="text" class="form-control form-filter input-sm" name="order_customer_name">
+										<%= text_field_tag :last_name, params[:last_name], :class=>"form-control form-filter input-sm" %>
 									</td>
 									<td>
-										<input type="text" class="form-control form-filter input-sm" name="order_ship_to">
+										<%= text_field_tag :email, params[:email], :class=>"form-control form-filter input-sm" %>
 									</td>
                                     <td>
-										<input type="text" class="form-control form-filter input-sm" name="order_id">
+										<%= text_field_tag :v_country, params[:v_country], :class=>"form-control form-filter input-sm" %>
 									</td>
                                     <td>
-										<input type="text" class="form-control form-filter input-sm" name="order_id">
+										<%= text_field_tag :v_tags, params[:v_tags], :class=>"form-control form-filter input-sm" %>
 									</td>	
 									<td>
 										<select name="order_status" class="form-control form-filter input-sm">
 											<option value="">Select...</option>
-											<option value="Outsourcing Firm">Outsourcing Firm</option>
-											<option value="End Client">End Client</option>								
+											<option value="1">Outsourcing Firm</option>
+											<option value="0">End Client</option>								
 										</select>
 									</td>
                                     <td>
 										<select name="order_status" class="form-control form-filter input-sm">
 											<option value="">Select...</option>
-											<option value="LinkedIn">LinkedIn</option>
-											<option value="Google Search">Google Search</option>								
+											<option value="linkedIn">LinkedIn</option>
+											<option value="google_search">Google Search</option>								
 										</select>
 									</td>
 									<td>
 										<div class="margin-bottom-5">
-											<button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Search</button>
-										</div>
+													<button typ="submit" class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Search</button>
+												</div>
 										<button type="reset"  class="btn btn-sm red filter-cancel" ><i class="fa fa-times"></i> Reset</button>
 									</td>
 								</tr>
@@ -148,14 +148,14 @@
 											<td><%= contacts.v_country %></td>
 											<td><%= contacts.v_tags %></td>
 											<td> 
-										<% if contacts.v_contact_type == 2 %> 
+										<% if contacts.v_contact_type == true %> 
 											<span class="label label-sm label-success"> Outsourcing Firm
 										<% else %>
 											<span class="label label-sm label-danger"> End Client</span>
 											
 										<% end %>
 										</td>
-										<td><%=contacts.i_reffered_source_id%></td>
+										<td><%=contacts.i_reffered_source_id %></td>
 										<td>
 											<a class="btn btn-xs default" href="/contacts/<%= contacts.id%>/edit">
 													<i class="fa fa-edit"></i>

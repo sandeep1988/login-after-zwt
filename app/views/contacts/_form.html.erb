@@ -438,8 +438,8 @@
                                                     <div class="form-group">
                                                         <label class="control-label">Contact Type <span class="required">*</span></label>                                                            
                                                         <select class="form-control select2me" name="v_contact_type">        
-                                                            <option value="End Client">End Client</option>        
-                                                            <option value="Outsourcing Firm">Outsourcing Firm</option>
+                                                            <option value="0">End Client</option>        
+                                                            <option value="1 Firm">Outsourcing Firm</option>
                                                         </select>                                                                
                                                     </div>
                                                 </div>
@@ -482,7 +482,10 @@
     jQuery(document).ready(function() {       
                 // initiate layout and plugins
                 Metronic.init();
+                setTimeout(function(){
                 ComponentsFormTools.init();
+                }, 
+                    400);
                 // Contact form  validation 
                 jQuery('#submit_contact_action').click(function(event) { 
                     event.preventDefault();

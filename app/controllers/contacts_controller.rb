@@ -6,8 +6,30 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @per_page = params[:per_page] || User.per_page || 10
-    @contacts = Contact.all.paginate( :per_page => @per_page, :page => params[:page]).order(sort_column + ' ' + sort_direction)
-    # @contacts = Contact.all
+    if params[:e_status_user].blank? && params[:last_name].blank? && params[:email].blank? && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
+      @contacts = Contact.where("first_name like ?", "%#{params[:first_name]}%").paginate( :per_page => @per_page, :page => params[:page])
+    elsif
+        params[:e_status_user].blank? && params[:last_name] && params[:email].blank? && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
+
+      @contacts = Contact.where("first_name like ? and last_name like ? ", "%#{params[:first_name]}%", "%#{params[:last_name]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+    elsif
+        params[:e_status_user].blank? && params[:last_name] && params[:email] && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
+
+      @contacts = Contact.where("first_name like ? and last_name like ? and email like ? ", "%#{params[:first_name]}%", "%#{params[:last_name]}%", "%#{params[:email]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+    elsif
+        params[:e_status_user].blank? && params[:last_name] && params[:email] && params[:v_country] && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
+
+      @contacts = Contact.where("first_name like ? and last_name like ? and email like ? and v_country like ? ", "%#{params[:first_name]}%", "%#{params[:last_name]}%", "%#{params[:email]}%", "%#{params[:v_country]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+    elsif
+        params[:e_status_user].blank? && params[:last_name] && params[:email] && params[:v_country] && params[:v_tags] && params[:i_reffered_source_id].blank? && params[:first_name]
+
+      @contacts = Contact.where("first_name like ? and last_name like ? and email like ? and v_country like ? and v_tags like ?", "%#{params[:first_name]}%", "%#{params[:last_name]}%", "%#{params[:email]}%", "%#{params[:v_country]}%", "%#{params[:v_tags]}%").paginate( :per_page => @per_page, :page => params[:page])
+    else   
+        @contacts = Contact.all.paginate( :per_page => @per_page, :page => params[:page]).order(sort_column + ' ' + sort_direction)
+    end
   end
 
   # GET /contacts/1
@@ -32,9 +54,9 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     @contact.i_reffered_source_id = params[:i_reffered_source_id]
-    @contact.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? 2 : 1
+    @contact.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? 1 : 0
     @contact.e_status = params[:contact][:e_status] == "Active" ? 1 : 0
-    @contact.v_country = params[:v_country].blank? ? "india" : params[:v_country]
+    @contact.v_country = params[:v_country]
     @contact.user_id = current_user.id
       if @contact.save
         # Tag store in Tag table after create contact
@@ -49,7 +71,7 @@ class ContactsController < ApplicationController
   # PATCH/PUT /contacts/1.json
   def update
     @contact_person = Contact.find(params[:format])
-    @contact_person.v_contact_type =  params[:contact][:v_contact_type] === "Outsourcing Firm" ? "2" : "1"
+    @contact_person.v_contact_type =  params[:contact][:v_contact_type] === "Outsourcing Firm" ? "1" : "0"
     @contact_person.e_status = params[:contact][:e_status] == "Active" ? 1 : 0
     @contact_person.update_attributes(contact_params)
       redirect_to contacts_path
@@ -82,7 +104,7 @@ class ContactsController < ApplicationController
     @contact_person = Contact.find(params[:format])
     @contact_person.v_country = params[:v_country].blank? ? "india" : params[:v_country]
     @contact_person.e_status = params[:contact][:e_status] == "Active" ? "1" : "0"
-    @contact_person.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? "2" : "1"
+    @contact_person.v_contact_type = params[:v_contact_type] == "Outsourcing Firm" ? "1" : "0"
     @contact_person.update_attributes(params[:contact])
     redirect_to contacts_path
   end
