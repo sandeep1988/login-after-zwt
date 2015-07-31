@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20150730070110) do
     t.string   "i_reffered_source_id", limit: 255
     t.boolean  "e_status",             limit: 1,   default: false
     t.string   "v_country",            limit: 255
-    t.boolean  "v_contact_type",       limit: 1,   default: false
+    t.boolean  "v_contact_type",       limit: 1,   default: true
   end
 
   create_table "followuptypes", force: :cascade do |t|
