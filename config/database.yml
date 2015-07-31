@@ -8,28 +8,28 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: zeal_sales1
+  database: zeal_sales12
   pool: 5
   username: root
   password: this.admin
   host: localhost
 
-test:
-  adapter: mysql2
-  encoding: utf
-  reconnect: false
-  database: zwt_sales_test
-  pool: 5
-  username: root
-  password: this.admin
-  host: localhost
-  port: 3306
+# test:
+#   adapter: mysql2
+#   encoding: utf
+#   reconnect: false
+#   database: crm_test
+#   pool: 5
+#   username: root
+#   password: this.admin
+#   host: localhost
+#   port: 3306
  
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: zeal_sales
+  database: crm_sales_production
   username: siteproof-net
   password: thisadmin
   pool: 5

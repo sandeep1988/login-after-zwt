@@ -5,13 +5,12 @@
         <div class="container-fluid">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>My Profile<small> &nbsp;manage your profile</small></h1>
+                <h1>My Profile<small>&nbsp;manage your profile</small></h1>
             </div>
             <!-- END PAGE TITLE -->
             <!-- BEGIN PAGE TOOLBAR -->
             <div class="page-toolbar">
                 <!-- BEGIN THEME PANEL -->
-                
             </div>
             <!-- END PAGE TOOLBAR -->
         </div>
@@ -67,14 +66,14 @@
                             </div>
                             <p>
                                 <strong>Name</strong> <br>
-                                <%=current_user.v_firstname %> <%=current_user.v_lastname %>
+                                <%=user_fullname(current_user) %>
                             </p>                                   
                             <p>
                                 <strong>Email</strong> <br>
-                                <a href="mailto:testing.demo@gmail.com"><%=current_user.email %></a> 
+                                <a href="mailto:testing.demo@gmail.com"><%= user_email(current_user) %></a> 
                             </p>                                    
                             <p>
-                                <strong>IM (Skype)</strong> <br>
+                                <strong>Skype</strong> <br>
                                 <%=current_user.v_im_skype %> 
                             </p>                                    
                             <p>
@@ -107,29 +106,20 @@
                                     </div>
                                     <div class="portlet-body">
                                         <!-- PERSONAL INFO TAB -->
-                                        <!-- <form role="form" id="form_sample_3" class="horizontal-form" method="post" action="javascript:;">
-                                            <div class="alert alert-success display-hide"> -->
-
                                         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-                                          <div class="alert alert-success display-hide">
-                                                <button class="close" data-close="alert"></button>
-                                                Sales person information are successfully updated! 
-                                            </div>
-                                            <div class="alert alert-danger display-hide">
-                                                <button class="close" data-close="alert"></button>
-                                                You have some form errors. Please check below.
-                                            </div>
+                                            <%= devise_error_messages! %>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">First Name <span class="required">*</span></label>
-                                                        <input class="form-control" type="text" placeholder="Your first name" name="v_firstname" attrName="user[v_firstname]" value = <%=current_user.v_firstname %> >
+                                                        <%= f.text_field :v_firstname, attrName: "user[v_firstname]", name: "v_firstname", class:"form-control", placeholder:"Your first name" %>
+                                                        
                                                     </div>
                                                 </div>                         
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Last Name <span class="required">*</span></label>
-                                                        <input class="form-control" type="text" placeholder="Your last name" name="v_lastname" attrName="user[v_lastname]" value = <%=current_user.v_lastname %> >
+                                                        <%= f.text_field :v_lastname, attrName: "user[v_lastname]", name: "v_lastname", class:"form-control", placeholder:"Your last name" %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,27 +127,27 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Email <span class="required">*</span></label>
-                                                        <input class="form-control" type="email" placeholder="Your EmailId" name="email" attrName="user[email]" value = <%=current_user.email %> >
+                                                        <%= f.email_field :email, attrName: "user[email]", name: "email", class:"form-control", placeholder:"Your EmailId" %>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Password <span class="required">*</span></label>
-                                                        <input class="form-control" type="password" placeholder="Your password" name="password" attrName="user[password]" value =<%=current_user.password %> >
+                                                        <%= f.password_field :password, attrName: "user[password]", name: "password", class:"form-control", placeholder:"Your password" %>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">IM (Skype) <span class="required">*</span></label>
-                                                        <input class="form-control" type="text" placeholder="Your IM (Skype)" name="v_im_skype" attrName="user[v_im_skype]" value =<%=current_user.v_im_skype %> >
+                                                        <label class="control-label">Skype) <span class="required">*</span></label>
+                                                        <%= f.text_field :v_im_skype, attrName: "user[v_im_skype]", name: "v_im_skype", class:"form-control", placeholder:"Your Skype" %>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">IM (Skype) Password <span class="required">*</span></label>
-                                                         <input class="form-control" type="password" placeholder="Your IM Password" name="v_im_password" attrName="user[v_im_password]" value =<%=current_user.v_im_password %> >
+                                                        <label class="control-label">Skype Password <span class="required">*</span></label>
+                                                        <%= f.password_field :v_im_password, attrName: "user[v_im_password]", name: "v_im_password", class:"form-control", placeholder:"Your Skype Password" %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,13 +155,13 @@
                                                 <div class="col-md-6">        
                                                     <div class="form-group">
                                                         <label class="control-label"> Phone <span class="required">*</span></label>
-                                                        <input class="form-control" type="text" placeholder="Your Phone Number" name="v_phone" attrName="user[v_phone]" value =<%=current_user.v_phone %> >
+                                                        <%= f.text_field :v_phone, attrName: "user[v_phone]", name: "v_phone", class:"form-control", placeholder:"Your Phone Number" %>
                                                     </div>                                        
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Gmail ID  </label>
-                                                        <input class="form-control" type="email" placeholder="Your Gmail ID" name="v_gmail" attrName="user[v_gmail]" value = <%=current_user.v_gmail %>>
+                                                        <%= f.email_field :v_gmail, attrName: "user[v_gmail]", name: "v_gmail", class:"form-control", placeholder:"Your Gmail ID" %>
 
                                                     </div>
                                                 </div>                                                
@@ -181,7 +171,7 @@
                                                 <div class="col-md-12">        
                                                     <div class="form-group">
                                                         <label class="control-label">LinkedIn Profile</label>
-                                                        <input class="form-control" type="text" placeholder="Your LinkedIn Profile" name="v_linkedin_url" attrName="user[v_linkedin_url]" value = <%=current_user.v_linkedin_url %> >
+                                                        <%= f.text_field :v_linkedin_url, attrName: "user[v_linkedin_url]", name: "v_linkedin_url", class:"form-control", placeholder:"Your LinkedIn Profile" %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -205,9 +195,11 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+
+<!-- Javascript for user edit page validation -->
 <script>
     jQuery(document).ready(function() {    
-        // Login validation 
+        // Edit User Page validation 
         jQuery('#submit_action').click(function(event) { 
             event.preventDefault();
             if (jQuery('#edit_user').validate().form()) { 
@@ -219,4 +211,4 @@
             return false;
         });
     });
-    </script>
+</script>

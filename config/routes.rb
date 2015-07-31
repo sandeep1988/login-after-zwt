@@ -1,26 +1,40 @@
 Rails.application.routes.draw do
+  resources :tags
     #devise_for :users, :controllers => {:registrations => "registrations"}
 devise_for :users, controllers: { sessions: "sessions", 
   registrations: "registrations", passwords: "passwords", :confirmations => "confirmations"}  do 
   match '/edit', :to => 'devise/registrations#edit'
   end
   get 'tag/index'
+  # post 'sales/update'
   resources :followuptypes
   resources :cases
   resources :contacts
   resources :sales
+  # resources :sales, :except => [:show]
   get 'welcome/edit_user'
-  #get '/my_profile', to: 'sales#my_profile'
+  get 'welcome/index'
+  post '/search', to: 'sales#search'
   get '/search', to: 'sales#search'
+  post '/welcome', to: 'sales#welcome'
   get '/dashboard', to: 'sales#dashboard'
   get 'welcome/forget_password_developer'
-  get 'contacts/details'
+  get "contacts/:id" => 'contacts#update', via: [:get, :post, :put]
+  # get 'contacts/details'
   get 'cases/details'
   get 'tag/index'
+  post '/search_user', to: 'sales#search_user'
+  get '/search_user', to: 'sales#search_user'
   post '/sales/list_ajax'
   post '/cases/list_ajax'
-  post '/contacts/list_ajax'
-
+  # post '/contacts/list_ajax'
+  post '/sales/update_sales'
+  post '/contacts/update_contacts'
+  match "/sales/destroy/:id" => "sales#destroy_user", via: [:get, :post, :put]
+  match "/contacts/destroy/:id" => "contacts#destroy_contact", via: [:get, :post, :put]
+  # get '/sales/destroy_user/:id'
+  match "/sales/:id" => "sales#update", via: [:get, :post, :put]
+  
 devise_scope :user do
   authenticated :user do
     root 'sales#dashboard', as: :authenticated_root
@@ -33,6 +47,10 @@ end
 devise_scope :user do
   get "/my_profile" => "registrations#edit"
   get '/users/sign_out' => 'sessions#destroy'
+  get "/edit" => "registrations#edit"
+  # get "/update" => "registrations#update"
+
+  #match '/sales/edit',  to: 'registrations#edit', via: [:get, :post]
 end
 #   authenticated :user do
 #   root :to => 'devise/sessions#new', :as => :authenticated_root

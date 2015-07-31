@@ -167,3 +167,8 @@ New Profile Page
     overflow: visible;
   }
 }
+
+/*custon style*/
+#login-response-block span {
+    display: block;
+  }

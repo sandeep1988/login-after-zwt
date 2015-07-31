@@ -28,7 +28,7 @@
                     <a href="/contacts">Contacts</a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
-                    <a href="/contacts/details">Christopher Monnat</a><i class="fa fa-circle"></i>
+                    <a href="/contacts/details"><%= @edit_contact.first_name %>&nbsp;<%= @edit_contact.last_name %></a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
                     Edit
@@ -50,47 +50,49 @@
                             </div>
                             <p>
                                 <strong>Name</strong> <br>
-                                <strong><a href="/contacts/details">Christopher Monnat</a></strong>
+                                <strong><a href="/contacts/details"><%= @edit_contact.first_name %>&nbsp;<%= @edit_contact.last_name %></a></strong>
                             </p>
                             <p>
                                 <strong>Compnay Name</strong> <br>
-                                Bluetext Co.
+                                <%= @edit_contact.v_company_name %>
                             </p>
                             <p>
                                 <strong>Email</strong> <br>
-                                <a href="mailto:chris@bluetext.com">chris@bluetext.com</a>
+                                <a href="mailto:chris@bluetext.com"><%= @edit_contact.email %></a>
                             </p>
                             <p>
                                 <strong>IM (Skype)</strong> <br>
-                                <a href="skype:raghav_zwt?call">chris.monnat</a>                                        
+                                <a href="skype:raghav_zwt?call"><%= @edit_contact.v_im_skype %></a>                                        
                             </p>
                             <p>
                                 <strong>Country</strong> <br>
-                                United States of America
+                                <%= @edit_contact.v_country %>
                             </p>
                             <p>
                                 <strong>Cell Number</strong> <br>
-                                <a href="tel:866-123-1234">866-123-1234</a>
+                                <a href="<%= @edit_contact.v_cell_number %>">
+                                <%= @edit_contact.v_cell_number %></a>
                             </p>
                             <p>
                                 <strong>Phone (Office)</strong> <br>
-                                <a href="tel:866-123-1234">866-123-1234</a>
+                                <a href="<%= @edit_contact.v_phone %>">
+                                <%= @edit_contact.v_phone %></a>
                             </p>
                             <p>
                                 <strong>Tags</strong> <br>
-                                tags1, tag2
+                                <%= @edit_contact.v_tags %>
                             </p>
                             <p>
                                 <strong>LinkedIn Profile</strong> <br>
-                                <a target="_blank" href="http://www.linkedin.com/chris_monnat">http://www.linkedin.com/chris_monnat</a>
+                                <a target="_blank" href="http://<%= @edit_contact.v_linkedin_url %>"><%= @edit_contact.v_linkedin_url %></a>
                             </p>
                             <p>
                                 <strong>Website URL </strong> <br>
-                                <a target="_blank" href="http://www.bluetext.com/">http://www.bluetext.com/</a>
+                                <a target="_blank" href="http://www.<%= @edit_contact.v_website_url %>.com/"><%= @edit_contact.v_website_url %></a>
                             </p> 
                             <p>
                                 <strong>Added On </strong> <br>
-                                5th may, 2015
+                                <%= @edit_contact.created_at.to_formatted_s(:long) %>
                             </p>                                   
                         </div>
                         <!-- END PORTLET MAIN -->
@@ -106,11 +108,10 @@
                                             <i class="icon-globe theme-font hide"></i>
                                             <span class="caption-subject font-blue-madison bold uppercase">Edit Contact</span>
                                         </div>
-                                        
                                     </div>
                                     <div class="portlet-body">
                                         <!-- PERSONAL INFO TAB -->
-                                        <form role="form" id="form_sample_3" method="post" action="javascript:;">
+                                        <%= form_for(@edit_contact, :url => contacts_update_contacts_path(@edit_contact), :html => {:class => 'edit-sales-form', :id => 'edit-contacts-form' }) do |f| %>
                                             <div class="alert alert-success display-hide">
                                                 <button class="close" data-close="alert"></button>
                                                  Contact are successfully updated! 
@@ -123,13 +124,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">First Name <span class="required">*</span></label>
-                                                        <input type="text" value="Christopher" placeholder=" first name" class="form-control"  name="username"/>
+                                                        <%= f.text_field :first_name, attrName: "contact[first_name]", name: "first_name", class:"form-control", placeholder:"Your first name" %>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">    
                                                     <div class="form-group">
                                                         <label class="control-label">Last Name <span class="required">*</span></label>
-                                                        <input type="text" value="Monnat" name="lastname" placeholder=" last name" class="form-control"/>
+                                                        <%= f.text_field :last_name, attrName: "contact[last_name]", name: "last_name", class:"form-control", placeholder:"Your last name" %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -139,13 +140,13 @@
 
                                                     <div class="form-group">
                                                         <label class="control-label">Company Name <span class="required">*</span></label>
-                                                        <input type="text" name="companyname" placeholder=" Company Name " value="Bluetext Co." class="form-control"/>
+                                                        <%= f.text_field :v_company_name, attrName: "contact[v_company_name]", name: "v_company_name", class:"form-control", placeholder:"Your company name" %>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Email <span class="required">*</span></label>
-                                                        <input type="text" name="email" placeholder=" email id" value="chris@bluetext.com" class="form-control"/>
+                                                        <%= f.email_field :email, attrName: "contact[email]", name: "email", class:"form-control", placeholder:"Your Email id" %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,276 +155,280 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Skype Id <span class="required">*</span></label>
-                                                        <input type="text" name="skype" placeholder="Skype Id" value="chris.monnat" class="form-control"/>
+                                                        <%= f.text_field :v_im_skype, attrName: "contact[v_im_skype]", name: "v_im_skype", class:"form-control", placeholder:"Your Skype Id" %>
                                                     </div>   
                                                 </div>
+
                                                 <div class="col-md-6">      
                                                     <div class="form-group">
                                                         <label class="control-label"> Country <span class="required">*</span></label>
-                                                            <select class="form-control select2me" name="select_country">
-                                                                <option value="">Select Country</option>
-                                                                <option value="Afganistan">Afghanistan</option>
-                                                                <option value="Albania">Albania</option>
-                                                                <option value="Algeria">Algeria</option>
-                                                                <option value="American Samoa">American Samoa</option>
-                                                                <option value="Andorra">Andorra</option>
-                                                                <option value="Angola">Angola</option>
-                                                                <option value="Anguilla">Anguilla</option>
-                                                                <option value="Antigua &amp; Barbuda">Antigua &amp; Barbuda</option>
-                                                                <option value="Argentina">Argentina</option>
-                                                                <option value="Armenia">Armenia</option>
-                                                                <option value="Aruba">Aruba</option>
-                                                                <option value="Australia">Australia</option>
-                                                                <option value="Austria">Austria</option>
-                                                                <option value="Azerbaijan">Azerbaijan</option>
-                                                                <option value="Bahamas">Bahamas</option>
-                                                                <option value="Bahrain">Bahrain</option>
-                                                                <option value="Bangladesh">Bangladesh</option>
-                                                                <option value="Barbados">Barbados</option>
-                                                                <option value="Belarus">Belarus</option>
-                                                                <option value="Belgium">Belgium</option>
-                                                                <option value="Belize">Belize</option>
-                                                                <option value="Benin">Benin</option>
-                                                                <option value="Bermuda">Bermuda</option>
-                                                                <option value="Bhutan">Bhutan</option>
-                                                                <option value="Bolivia">Bolivia</option>
-                                                                <option value="Bonaire">Bonaire</option>
-                                                                <option value="Bosnia &amp; Herzegovina">Bosnia &amp; Herzegovina</option>
-                                                                <option value="Botswana">Botswana</option>
-                                                                <option value="Brazil">Brazil</option>
-                                                                <option value="British Indian Ocean Ter">British Indian Ocean Ter</option>
-                                                                <option value="Brunei">Brunei</option>
-                                                                <option value="Bulgaria">Bulgaria</option>
-                                                                <option value="Burkina Faso">Burkina Faso</option>
-                                                                <option value="Burundi">Burundi</option>
-                                                                <option value="Cambodia">Cambodia</option>
-                                                                <option value="Cameroon">Cameroon</option>
-                                                                <option value="Canada">Canada</option>
-                                                                <option value="Canary Islands">Canary Islands</option>
-                                                                <option value="Cape Verde">Cape Verde</option>
-                                                                <option value="Cayman Islands">Cayman Islands</option>
-                                                                <option value="Central African Republic">Central African Republic</option>
-                                                                <option value="Chad">Chad</option>
-                                                                <option value="Channel Islands">Channel Islands</option>
-                                                                <option value="Chile">Chile</option>
-                                                                <option value="China">China</option>
-                                                                <option value="Christmas Island">Christmas Island</option>
-                                                                <option value="Cocos Island">Cocos Island</option>
-                                                                <option value="Colombia">Colombia</option>
-                                                                <option value="Comoros">Comoros</option>
-                                                                <option value="Congo">Congo</option>
-                                                                <option value="Cook Islands">Cook Islands</option>
-                                                                <option value="Costa Rica">Costa Rica</option>
-                                                                <option value="Cote DIvoire">Cote D'Ivoire</option>
-                                                                <option value="Croatia">Croatia</option>
-                                                                <option value="Cuba">Cuba</option>
-                                                                <option value="Curaco">Curacao</option>
-                                                                <option value="Cyprus">Cyprus</option>
-                                                                <option value="Czech Republic">Czech Republic</option>
-                                                                <option value="Denmark">Denmark</option>
-                                                                <option value="Djibouti">Djibouti</option>
-                                                                <option value="Dominica">Dominica</option>
-                                                                <option value="Dominican Republic">Dominican Republic</option>
-                                                                <option value="East Timor">East Timor</option>
-                                                                <option value="Ecuador">Ecuador</option>
-                                                                <option value="Egypt">Egypt</option>
-                                                                <option value="El Salvador">El Salvador</option>
-                                                                <option value="Equatorial Guinea">Equatorial Guinea</option>
-                                                                <option value="Eritrea">Eritrea</option>
-                                                                <option value="Estonia">Estonia</option>
-                                                                <option value="Ethiopia">Ethiopia</option>
-                                                                <option value="Falkland Islands">Falkland Islands</option>
-                                                                <option value="Faroe Islands">Faroe Islands</option>
-                                                                <option value="Fiji">Fiji</option>
-                                                                <option value="Finland">Finland</option>
-                                                                <option value="France">France</option>
-                                                                <option value="French Guiana">French Guiana</option>
-                                                                <option value="French Polynesia">French Polynesia</option>
-                                                                <option value="French Southern Ter">French Southern Ter</option>
-                                                                <option value="Gabon">Gabon</option>
-                                                                <option value="Gambia">Gambia</option>
-                                                                <option value="Georgia">Georgia</option>
-                                                                <option value="Germany">Germany</option>
-                                                                <option value="Ghana">Ghana</option>
-                                                                <option value="Gibraltar">Gibraltar</option>
-                                                                <option value="Great Britain">Great Britain</option>
-                                                                <option value="Greece">Greece</option>
-                                                                <option value="Greenland">Greenland</option>
-                                                                <option value="Grenada">Grenada</option>
-                                                                <option value="Guadeloupe">Guadeloupe</option>
-                                                                <option value="Guam">Guam</option>
-                                                                <option value="Guatemala">Guatemala</option>
-                                                                <option value="Guinea">Guinea</option>
-                                                                <option value="Guyana">Guyana</option>
-                                                                <option value="Haiti">Haiti</option>
-                                                                <option value="Hawaii">Hawaii</option>
-                                                                <option value="Honduras">Honduras</option>
-                                                                <option value="Hong Kong">Hong Kong</option>
-                                                                <option value="Hungary">Hungary</option>
-                                                                <option value="Iceland">Iceland</option>
-                                                                <option value="India">India</option>
-                                                                <option value="Indonesia">Indonesia</option>
-                                                                <option value="Iran">Iran</option>
-                                                                <option value="Iraq">Iraq</option>
-                                                                <option value="Ireland">Ireland</option>
-                                                                <option value="Isle of Man">Isle of Man</option>
-                                                                <option value="Israel">Israel</option>
-                                                                <option value="Italy">Italy</option>
-                                                                <option value="Jamaica">Jamaica</option>
-                                                                <option value="Japan">Japan</option>
-                                                                <option value="Jordan">Jordan</option>
-                                                                <option value="Kazakhstan">Kazakhstan</option>
-                                                                <option value="Kenya">Kenya</option>
-                                                                <option value="Kiribati">Kiribati</option>
-                                                                <option value="Korea North">Korea North</option>
-                                                                <option value="Korea Sout">Korea South</option>
-                                                                <option value="Kuwait">Kuwait</option>
-                                                                <option value="Kyrgyzstan">Kyrgyzstan</option>
-                                                                <option value="Laos">Laos</option>
-                                                                <option value="Latvia">Latvia</option>
-                                                                <option value="Lebanon">Lebanon</option>
-                                                                <option value="Lesotho">Lesotho</option>
-                                                                <option value="Liberia">Liberia</option>
-                                                                <option value="Libya">Libya</option>
-                                                                <option value="Liechtenstein">Liechtenstein</option>
-                                                                <option value="Lithuania">Lithuania</option>
-                                                                <option value="Luxembourg">Luxembourg</option>
-                                                                <option value="Macau">Macau</option>
-                                                                <option value="Macedonia">Macedonia</option>
-                                                                <option value="Madagascar">Madagascar</option>
-                                                                <option value="Malaysia">Malaysia</option>
-                                                                <option value="Malawi">Malawi</option>
-                                                                <option value="Maldives">Maldives</option>
-                                                                <option value="Mali">Mali</option>
-                                                                <option value="Malta">Malta</option>
-                                                                <option value="Marshall Islands">Marshall Islands</option>
-                                                                <option value="Martinique">Martinique</option>
-                                                                <option value="Mauritania">Mauritania</option>
-                                                                <option value="Mauritius">Mauritius</option>
-                                                                <option value="Mayotte">Mayotte</option>
-                                                                <option value="Mexico">Mexico</option>
-                                                                <option value="Midway Islands">Midway Islands</option>
-                                                                <option value="Moldova">Moldova</option>
-                                                                <option value="Monaco">Monaco</option>
-                                                                <option value="Mongolia">Mongolia</option>
-                                                                <option value="Montserrat">Montserrat</option>
-                                                                <option value="Morocco">Morocco</option>
-                                                                <option value="Mozambique">Mozambique</option>
-                                                                <option value="Myanmar">Myanmar</option>
-                                                                <option value="Nambia">Nambia</option>
-                                                                <option value="Nauru">Nauru</option>
-                                                                <option value="Nepal">Nepal</option>
-                                                                <option value="Netherland Antilles">Netherland Antilles</option>
-                                                                <option value="Netherlands">Netherlands (Holland, Europe)</option>
-                                                                <option value="Nevis">Nevis</option>
-                                                                <option value="New Caledonia">New Caledonia</option>
-                                                                <option value="New Zealand">New Zealand</option>
-                                                                <option value="Nicaragua">Nicaragua</option>
-                                                                <option value="Niger">Niger</option>
-                                                                <option value="Nigeria">Nigeria</option>
-                                                                <option value="Niue">Niue</option>
-                                                                <option value="Norfolk Island">Norfolk Island</option>
-                                                                <option value="Norway">Norway</option>
-                                                                <option value="Oman">Oman</option>
-                                                                <option value="Pakistan">Pakistan</option>
-                                                                <option value="Palau Island">Palau Island</option>
-                                                                <option value="Palestine">Palestine</option>
-                                                                <option value="Panama">Panama</option>
-                                                                <option value="Papua New Guinea">Papua New Guinea</option>
-                                                                <option value="Paraguay">Paraguay</option>
-                                                                <option value="Peru">Peru</option>
-                                                                <option value="Phillipines">Philippines</option>
-                                                                <option value="Pitcairn Island">Pitcairn Island</option>
-                                                                <option value="Poland">Poland</option>
-                                                                <option value="Portugal">Portugal</option>
-                                                                <option value="Puerto Rico">Puerto Rico</option>
-                                                                <option value="Qatar">Qatar</option>
-                                                                <option value="Republic of Montenegro">Republic of Montenegro</option>
-                                                                <option value="Republic of Serbia">Republic of Serbia</option>
-                                                                <option value="Reunion">Reunion</option>
-                                                                <option value="Romania">Romania</option>
-                                                                <option value="Russia">Russia</option>
-                                                                <option value="Rwanda">Rwanda</option>
-                                                                <option value="St Barthelemy">St Barthelemy</option>
-                                                                <option value="St Eustatius">St Eustatius</option>
-                                                                <option value="St Helena">St Helena</option>
-                                                                <option value="St Kitts-Nevis">St Kitts-Nevis</option>
-                                                                <option value="St Lucia">St Lucia</option>
-                                                                <option value="St Maarten">St Maarten</option>
-                                                                <option value="St Pierre &amp; Miquelon">St Pierre &amp; Miquelon</option>
-                                                                <option value="St Vincent &amp; Grenadines">St Vincent &amp; Grenadines</option>
-                                                                <option value="Saipan">Saipan</option>
-                                                                <option value="Samoa">Samoa</option>
-                                                                <option value="Samoa American">Samoa American</option>
-                                                                <option value="San Marino">San Marino</option>
-                                                                <option value="Sao Tome &amp; Principe">Sao Tome &amp; Principe</option>
-                                                                <option value="Saudi Arabia">Saudi Arabia</option>
-                                                                <option value="Senegal">Senegal</option>
-                                                                <option value="Serbia">Serbia</option>
-                                                                <option value="Seychelles">Seychelles</option>
-                                                                <option value="Sierra Leone">Sierra Leone</option>
-                                                                <option value="Singapore">Singapore</option>
-                                                                <option value="Slovakia">Slovakia</option>
-                                                                <option value="Slovenia">Slovenia</option>
-                                                                <option value="Solomon Islands">Solomon Islands</option>
-                                                                <option value="Somalia">Somalia</option>
-                                                                <option value="South Africa">South Africa</option>
-                                                                <option value="Spain">Spain</option>
-                                                                <option value="Sri Lanka">Sri Lanka</option>
-                                                                <option value="Sudan">Sudan</option>
-                                                                <option value="Suriname">Suriname</option>
-                                                                <option value="Swaziland">Swaziland</option>
-                                                                <option value="Sweden">Sweden</option>
-                                                                <option value="Switzerland">Switzerland</option>
-                                                                <option value="Syria">Syria</option>
-                                                                <option value="Tahiti">Tahiti</option>
-                                                                <option value="Taiwan">Taiwan</option>
-                                                                <option value="Tajikistan">Tajikistan</option>
-                                                                <option value="Tanzania">Tanzania</option>
-                                                                <option value="Thailand">Thailand</option>
-                                                                <option value="Togo">Togo</option>
-                                                                <option value="Tokelau">Tokelau</option>
-                                                                <option value="Tonga">Tonga</option>
-                                                                <option value="Trinidad &amp; Tobago">Trinidad &amp; Tobago</option>
-                                                                <option value="Tunisia">Tunisia</option>
-                                                                <option value="Turkey">Turkey</option>
-                                                                <option value="Turkmenistan">Turkmenistan</option>
-                                                                <option value="Turks &amp; Caicos Is">Turks &amp; Caicos Is</option>
-                                                                <option value="Tuvalu">Tuvalu</option>
-                                                                <option value="Uganda">Uganda</option>
-                                                                <option value="Ukraine">Ukraine</option>
-                                                                <option value="United Arab Erimates">United Arab Emirates</option>
-                                                                <option value="United Kingdom">United Kingdom</option>
-                                                                <option selected="selected" value="United States of America">United States of America</option>
-                                                                <option value="Uraguay">Uruguay</option>
-                                                                <option value="Uzbekistan">Uzbekistan</option>
-                                                                <option value="Vanuatu">Vanuatu</option>
-                                                                <option value="Vatican City State">Vatican City State</option>
-                                                                <option value="Venezuela">Venezuela</option>
-                                                                <option value="Vietnam">Vietnam</option>
-                                                                <option value="Virgin Islands (Brit)">Virgin Islands (Brit)</option>
-                                                                <option value="Virgin Islands (USA)">Virgin Islands (USA)</option>
-                                                                <option value="Wake Island">Wake Island</option>
-                                                                <option value="Wallis &amp; Futana Is">Wallis &amp; Futana Is</option>
-                                                                <option value="Yemen">Yemen</option>
-                                                                <option value="Zaire">Zaire</option>
-                                                                <option value="Zambia">Zambia</option>s
-                                                                <option value="Zimbabwe">Zimbabwe</option>
+        <select class="form-control select2me" id="contact_v_country"  name=contact[v_country]>
+        <option value="">Select Country</option>
+        <option value="Afganistan" <% if Contact.find(params[:id]).v_country == "Afganistan" %> selected="selected" <% end %> >Afghanistan</option>
+        <option value="Albania" <% if Contact.find(params[:id]).v_country == "Albania" %> selected="selected" <% end %> >Albania</option>
+        <option value="Algeria">Algeria</option>
+        <option value="American Samoa" <% if Contact.find(params[:id]).v_country == "American Samoa" %> selected="selected" <% end %> >American Samoa</option>
+        <option value="Andorra" <% if Contact.find(params[:id]).v_country == "Andorra" %> selected="selected" <% end %> >Andorra</option>
+        <option value="Angola">Angola</option>
+        <option value="Anguilla">Anguilla</option>
+        <option value="Antigua &amp; Barbuda" <% if Contact.find(params[:id]).v_country == "Antigua" %> selected="selected" <% end %>>Antigua &amp; Barbuda</option>
+        <option value="Argentina" <% if Contact.find(params[:id]).v_country == "Argentina" %> selected="selected" <% end %>
+        >Argentina</option>
+        <option value="Armenia">Armenia</option>
+        <option value="Aruba" <% if Contact.find(params[:id]).v_country == "Aruba" %> selected="selected" <% end %>>Aruba</option>
+        <option value="Australia" <% if Contact.find(params[:id]).v_country == "Australia" %> selected="selected" <% end %>>Australia</option>
+        <option value="Austria">Austria</option>
+        <option value="Azerbaijan" <% if Contact.find(params[:id]).v_country == "Azerbaijan" %> selected="selected" <% end %>>Azerbaijan</option>
+        <option value="Bahamas" <% if Contact.find(params[:id]).v_country == "Bahamas" %> selected="selected" <% end %> >Bahamas</option>
+        <option value="Bahrain" <% if Contact.find(params[:id]).v_country == "Bahrain" %> selected="selected" <% end %> >Bahrain</option>
+        <option value="Bangladesh" <% if Contact.find(params[:id]).v_country == "Bangladesh" %> selected="selected" <% end %> >Bangladesh</option>
+        <option value="Barbados" <% if Contact.find(params[:id]).v_country == "Barbados" %> selected="selected" <% end %> >Barbados</option>
+        <option value="Belarus" <% if Contact.find(params[:id]).v_country == "Belarus" %> selected="selected" <% end %>>Belarus</option>
+        <option value="Belgium" <% if Contact.find(params[:id]).v_country == "Belgium" %> selected="selected" <% end %>>Belgium</option>
+        <option value="Belize" <% if Contact.find(params[:id]).v_country == "Belize" %> selected="selected" <% end %>>Belize</option>
+        <option value="Benin" <% if Contact.find(params[:id]).v_country == "Benin" %> selected="selected" <% end %> >Benin</option>
+        <option value="Bermuda" <% if Contact.find(params[:id]).v_country == "Bermuda" %> selected="selected" <% end %>>Bermuda</option>
+        <option value="Bhutan">Bhutan</option>
+        <option value="Bolivia" <% if Contact.find(params[:id]).v_country == "Bolivia" %> selected="selected" <% end %>>Bolivia</option>
+        <option value="Bonaire" <% if Contact.find(params[:id]).v_country == "Bonaire" %> selected="selected" <% end %>>Bonaire</option>
+        <option value="Bosnia &amp; Herzegovina" <% if Contact.find(params[:id]).v_country == "Bosnia Herzegovina" %> selected="selected" <% end %>>Bosnia &amp; Herzegovina</option>
+        <option value="Botswana" <% if Contact.find(params[:id]).v_country == "Botswana" %> selected="selected" <% end %>>Botswana</option>
+        <option value="Brazil" <% if Contact.find(params[:id]).v_country == "Brazil" %> selected="selected" <% end %> >Brazil</option>
+        <option value="British Indian Ocean Ter" <% if Contact.find(params[:id]).v_country == "British Indian Ocean Ter" %> selected="selected" <% end %> >British Indian Ocean Ter</option>
+        <option value="Brunei" <% if Contact.find(params[:id]).v_country == "Brunei" %> selected="selected" <% end %>>Brunei</option>
+        <option value="Bulgaria" <% if Contact.find(params[:id]).v_country == "Brunei" %> selected="selected" <% end %>>Bulgaria</option>
+        <option value="Burkina Faso" <% if Contact.find(params[:id]).v_country == "Burkina Faso" %> selected="selected" <% end %>>Burkina Faso</option>
+        <option value="Burundi" <% if Contact.find(params[:id]).v_country == "Burundi" %> selected="selected" <% end %>>Burundi</option>
+        <option value="Cambodia" <% if Contact.find(params[:id]).v_country == "Cambodia" %> selected="selected" <% end %>>Cambodia</option>
+        <option value="Cameroon" <% if Contact.find(params[:id]).v_country == "Cameroon" %> selected="selected" <% end %>>Cameroon</option>
+        <option value="Canada" <% if Contact.find(params[:id]).v_country == "Cameroon" %> selected="selected" <% end %>>Canada</option>
+        <option value="Canary Islands" <% if Contact.find(params[:id]).v_country == "Canary Islands" %> selected="selected" <% end %>>Canary Islands</option>
+        <option value="Cape Verde" <% if Contact.find(params[:id]).v_country == "Cape Verde" %> selected="selected" <% end %>>Cape Verde</option>
+        <option value="Cayman Islands" <% if Contact.find(params[:id]).v_country == "Cayman Islands" %> selected="selected" <% end %>>Cayman Islands</option>
+        <option value="Central African Republic" <% if Contact.find(params[:id]).v_country == "Central African Republic" %> selected="selected" <% end %>>Central African Republic</option>
+        <option value="Chad" <% if Contact.find(params[:id]).v_country == "Chad" %> selected="selected" <% end %>>Chad</option>
+        <option value="Channel Islands" <% if Contact.find(params[:id]).v_country == "Channel Islands" %> selected="selected" <% end %>>Channel Islands</option>
+        <option value="Chile" <% if Contact.find(params[:id]).v_country == "Chile" %> selected="selected" <% end %>>Chile</option>
+        <option value="China" <% if Contact.find(params[:id]).v_country == "China" %> selected="selected" <% end %> >China</option>
+        <option value="Christmas Island" <% if Contact.find(params[:id]).v_country == "Christmas Island" %> selected="selected" <% end %>>Christmas Island</option>
+        <option value="Cocos Island" <% if Contact.find(params[:id]).v_country == "Christmas Island" %> selected="selected" <% end %>>Cocos Island</option>
+        <option value="Colombia" <% if Contact.find(params[:id]).v_country == "Colombia" %> selected="selected" <% end %>>Colombia</option>
+        <option value="Comoros" <% if Contact.find(params[:id]).v_country == "Comoros" %> selected="selected" <% end %>>Comoros</option>
+        <option value="Congo" <% if Contact.find(params[:id]).v_country == "Congo" %> selected="selected" <% end %>>Congo</option>
+        <option value="Cook Islands" <% if Contact.find(params[:id]).v_country == "Cook Islands" %> selected="selected" <% end %>>Cook Islands</option>
+        <option  <% if Contact.find(params[:id]).v_country == "CostaRica"%> selected="selected" <% end %> value="Costa Rica">Costa Rica</option>
+        <option  <% if Contact.find(params[:id]).v_country == "CostaRica"%> selected="selected" <% end %> value="Cote DIvoire">Cote D'Ivoire</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Croatia"%> selected="selected" <% end %> value="Croatia">Croatia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Cuba"%> selected="selected" <% end %> value="Cuba">Cuba</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Curacao"%> selected="selected" <% end %> value="Curaco">Curacao</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Cyprus"%> selected="selected" <% end %> value="Cyprus">Cyprus</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Czech Republic"%> selected="selected" <% end %> value="Czech Republic">Czech Republic</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Denmark"%> selected="selected" <% end %> value="Denmark">Denmark</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Djibouti"%> selected="selected" <% end %> value="Djibouti">Djibouti</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Dominica"%> selected="selected" <% end %> value="Dominica">Dominica</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Dominican Republic"%> selected="selected" <% end %> value="Dominican Republic">Dominican Republic</option>
+        <option  <% if Contact.find(params[:id]).v_country == "East Timor"%> selected="selected" <% end %> value="East Timor">East Timor</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Ecuador"%> selected="selected" <% end %> value="Ecuador">Ecuador</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Egypt"%> selected="selected" <% end %> value="Egypt">Egypt</option>
+        <option  <% if Contact.find(params[:id]).v_country == "El Salvador"%> selected="selected" <% end %> value="El Salvador">El Salvador</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Equatorial Guinea"%> selected="selected" <% end %> value="Equatorial Guinea">Equatorial Guinea</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Eritrea"%> selected="selected" <% end %> value="Eritrea">Eritrea</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Estonia"%> selected="selected" <% end %> value="Estonia">Estonia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Ethiopia"%> selected="selected" <% end %> value="Ethiopia">Ethiopia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Falkland Islands"%> selected="selected" <% end %> value="Falkland Islands">Falkland Islands</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Faroe Islands"%> selected="selected" <% end %> value="Faroe Islands">Faroe Islands</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Fiji"%> selected="selected" <% end %> value="Fiji">Fiji</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Finland"%> selected="selected" <% end %> value="Finland">Finland</option>
+        <option  <% if Contact.find(params[:id]).v_country == "France"%> selected="selected" <% end %> value="France">France</option>
+        <option  <% if Contact.find(params[:id]).v_country == "French Guiana"%> selected="selected" <% end %> value="French Guiana">French Guiana</option>
+        <option  <% if Contact.find(params[:id]).v_country == "French Polynesia"%> selected="selected" <% end %> value="French Polynesia">French Polynesia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "French Southern Ter"%> selected="selected" <% end %> value="French Southern Ter">French Southern Ter</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Gabon"%> selected="selected" <% end %> value="Gabon">Gabon</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Gambia"%> selected="selected" <% end %> value="Gambia">Gambia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Georgia"%> selected="selected" <% end %> value="Georgia">Georgia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Germany"%> selected="selected" <% end %> value="Germany">Germany</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Ghana"%> selected="selected" <% end %> value="Ghana">Ghana</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Gibraltar"%> selected="selected" <% end %> value="Gibraltar">Gibraltar</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Great Britain"%> selected="selected" <% end %> value="Great Britain">Great Britain</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Greece"%> selected="selected" <% end %> value="Greece">Greece</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Greenland"%> selected="selected" <% end %> value="Greenland">Greenland</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Grenada"%> selected="selected" <% end %> value="Grenada">Grenada</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Guadeloupe"%> selected="selected" <% end %> value="Guadeloupe">Guadeloupe</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Guam"%> selected="selected" <% end %> value="Guam">Guam</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Guatemala"%> selected="selected" <% end %> value="Guatemala">Guatemala</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Guinea"%> selected="selected" <% end %> value="Guinea">Guinea</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Guyana"%> selected="selected" <% end %> value="Guyana">Guyana</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Haiti"%> selected="selected" <% end %> value="Haiti">Haiti</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Hawaii"%> selected="selected" <% end %> value="Hawaii">Hawaii</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Honduras"%> selected="selected" <% end %> value="Honduras">Honduras</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Hong Kong"%> selected="selected" <% end %> value="Hong Kong">Hong Kong</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Hungary"%> selected="selected" <% end %> value="Hungary">Hungary</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Iceland"%> selected="selected" <% end %> value="Iceland">Iceland</option>
+        <option  <% if Contact.find(params[:id]).v_country == "India"%> selected="selected" <% end %> value="India">India</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Indonesia"%> selected="selected" <% end %> value="Indonesia">Indonesia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Iran"%> selected="selected" <% end %> value="Iran">Iran</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Iraq"%> selected="selected" <% end %> value="Iraq">Iraq</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Ireland"%> selected="selected" <% end %> value="Ireland">Ireland</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Isle of Man"%> selected="selected" <% end %> value="Isle of Man">Isle of Man</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Israel"%> selected="selected" <% end %> value="Israel">Israel</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Italy"%> selected="selected" <% end %> value="Italy">Italy</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Jamaica"%> selected="selected" <% end %> value="Jamaica">Jamaica</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Japan"%> selected="selected" <% end %> value="Japan">Japan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Jordan"%> selected="selected" <% end %> value="Jordan">Jordan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Kazakhstan"%> selected="selected" <% end %> value="Kazakhstan">Kazakhstan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Kenya"%> selected="selected" <% end %> value="Kenya">Kenya</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Kiribati"%> selected="selected" <% end %> value="Kiribati">Kiribati</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Korea North"%> selected="selected" <% end %> value="Korea North">Korea North</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Korea South"%> selected="selected" <% end %> value="Korea Sout">Korea South</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Kuwait"%> selected="selected" <% end %> value="Kuwait">Kuwait</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Kyrgyzstan"%> selected="selected" <% end %> value="Kyrgyzstan">Kyrgyzstan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Laos"%> selected="selected" <% end %> value="Laos">Laos</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Latvia"%> selected="selected" <% end %> value="Latvia">Latvia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Lebanon"%> selected="selected" <% end %> value="Lebanon">Lebanon</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Lesotho"%> selected="selected" <% end %> value="Lesotho">Lesotho</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Liberia"%> selected="selected" <% end %> value="Liberia">Liberia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Libya"%> selected="selected" <% end %> value="Libya">Libya</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Liechtenstein"%> selected="selected" <% end %> value="Liechtenstein">Liechtenstein</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Lithuania"%> selected="selected" <% end %> value="Lithuania">Lithuania</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Luxembourg"%> selected="selected" <% end %> value="Luxembourg">Luxembourg</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Macau"%> selected="selected" <% end %> value="Macau">Macau</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Macedonia"%> selected="selected" <% end %> value="Macedonia">Macedonia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Madagascar"%> selected="selected" <% end %> value="Madagascar">Madagascar</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Malaysia"%> selected="selected" <% end %> value="Malaysia">Malaysia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Malawi"%> selected="selected" <% end %> value="Malawi">Malawi</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Maldives"%> selected="selected" <% end %> value="Maldives">Maldives</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Mali"%> selected="selected" <% end %> value="Mali">Mali</option>
+        <option value="Malta">Malta</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Marshall Islands"%> selected="selected" <% end %> value="Marshall Islands">Marshall Islands</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Martinique"%> selected="selected" <% end %> value="Martinique">Martinique</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Mauritania"%> selected="selected" <% end %> value="Mauritania">Mauritania</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Mauritius"%> selected="selected" <% end %> value="Mauritius">Mauritius</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Mayotte"%> selected="selected" <% end %> value="Mayotte">Mayotte</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Mexico"%> selected="selected" <% end %> value="Mexico">Mexico</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Midway Islands"%> selected="selected" <% end %> value="Midway Islands">Midway Islands</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Moldova"%> selected="selected" <% end %> value="Moldova">Moldova</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Monaco"%> selected="selected" <% end %> value="Monaco">Monaco</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Mongolia"%> selected="selected" <% end %> value="Mongolia">Mongolia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Montserrat"%> selected="selected" <% end %> value="Montserrat">Montserrat</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Morocco"%> selected="selected" <% end %> value="Morocco">Morocco</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Morocco"%> selected="selected" <% end %> value="Mozambique">Morocco</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Myanmar"%> selected="selected" <% end %> value="Myanmar">Myanmar</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Nambia"%> selected="selected" <% end %> value="Nambia">Nambia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Nauru"%> selected="selected" <% end %> value="Nauru">Nauru</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Nepal"%> selected="selected" <% end %> value="Nepal">Nepal</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Netherland Antilles"%> selected="selected" <% end %> value="Netherland Antilles">Netherland Antilles</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Netherlands"%> selected="selected" <% end %> value="Netherlands">Netherlands (Holland, Europe)</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Nevis"%> selected="selected" <% end %> value="Nevis">Nevis</option>
+        <option  <% if Contact.find(params[:id]).v_country == "New Caledonia"%> selected="selected" <% end %> value="New Caledonia">New Caledonia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "New Zealand"%> selected="selected" <% end %> value="New Zealand">New Zealand</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Nicaragua"%> selected="selected" <% end %> value="Nicaragua">Nicaragua</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Niger"%> selected="selected" <% end %> value="Niger">Niger</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Nigeria"%> selected="selected" <% end %> value="Nigeria">Nigeria</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Niue"%> selected="selected" <% end %> value="Niue">Niue</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Norfolk Island"%> selected="selected" <% end %> value="Norfolk Island">Norfolk Island</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Norway"%> selected="selected" <% end %> value="Norway">Norway</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Oman"%> selected="selected" <% end %> value="Oman">Oman</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Pakistan"%> selected="selected" <% end %> value="Pakistan">Pakistan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Palau Island"%> selected="selected" <% end %> value="Palau Island">Palau Island</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Palestine"%> selected="selected" <% end %> value="Palestine">Palestine</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Panama"%> selected="selected" <% end %> value="Panama">Panama</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Papua New Guinea"%> selected="selected" <% end %> value="Papua New Guinea">Papua New Guinea</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Paraguay"%> selected="selected" <% end %> value="Paraguay">Paraguay</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Peru"%> selected="selected" <% end %> value="Peru">Peru</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Philippines"%> selected="selected" <% end %> value="Phillipines">Philippines</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Pitcairn Island"%> selected="selected" <% end %> value="Pitcairn Island">Pitcairn Island</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Poland"%> selected="selected" <% end %> value="Poland">Poland</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Portugal"%> selected="selected" <% end %> value="Portugal">Portugal</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Puerto Rico"%> selected="selected" <% end %> value="Puerto Rico">Puerto Rico</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Qatar"%> selected="selected" <% end %> value="Qatar">Qatar</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Republic of Montenegro"%> selected="selected" <% end %> value="Republic of Montenegro">Republic of Montenegro</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Republic of Serbia"%> selected="selected" <% end %> value="Republic of Serbia">Republic of Serbia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Reunion"%> selected="selected" <% end %> value="Reunion">Reunion</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Romania"%> selected="selected" <% end %> value="Romania">Romania</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Russia"%> selected="selected" <% end %> value="Russia">Russia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Rwanda"%> selected="selected" <% end %> value="Rwanda">Rwanda</option>
+        <option  <% if Contact.find(params[:id]).v_country == "St Barthelemy"%> selected="selected" <% end %> value="St Barthelemy">St Barthelemy</option>
+        <option  <% if Contact.find(params[:id]).v_country == "St Eustatius"%> selected="selected" <% end %> value="St Eustatius">St Eustatius</option>
+        <option  <% if Contact.find(params[:id]).v_country == "St Helena"%> selected="selected" <% end %> value="St Helena">St Helena</option>
+        <option  <% if Contact.find(params[:id]).v_country == "St Kitts-Nevis"%> selected="selected" <% end %> value="St Kitts-Nevis">St Kitts-Nevis</option>
+        <option  <% if Contact.find(params[:id]).v_country == "St Lucia"%> selected="selected" <% end %> value="St Lucia">St Lucia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "St Maarten"%> selected="selected" <% end %> value="St Maarten">St Maarten</option>
+        <option  <% if Contact.find(params[:id]).v_country == "St Pierre Miquelon"%> selected="selected" <% end %> value="St Pierre &amp; Miquelon">St Pierre &amp;  </option>
+        <option  <% if Contact.find(params[:id]).v_country == "St Vincent Grenadines"%> selected="selected" <% end %> value="St Vincent &amp; Grenadines">St Vincent &amp; Grenadines</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Saipan"%> selected="selected" <% end %> value="Saipan">Saipan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Samoa"%> selected="selected" <% end %> value="Samoa">Samoa</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Samoa American"%> selected="selected" <% end %> value="Samoa American">Samoa American</option>
+        <option  <% if Contact.find(params[:id]).v_country == "San Marino"%> selected="selected" <% end %> value="San Marino">San Marino</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Sao Tome Principe"%> selected="selected" <% end %> value="Sao Tome &amp; Principe">Sao Tome &amp; Principe</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Saudi Arabia"%> selected="selected" <% end %> value="Saudi Arabia">Saudi Arabia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Senegal"%> selected="selected" <% end %> value="Senegal">Senegal</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Serbia"%> selected="selected" <% end %> value="Serbia">Serbia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Seychelles"%> selected="selected" <% end %> value="Seychelles">Seychelles</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Sierra Leone"%> selected="selected" <% end %> value="Sierra Leone">Sierra Leone</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Singapore"%> selected="selected" <% end %> value="Singapore">Singapore</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Slovakia"%> selected="selected" <% end %> value="Slovakia">Slovakia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Slovenia"%> selected="selected" <% end %> value="Slovenia">Slovenia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Solomon Islands"%> selected="selected" <% end %> value="Solomon Islands">Solomon Islands</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Somalia"%> selected="selected" <% end %> value="Somalia">Somalia</option>
+        <option  <% if Contact.find(params[:id]).v_country == "South Africa"%> selected="selected" <% end %> value="South Africa">South Africa</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Spain"%> selected="selected" <% end %> value="Spain">Spain</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Sri Lanka"%> selected="selected" <% end %> value="Sri Lanka">Sri Lanka</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Sudan"%> selected="selected" <% end %> value="Sudan">Sudan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Suriname"%> selected="selected" <% end %> value="Suriname">Suriname</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Swaziland"%> selected="selected" <% end %> value="Swaziland">Swaziland</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Sweden"%> selected="selected" <% end %> value="Sweden">Sweden</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Switzerland"%> selected="selected" <% end %> value="Switzerland">Switzerland</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Syria"%> selected="selected" <% end %> value="Syria">Syria</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Tahiti"%> selected="selected" <% end %> value="Tahiti">Tahiti</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Taiwan"%> selected="selected" <% end %> value="Taiwan">Taiwan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Tajikistan"%> selected="selected" <% end %> value="Tajikistan">Tajikistan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Tanzania"%> selected="selected" <% end %> value="Tanzania">Tanzania</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Thailand"%> selected="selected" <% end %> value="Thailand">Thailand</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Togo"%> selected="selected" <% end %> value="Togo">Togo</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Tokelau"%> selected="selected" <% end %> value="Tokelau">Tokelau</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Tonga"%> selected="selected" <% end %> value="Tonga">Tonga</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Trinidad Tobago"%> selected="selected" <% end %> value="Trinidad &amp; Tobago">Trinidad &amp; Tobago</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Tunisia"%> selected="selected" <% end %> value="Tunisia">Tunisia</option>
+        <option value="Turkey" <% if Contact.find(params[:id]).v_country == "Turkey" %> selected="selected" <% end %> > Turkey</option>
+
+        <option  <% if Contact.find(params[:id]).v_country == "Turkmenistan"%> selected="selected" <% end %> value="Turkmenistan">Turkmenistan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Caicos"%> selected="selected" <% end %> value="Turks &amp; Caicos Is">Turks &amp; Caicos Is</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Tuvalu"%> selected="selected" <% end %> value="Tuvalu">Tuvalu</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Uganda"%> selected="selected" <% end %> value="Uganda">Uganda</option>
+        <option value="Ukraine">Ukraine</option>
+        <option  <% if Contact.find(params[:id]).v_country == "United Arab Erimates"%> selected="selected" <% end %> value="United Arab Erimates">United Arab Emirates</option>
+        <option  <% if Contact.find(params[:id]).v_country == "United Kingdom"%> selected="selected" <% end %> value="United Kingdom">United Kingdom</option>
+        <option  <% if Contact.find(params[:id]).v_country == "United States of America"%> selected="selected" <% end %> value="United States of America">United States of America</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Uruguay"%> selected="selected" <% end %> value="Uraguay">Uruguay</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Uzbekistan"%> selected="selected" <% end %> value="Uzbekistan">Uzbekistan</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Vanuatu"%> selected="selected" <% end %> value="Vanuatu">Vanuatu</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Vatican City State"%> selected="selected" <% end %> value="Vatican City State">Vatican City State</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Venezuela"%> selected="selected" <% end %> value="Venezuela">Venezuela</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Vietnam"%> selected="selected" <% end %> value="Vietnam">Vietnam</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Virgin Islands (Brit)"%> selected="selected" <% end %> value="Virgin Islands (Brit)">Virgin Islands (Brit)</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Virgin Islands (USA)"%> selected="selected" <% end %> value="Virgin Islands (USA)">Virgin Islands (USA)</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Wake Island"%> selected="selected" <% end %> value="Wake Island">Wake Island</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Wallis &amp; Futana Is"%> selected="selected" <% end %> value="Wallis &amp; Futana Is">Wallis &amp; Futana Is</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Yemen"%> selected="selected" <% end %> value="Yemen">Yemen</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Zaire"%> selected="selected" <% end %> value="Zaire">Zaire</option>
+        <option  <% if Contact.find(params[:id]).v_country == "Zambia"%> selected="selected" <% end %> value="Zambia">Zambia</option>s
+        <option  <% if Contact.find(params[:id]).v_country == "Zimbabwe"%> selected="selected" <% end %> value="Zimbabwe">Zimbabwe</option>
                                                           </select>  
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Cell Number <span class="required">*</span></label>
-                                                        <input type="text" class="form-control" name="cellnumber" placeholder=" Cell Number" value="866-123-1234"/>
+                                                        <%= f.text_field :v_cell_number, attrName: "contact[v_cell_number]", name: "v_cell_number", class:"form-control", placeholder:"Cell Number" %>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">  
                                                     <div class="form-group">
                                                         <label class="control-label">Phone (Office)</label>
-                                                        <input type="text" class="form-control" name="phone" placeholder=" Phone (Office)" value="922759"/>
+                                                        <%= f.text_field :v_phone, attrName: "contact[v_phone]", name: "v_phone", class:"form-control", placeholder:"Phone (Office)" %>
                                                     </div>
                                                     
                                                 </div>
@@ -432,13 +437,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">LinkedIn Profile</label>
-                                                        <input type="text" name="linkedin_profile" placeholder=" LinkedIn Profile" value="http://www.linkedin.com/chris_monnat" class="form-control"/>
+                                                        <%= f.text_field :v_linkedin_url, attrName: "contact[v_linkedin_url]", name: "v_linkedin_url", class:"form-control", placeholder:"LinkedIn Profile" %>
                                                     </div>                                                            
                                                 </div>
                                                 <div class="col-md-6">        
                                                     <div class="form-group">
                                                         <label class="control-label">Website URL </label>
-                                                        <input type="text" name="websiteurl" placeholder="Website URL" value="http://www.bluetext.com/" class="form-control"/>
+                                                        <%= f.text_field :v_website_url, attrName: "contact[v_website_url]", name: "v_website_url", class:"form-control", placeholder:"Website URL" %>
                                                     </div>
                                                 </div>
                                             </div>
@@ -447,16 +452,16 @@
                                                 <div class="col-md-6">            
                                                     <div class="form-group">
                                                         <label class="control-label">Tags <span class="required">*</span></label>
-                                                        <input id="tags_2" type="text" class="form-control tags medium" placeholder="Tags.." value="tag1,tag2"/>
+                                                         <%= f.text_field :v_tags, attrName: "contact[v_tags]", id: "tags_2", name: "v_tags", class: "form-control", placeholder: "Tags.." %>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">                                                            
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="control-label">Referred By </label>
-                                                          <select class="form-control select2me" name="followed_up_type">
-                                                            <option value="LinkedIn">LinkedIn</option>
-                                                            <option value="Friend">Friend</option>                                                                    
-                                                            <option value="Internet">Internet</option>
+                                                          <select class="form-control select2me" id="contact_i_reffered_source_id" name=contact[i_reffered_source_id]>
+                                                            <option value="linkedIn">LinkedIn</option>
+                                                            <option value="friend">Friend</option>         
+                                                            <option value="internet">Internet</option>
                                                           </select>
                                                     </div>
                                                 </div>   
@@ -464,31 +469,30 @@
                                             <div class="row">                                           
                                                 <div class="col-md-6">     
                                                     <div class="form-group">
-                                                        <label class="control-label">Contact Type <span class="required">*</span></label>                                                            
-                                                        <select class="form-control select2me" name="contact_type">        
-                                                            <option value="End Client">End Client</option>        
-                                                            <option value="Outsourcing Firm">Outsourcing Firm</option>
+                                                        <label class="control-label">Contact Type <span class="required">*</span></label>
+                                                        <select class="form-control select2me" id="contact_v_contact_type" name=contact[v_contact_type]> 
+                                                            <option value="0">End Client</option>        
+                                                            <option value="1">Outsourcing Firm</option>
                                                         </select>                                                                
                                                     </div>
                                                 </div>  
                                                 <div class="col-md-6">                                                            
                                                     <div class="form-group">
                                                         <label class="control-label">Status <span class="required">*</span></label>
-                                                          <select class="form-control select2me" name="followed_up_type">
-                                                            <option value="Active">Active</option>
-                                                            <option value="Inactive">Inactive</option>
+                                                          <select class="form-control select2me" id="contact_e_status"  name = contact[e_status] >
+                                                            <option value="1">Active</option>
+                                                            <option value="0">Inactive</option>
                                                           </select>
                                                     </div>
                                                 </div>
                                             </div>    
 
                                             <div class="margiv-top-10">
-                                                <a href="#" id="submit-personal-info-form" class="btn green-haze">
-                                                    Save Changes </a>
-                                                <input type="submit" class="btn default" value="Validate">
-                                                <a href="/contacts/details" class="btn default">Cancel </a>
+                                                <button type="submit" id="submit_action" class="btn green-haze">
+                                                  Save Changes </button>
+                                                <a href="/contacts" class="btn default">Cancel </a>
                                             </div>
-                                        </form>
+                                        <% end %>
                                     </div>
                                 </div>
                             </div>
@@ -503,11 +507,25 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
-
 <script src="/plugins/jquery-tags-input/jquery.tagsinput.min.js" type="text/javascript"></script>
 <script src="/js/components-form-tools.js"></script>     
 <script>
-    jQuery(document).ready(function() {       
+    jQuery(document).ready(function() { 
+        Metronic.init();
+        setTimeout(function(){
         ComponentsFormTools.init();
-    });
+    }, 
+        200);
+        jQuery('#submit_action').click(function(event) { 
+            event.preventDefault();
+            if (jQuery('#edit-contacts-form').validate().form()) { 
+                jQuery('#edit-contacts-form .form-control').each(function() {
+                    jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                });
+                jQuery('#edit-contacts-form').submit();
+                }
+            return false;
+        });
+});
+
 </script>       

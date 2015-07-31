@@ -45,77 +45,153 @@
 							</div>
 						</div>
 						<div class="portlet-body">
+						<form name="search-form" action="/contacts" method ="get" id="search-form">
 							<div class="table-container">
-								<div class="table-actions-wrapper">
-									<span>
-									</span>
-									<select class="table-group-action-input form-control input-inline input-small input-sm">
-										<option value="">Select...</option>
-										<option value="CaDeletencel">Delete</option>		
-                                        <option value="Active">Active</option>										
-                                        <option value="Inactive">Inactive</option>
-									</select>
-									<button class="btn btn-sm yellow table-group-action-submit"><i class="fa fa-check"></i> Submit</button>
-								</div>
-								<table class="table table-striped table-bordered table-hover" id="datatable_ajax">
-								<thead>
-								<tr role="row" class="heading">
-									<th width="2%" class="sorting_disabled" >
-										<input type="checkbox" class="group-checkable">
-									</th>
-									<th>Name</th>
-                                    <th>Company Name</th>
-                                    <th>Email</th>
-                                    <th>Country</th>
-                                    <th>Tags</th>
-                                    <th>Contact Type</th>
-                                    <th>Reffered By</th>
-                                    <th width="10%">Action</th>
-								</tr>
-								<tr role="row" class="filter">
+								<div class="row">
+									<div class="col-md-8 col-sm-12"> Page
+
+										<% if !@contacts.total_pages == @contacts.current_page || @contacts.current_page == "1" %>
+											<a title="Prev" class="btn btn-sm default prev disabled " href="/contacts?page=1&per_page=10"><i class="fa fa-angle-left"></i></a>
+										<% else %>
+											<a title="Prev" class="btn btn-sm default prev " href="/contacts?page=1&per_page=10"><i class="fa fa-angle-left"></i></a>
+										<% end %>
+										<input type="text" value = "<%= @contacts.current_page %>" style="text-align:center; margin: 0 5px;" maxlenght="5" class="pagination-panel-input form-control input-mini input-inline input-sm">
+										<% if @contacts.total_pages == @contacts.current_page %>
+											<a title="Next" class="btn btn-sm default next disabled" href="/contacts?page=<%= @contacts.current_page.next %>&per_page=10">
+										<% else %>
+											<a title="Next" class="btn btn-sm default next" href="/contacts?page=<%= @contacts.current_page.next %>&per_page=10">
+										<% end %>	
+										<i class="fa fa-angle-right"></i></a> of <span class="pagination-panel-total">10 |View &nbsp;</span>
+											<%= select_tag :per_page, options_for_select([10,20,50,100,150], params[:per_page].to_i),
+										       :onchange => "if(this.value){window.location='?per_page='+this.value;}", :class=> "form-control input-xsmall input-sm input-inline", :name=>"datatable_ajax_length", :ariacontrols=> "datatable_ajax" %>
+									       			&nbsp;records <span class="seperator">|</span> Found total <%= Contact.all.count %> records
+								   	</div>
+								   	<div class="table-group-actions pull-right">
+									<span id="count-chkbox"></span>
+										<select name="e_status" class="table-group-action-input form-control input-inline input-small input-sm">
+											<option value="">Select...</option>
+											<option value="active">Active</option>
+											<option value="inactive">Inactive</option>
+											<option value="delete">Delete</option>
+										</select>
+										<button class="btn btn-sm yellow table-group-action-submit"><i class="fa fa-check"></i> Submit</button>
+									</div>
+							   </div>
+								<div class="table-scrollable">
+										<table class="table table-striped table-bordered table-hover" id="datatable_ajax">
+										<thead>
+										<tr role="row" class="heading">
+											<th width="2%" class="sorting_disabled" >
+												<input type="checkbox" class="group-checkable">
+											</th>
+											<th><%= sortable "first_name" %></th>
+		                                    <th><%= sortable "v_company_name", "Company Name" %></th>
+		                                    <th><%= sortable "email", "Email" %></th>
+		                                    <th><%= sortable "v_country", "Country" %></th>
+		                                    <th>Tags</th>
+		                                    <th>Contact Type</th>
+		                                    <th>Reffered By</th>
+		                                    <th width="10%">Action</th>
+										</tr>
+										<tr role="row" class="filter">
 									<td>
 									</td>
 									<td>
-										<input type="text" class="form-control form-filter input-sm" name="order_id">
+										<%= text_field_tag :first_name, params[:first_name], :class=>"form-control form-filter input-sm" %>
 									</td>
 									<td>
-										<input type="text" class="form-control form-filter input-sm" name="order_customer_name">
+										<%= text_field_tag :last_name, params[:last_name], :class=>"form-control form-filter input-sm" %>
 									</td>
 									<td>
-										<input type="text" class="form-control form-filter input-sm" name="order_ship_to">
+										<%= text_field_tag :email, params[:email], :class=>"form-control form-filter input-sm" %>
 									</td>
                                     <td>
-										<input type="text" class="form-control form-filter input-sm" name="order_id">
+										<%= text_field_tag :v_country, params[:v_country], :class=>"form-control form-filter input-sm" %>
 									</td>
                                     <td>
-										<input type="text" class="form-control form-filter input-sm" name="order_id">
+										<%= text_field_tag :v_tags, params[:v_tags], :class=>"form-control form-filter input-sm" %>
 									</td>	
 									<td>
-										<select name="order_status" class="form-control form-filter input-sm">
+										<select name="v_contact_type" class="form-control form-filter input-sm">
 											<option value="">Select...</option>
-											<option value="Outsourcing Firm">Outsourcing Firm</option>
-											<option value="End Client">End Client</option>								
+											<option value="1">Outsourcing Firm</option>
+											<option value="0">End Client</option>						
 										</select>
 									</td>
                                     <td>
-										<select name="order_status" class="form-control form-filter input-sm">
+										<select name="i_reffered_source_id" class="form-control form-filter input-sm">
 											<option value="">Select...</option>
-											<option value="LinkedIn">LinkedIn</option>
-											<option value="Google Search">Google Search</option>								
+											<option value="linkedIn">LinkedIn</option>
+											<option value="Internet">Google Search</option>	
+											<option value="friend">Friend</option>							
 										</select>
 									</td>
 									<td>
 										<div class="margin-bottom-5">
-											<button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Search</button>
-										</div>
-										<button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i> Reset</button>
+													<button typ="submit" class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Search</button>
+												</div>
+										<button type="reset"  class="btn btn-sm red filter-cancel" ><i class="fa fa-times"></i> Reset</button>
 									</td>
 								</tr>
-								</thead>
-								<tbody>
-								</tbody>
-								</table>
-							</div>
+										</thead>
+										<tbody>
+										<% @contacts.each do |contacts| %>
+										<tr role="row" class="odd"><td class="sorting_1">
+											<%= check_box_tag "contacts_ids[]", contacts.id %>
+											</td><td><a href="/contacts/<%= contacts.id %>/edit"><%=contacts.first_name %>&nbsp;&nbsp;<%=contacts.last_name %></a>
+											<a href="skype:<%=contacts.v_im_skype %>"><img height="20px" src="/img/social/skype-icon.png"></a><br>
+											<a target="_blank" href="http://linkedin.com"><img height="20px" src="/img/social/linkedin-icon.png"></a>
+											</td>
+											<td><a target="_blank" href="http://www.<%=contacts.v_company_name %>.com"><%=contacts.v_company_name %></a></td>
+											<td><a href="mailto:<%= contacts.email %>"><%= contacts.email %>
+											</a>
+											</td>
+											<td><%= contacts.v_country %></td>
+											<td><%= contacts.v_tags %></td>
+											<td> 
+										<% if contacts.v_contact_type == true %> 
+											<span class="label label-sm label-success"> Outsourcing Firm
+										<% else %>
+											<span class="label label-sm label-danger"> End Client</span>
+											
+										<% end %>
+										</td>
+										<td><%=contacts.i_reffered_source_id %></td>
+										<td>
+											<a class="btn btn-xs default" href="/contacts/<%= contacts.id%>/edit">
+													<i class="fa fa-edit"></i>
+													Edit
+											</a> |
+											<a class="btn btn-xs default contact_delete" id="demo_<%= contacts.id %>" href="javascript:void(0)" attr-delete="/contacts/destroy/<%= contacts.id %>" data-method="delete" rel="nofollow"><i class="fa fa-times">Delete</i>
+											</a> 
+											
+										</td>
+										</tr>
+										
+										<% end %>
+										</tbody>
+										</table>
+									</form>
+								</div>
+								<div class="row"><div class="col-md-8 col-sm-12">
+								 Page
+									<% if !@contacts.total_pages == @contacts.current_page || @contacts.current_page == "1" %>
+										<a title="Prev" class="btn btn-sm default prev disabled " href="/contacts?page=1&per_page=10"><i class="fa fa-angle-left"></i></a>
+									<% else %>
+										<a title="Prev" class="btn btn-sm default prev " href="/contacts?page=1&per_page=10"><i class="fa fa-angle-left"></i></a>
+									<% end %>
+									<input type="text" value = "<%= @contacts.current_page %>" style="text-align:center; margin: 0 5px;" maxlenght="5" class="pagination-panel-input form-control input-mini input-inline input-sm">
+									<% if @contacts.total_pages == @contacts.current_page %>
+											<a title="Next" class="btn btn-sm default next disabled" href="/contacts?page=<%= @contacts.current_page.next %>&per_page=10">
+										<% else %>
+											<a title="Next" class="btn btn-sm default next" href="/contacts?page=<%= @contacts.current_page.next %>&per_page=10">
+										<% end %>
+									<i class="fa fa-angle-right"></i></a> of <span class="pagination-panel-total">10 |View &nbsp;</span>
+										<%= select_tag :per_page, options_for_select([10,20,50,100,150], params[:per_page].to_i),
+									       :onchange => "if(this.value){window.location='?per_page='+this.value;}", :class=> "form-control input-xsmall input-sm input-inline", :name=>"datatable_ajax_length", :ariacontrols=> "datatable_ajax" %>
+								       			 &nbsp;records <span class="seperator">|</span> Found total <%= Contact.all.count%> records
+							   </div></div>
+						   	</div>					   	
 						</div>
 					</div>
 					<!-- End: life time stats -->
@@ -133,4 +209,27 @@
 <script src="/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js" type="text/javascript" ></script>
 <script src="/js/datatable.js"></script>
 <script src="/js/table-ajax.js"></script>
-<!--<script>jQuery(document).ready(function() { ContactsTableAjax.init(); });</script> -->       
+<!--<script>jQuery(document).ready(function() { ContactsTableAjax.init(); });</script> --><script type="text/javascript">
+			$(document).ready(function() {
+			    $('.group-checkable').click(function(event) { 
+			    		 //on click
+			        if(this.checked) { // check select status
+			            $(':checkbox').each(function() { //loop through each checkbox
+			                this.checked = true;  //select all checkboxes with class "checkbox1"              
+			            });
+			        }else{
+			            $(':checkbox').each(function() {
+			          		 //loop through each checkbox
+			                this.checked = false; //deselect all checkboxes with class "checkbox1"                      
+			            });        
+			        }
+			    });
+				$('input[type="checkbox"]').click(function(){
+					var count_checkbox = $('#sales_ids_:checked').length
+				    $("#count-chkbox").text(count_checkbox);
+				    $("#count-chkbox").append(" records selected:");
+				    if ($('#sales_ids_:checked').length <= 0)
+				    	$("#count-chkbox").append(" records selected:").hide(); 
+				});
+});
+</script>

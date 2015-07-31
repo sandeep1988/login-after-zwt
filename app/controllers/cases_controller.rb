@@ -1,5 +1,6 @@
 class CasesController < ApplicationController
   before_action :set_case, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_case
   # GET /cases
   # GET /cases.json
   def index
@@ -24,7 +25,6 @@ class CasesController < ApplicationController
   # POST /cases.json
   def create
     @case = Case.new(case_params)
-
     respond_to do |format|
       if @case.save
         format.html { redirect_to @case, notice: 'Case was successfully created.' }
@@ -60,7 +60,6 @@ class CasesController < ApplicationController
     end
   end
   
-  
   def list_ajax
     @output = '{"data":[["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"],["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"],["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"],["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"],["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"],["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"],["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"],["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"],["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"],["<input type=\"checkbox\" name=\"id[]\" value=\"1\">","<a href=\"\/cases/details\">Case title will display here with long text</a>","Chris Monnat","Kavis Jash","<a href=\"http:\/\/www.google.com\">http:\/\/www.google.com<\/a>, <a href=\"http:\/\/www.yahoo.com\">http:\/\/www.google.com<\/a>","magento, ZendFramework", "<span class=\"label label-sm label-success\">Won<\/span>","<a href=\"\/cases\/1\/edit\" class=\"btn btn-xs default\"><i class=\"fa fa-edit\"><\/i> Edit<\/a> | <a href=\"\/cases\/1\/delete\" class=\"btn btn-xs default\"><i class=\"fa fa-times\"><\/i> Delete<\/a>"]],"draw":1,"recordsTotal":100,"recordsFiltered":100}';
     render json: @output
@@ -69,11 +68,17 @@ class CasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_case
-      @case = Case.find(1)
+      @case = Case.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def case_params
       params[:case]
     end
+
+  private
+      def invalid_case
+        logger.error "Attempt to access invalid case #{params[:id]}"
+        redirect_to cases_path, notice: 'Invalid case'
+      end
 end
