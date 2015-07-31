@@ -165,7 +165,7 @@
         <select class="form-control select2me" id="contact_v_country"  name=contact[v_country]>
         <option value="">Select Country</option>
         <option value="Afganistan" <% if Contact.find(params[:id]).v_country == "Afganistan" %> selected="selected" <% end %> >Afghanistan</option>
-        <option value="Albania" <% if Contact.find(params[:id]).v_country == "Albania" %> selected="selected" <% end %>>Albania</option>
+        <option value="Albania" <% if Contact.find(params[:id]).v_country == "Albania" %> selected="selected" <% end %> >Albania</option>
         <option value="Algeria">Algeria</option>
         <option value="American Samoa" <% if Contact.find(params[:id]).v_country == "American Samoa" %> selected="selected" <% end %> >American Samoa</option>
         <option value="Andorra" <% if Contact.find(params[:id]).v_country == "Andorra" %> selected="selected" <% end %> >Andorra</option>
@@ -515,10 +515,7 @@
         setTimeout(function(){
         ComponentsFormTools.init();
     }, 
-        400);
-       
-    });
-    jQuery(document).ready(function() {   
+        200);
         jQuery('#submit_action').click(function(event) { 
             event.preventDefault();
             if (jQuery('#edit-contacts-form').validate().form()) { 

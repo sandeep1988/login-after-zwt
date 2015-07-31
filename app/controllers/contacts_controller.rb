@@ -21,7 +21,6 @@ class ContactsController < ApplicationController
           contact = Contact.find(inactive_contacts)
           contact.update_column(:e_status, 1) 
       end
-
       elsif  params[:e_status] == "delete"
         @per_page = params[:per_page] || Contact.per_page || 10
         @contacts = Contact.all.paginate( :per_page => @per_page, :page => params[:page])
@@ -31,7 +30,6 @@ class ContactsController < ApplicationController
             redirect_to contacts_path
           end
       end
-
     elsif params[:v_contact_type].blank? && params[:last_name].blank? && params[:email].blank? && params[:v_country].blank? && params[:v_tags].blank? && params[:i_reffered_source_id].blank? && params[:first_name]
       @contacts = Contact.where("first_name like ?", "%#{params[:first_name]}%").paginate( :per_page => @per_page, :page => params[:page])
     elsif
