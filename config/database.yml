@@ -31,7 +31,7 @@ production:
   reconnect: false
   database: crm_sales_production
   username: siteproof-net
-  password: this.admin
+  password: thisadmin
   pool: 5
   host: localhost
   port: 3306

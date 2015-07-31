@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723152310) do
+ActiveRecord::Schema.define(version: 20150730070110) do
 
   create_table "cases", force: :cascade do |t|
     t.datetime "created_at",                     null: false
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20150723152310) do
     t.string   "v_tags",               limit: 255
     t.string   "i_reffered_source_id", limit: 255
     t.boolean  "e_status",             limit: 1,   default: false
-    t.integer  "v_contact_type",       limit: 4,   default: 1
     t.string   "v_country",            limit: 255
+    t.boolean  "v_contact_type",       limit: 1,   default: false
   end
 
   create_table "followuptypes", force: :cascade do |t|
@@ -62,9 +62,9 @@ ActiveRecord::Schema.define(version: 20150723152310) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string   "v_title",    limit: 50
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "v_title",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
