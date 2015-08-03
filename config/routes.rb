@@ -30,6 +30,7 @@ devise_for :users, controllers: { sessions: "sessions",
   # post '/contacts/list_ajax'
   post '/sales/update_sales'
   post '/contacts/update_contacts'
+  post '/cases/update_cases'
   match "/sales/destroy/:id" => "sales#destroy_user", via: [:get, :post, :put]
   match "/contacts/destroy/:id" => "contacts#destroy_contact", via: [:get, :post, :put]
   # get '/sales/destroy_user/:id'
