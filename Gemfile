@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
+gem 'pg'
 gem 'mysql2'# Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -22,7 +23,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'devise'
 gem 'will_paginate'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 # Use ActiveModel has_secure_password
@@ -30,7 +30,7 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'rails_12factor'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
