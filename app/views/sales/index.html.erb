@@ -123,9 +123,11 @@
 										<% @sales.each do |sales| %>
 										<tr role="row" class="odd"><td class="sorting_1">
 											<%= check_box_tag "sales_ids[]", sales.id %>
-											</td><td><a href="/sales/<%= sales.id %>/edit"><%=sales.v_firstname %> <%=sales.v_lastname %></a></td><td><a href="mailto:<%= sales.email %>"><%= sales.email %></a></td><td><a href="tel:<%= sales.v_phone %>"><%= sales.v_phone %></a></td><td> <% if sales.e_status? %> <span class="label label-sm label-success">Active
-										<% else %><span class="label label-sm label-danger">Inactive <% end %></span></td>
-										<td>
+											</td><td><a href="/sales/<%= sales.id %>/edit"><%=sales.v_firstname %> <%=sales.v_lastname %></a></td><td><a href="mailto:<%= sales.email %>"><%= sales.email %></a></td><td><a href="tel:<%= sales.v_phone %>"><%= sales.v_phone %></a></td><td> 
+											<% if sales.e_status? %> <span class="label 	label-sm label-success">Active
+											<% else %><span class="label label-sm label-	danger">Inactive 
+											<% end %></span></td>
+											<td>
 											<a class="btn btn-xs default" href="/sales/<%= sales.id%>/edit">
 													<i class="fa fa-edit"></i>
 													Edit

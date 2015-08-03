@@ -1,10 +1,13 @@
 class CasesController < ApplicationController
   before_action :set_case, only: [:show, :edit, :update, :destroy]
+  skip_before_filter  :verify_authenticity_token
+  helper_method :sort_column, :sort_direction
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_case
   # GET /cases
   # GET /cases.json
   def index
-    @cases = Case.all
+    @per_page = params[:per_page] || Case.per_page || 10
+     @cases = Case.all.paginate( :per_page => @per_page, :page => params[:page]).order(sort_column + ' ' + sort_direction)
   end
 
   # GET /cases/1
@@ -25,15 +28,13 @@ class CasesController < ApplicationController
   # POST /cases.json
   def create
     @case = Case.new(case_params)
-    respond_to do |format|
+    @case.v_sales_person_id = current_user.id
+    @case.e_status = params[:e_status]
       if @case.save
-        format.html { redirect_to @case, notice: 'Case was successfully created.' }
-        format.json { render :show, status: :created, location: @case }
+        redirect_to cases_path
       else
-        format.html { render :new }
-        format.json { render json: @case.errors, status: :unprocessable_entity }
+        render action: 'new'
       end
-    end
   end
 
   # PATCH/PUT /cases/1
@@ -73,7 +74,7 @@ class CasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def case_params
-      params[:case]
+       params.require(:case).permit(:v_contact_id ,:v_sales_person_id, :v_title, :v_desc, :v_reference_urls, :v_file_attachments, :v_tags, :e_status, :v_note)
     end
 
   private
@@ -81,4 +82,12 @@ class CasesController < ApplicationController
         logger.error "Attempt to access invalid case #{params[:id]}"
         redirect_to cases_path, notice: 'Invalid case'
       end
+
+      def sort_column
+        Contact.column_names.include?(params[:sort]) ? params[:sort] : "v_title"
+      end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    end
 end

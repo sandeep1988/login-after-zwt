@@ -65,70 +65,76 @@
                         </div>
                         <div class="portlet-body form">
                             <!-- BEGIN FORM-->
-                            <form action="javascript:;" id="investor_create" class="form-horizontal">
+                            <%= form_for(@case, :html => {:class => 'form-horizontal', :id => 'case_create' }) do |f| %>
                                 <div class="form-body">
                                     
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="inputWarning">Title <span class="required">*</span></label>
                                         <div class="col-md-7">
-                                            <input type="text" name="add_inv1" class="form-control" placeholder="Add Title">
-                                            
+                                            <%= f.text_field :v_title, attrName: "case[v_title]", name: "v_title", class:"form-control", placeholder:"Add Title" %>
                                         </div>
                                     </div>
+
+                                     <div class="form-group">
+                                        <label class="control-label col-md-3" for="inputWarning">Contact Person <span class="required">*</span></label>
+                                        <div class="col-md-7">
+                                        <%= f.collection_select :v_contact_id, Contact.all, :id, :first_name, {prompt: "Select Contact Person"}, :class =>"form-control select2me" %>
+                                         </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="inputWarning">Description <span class="required">*</span></label>
                                         <div class="col-md-7">
-                                            <textarea name="add_inv13" value="Test Title22" class="ckeditor form-control" id="" cols="20" rows="3" placeholder="Add Description"></textarea>
-                                            
+                                            <%= f.text_area :v_desc, attrName: "case[v_desc]", name: "v_desc", class:"form-control", class:"ckeditor form-control", placeholder:"Add Description" %>         
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="inputWarning">Reference Urls </label>
                                         <div class="col-md-7">
-                                            <input type="text" name="add_inv14" class="form-control" placeholder="Enter Reference URL" />
-                                            
+
+                                            <%= f.text_field :v_reference_urls, attrName: "case[v_reference_urls]", name: "v_reference_urls", class:"form-control", placeholder:"Enter Reference URL" %>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="inputWarning">File Attachment  </label>
                                         <div class="row fileupload-buttonbar">
-        									<div class="col-lg-3">
-        										<!-- The fileinput-button span is used to style the file input field as button -->
-        										<span class="btn green fileinput-button">
+                                            <div class="col-lg-3">
+                                                <span class="btn green fileinput-button">
                                                     <i class="fa fa-plus"></i> <span>Add files... </span>
-        										    <input type="file" multiple="" name="files[]" />
+                                                    <input type="file" multiple="" name="files[]" />
                                                 </span>
                                                 <span class="help-block">   </span>
-        									</div>
-        								</div>
+                                            </div>
+                                        </div>
                                         
                                     </div>
-
 
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="inputWarning">Tags</label>
                                         <div class="col-md-7">
-                                             <input id="tags_2" type="text" class="form-control tags medium" placeholder="Add Tags" value=""/>
+
+                                            <%= f.text_field :v_tags, attrName: "case[v_tags]", id:"tags_2", name: "v_tags", class:"form-control", placeholder:"Add Tags" %>
                                             
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="inputWarning">Notes</label>
                                         <div class="col-md-7">
-                                            <textarea name="add_inv16" class="form-control" id="" cols="20" rows="3" placeholder="Add Notes"></textarea>
+
+                                            <%= f.text_area :v_note, attrName: "case[v_note]", name: "v_note", class:"form-control", placeholder:"Add Notes" %>
                                         </div>
                                     </div>
                                 
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="inputWarning">Status <span class="required">*</span></label>
                                         <div class="col-md-7">
-                                            <select class="form-control select2me" name="add_inv12">
-                                                <option value="end_client">Open</option>
-                                                <option value="">Won</option>
-                                                <option value="">Lost</option>
-                                                <option value="">Dead</option>
+                                            <select class="form-control select2me" name="e_status">
+                                                <option value="open">Open</option>
+                                                <option value="won">Won</option>
+                                                <option value="lost">Lost</option>
+                                                <option value="dead">Dead</option>
                                             </select>
                                         </div>
                                     </div>
@@ -136,14 +142,14 @@
                                     <div class="form-actions">
                                         <div class="row">
                                             <div class="col-md-offset-3 col-md-9">
-                                                <button type="button" id="submit_investor" class="btn green-haze">Submit</button>
-                                                <button type="submit" class="btn default">Validate</button>
+                                               <button type="submit" id="submit_case_action" class="btn green-haze">
+                                                  Save </button>
                                                  <a class="btn default" href="/cases">Cancel </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            <% end %>
                             <!-- END FORM-->
                         </div>
                     </div>
@@ -165,7 +171,21 @@
 <script src="/js/components-form-tools.js"></script>     
 <script>
     jQuery(document).ready(function() {       
-        ComponentsFormTools.init();
-        Metronic.init();
+                // initiate layout and plugins
+                Metronic.init();
+                setTimeout(function(){
+                ComponentsFormTools.init();
+                }, 
+                    400);
+                // Contact form  validation 
+                jQuery('#submit_case_action').click(function(event) { 
+                    event.preventDefault();
+                    if (jQuery('#case_create').validate().form()) { 
+                        jQuery('#case_create .form-control').each(function() {
+                            jQuery(this).attr('name', jQuery(this).attr('attrName'));
+                        });
+                        jQuery('#case_create').submit();
+                    }
+            });
     });
-</script>          
+</script>   

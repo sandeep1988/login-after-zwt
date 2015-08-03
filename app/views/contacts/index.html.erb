@@ -67,7 +67,7 @@
 									       			&nbsp;records <span class="seperator">|</span> Found total <%= Contact.all.count %> records
 								   	</div>
 								   	<div class="table-group-actions pull-right">
-									<span id="count-chkbox"></span>
+									<span id="count-chkbox-contact"></span>
 										<select name="e_status" class="table-group-action-input form-control input-inline input-small input-sm">
 											<option value="">Select...</option>
 											<option value="active">Active</option>
@@ -225,11 +225,11 @@
 			        }
 			    });
 				$('input[type="checkbox"]').click(function(){
-					var count_checkbox = $('#sales_ids_:checked').length
-				    $("#count-chkbox").text(count_checkbox);
-				    $("#count-chkbox").append(" records selected:");
-				    if ($('#sales_ids_:checked').length <= 0)
-				    	$("#count-chkbox").append(" records selected:").hide(); 
+					var count_checkbox = $('#contacts_ids_:checked').length
+				    $("#count-chkbox-contact").text(count_checkbox);
+				    $("#count-chkbox-contact").append(" records selected:");
+				    if ($('#contacts_ids_:checked').length <= 0)
+				    	$("#count-chkbox-contact").append(" records selected:").hide(); 
 				});
 });
 </script>
