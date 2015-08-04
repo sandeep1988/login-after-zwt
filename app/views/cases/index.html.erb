@@ -45,6 +45,7 @@
 							</div>
 						</div>
 						<div class="portlet-body">
+						<form name="search-form" action="/cases" method ="get" id="search-form">
 							<div class="table-container">
 								<div class="row">
 									<div class="col-md-8 col-sm-12"> Page
@@ -67,10 +68,8 @@
 								   	</div>
 								   	<div class="table-group-actions pull-right">
 									<span id="count-chkbox-case"></span>
-										<select name="e_status" class="table-group-action-input form-control input-inline input-small input-sm">
+										<select name="selection" class="table-group-action-input form-control input-inline input-small input-sm">
 											<option value="">Select...</option>
-											<option value="active">Active</option>
-											<option value="inactive">Inactive</option>
 											<option value="delete">Delete</option>
 										</select>
 										<button class="btn btn-sm yellow table-group-action-submit"><i class="fa fa-check"></i> Submit</button>
@@ -98,30 +97,31 @@
 										<%= text_field_tag :v_title, params[:v_title], :class=>"form-control form-filter input-sm" %>
 									</td>
 									<td>
-										<%= text_field_tag :v_desc, params[:v_desc], :class=>"form-control form-filter input-sm" %>
+										<%= text_field_tag :v_sales_person_id, params[:v_sales_person_id], :class=>"form-control form-filter input-sm" %>
 									</td>
 									<td>
-										<%= text_field_tag :e_status, params[:e_status], :class=>"form-control form-filter input-sm" %>
+										<%= text_field_tag :v_contact_id, params[:v_contact_id], :class=>"form-control form-filter input-sm" %>
 									</td>
                                     <td>
-										<%= text_field_tag :v_country, params[:v_country], :class=>"form-control form-filter input-sm" %>
+										<%= text_field_tag :v_reference_urls, params[:v_reference_urls], :class=>"form-control form-filter input-sm" %>
 									</td>
                                     <td>
 										<%= text_field_tag :v_tags, params[:v_tags], :class=>"form-control form-filter input-sm" %>
 									</td>	
                                     <td>
-										<select name="e_status" class="form-control form-filter input-sm">
-											<option value="">Select...</option>
-											<option value="linkedIn">LinkedIn</option>
-											<option value="Internet">Google Search</option>	
-											<option value="friend">Friend</option>							
-										</select>
+										<select class="form-control select2me" name="e_status">
+												<option value="">Select...</option>
+                                                <option value="open">Open</option>
+                                                <option value="won">Won</option>
+                                                <option value="lost">Lost</option>
+                                                <option value="dead">Dead</option>
+                                        </select>
 									</td>
 									<td>
 										<div class="margin-bottom-5">
 													<button typ="submit" class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> Search</button>
-												</div>
-										<button type="reset"  class="btn btn-sm red filter-cancel" ><i class="fa fa-times"></i> Reset</button>
+									</div>
+													<button type="reset"  class="btn btn-sm red filter-cancel" ><i class="fa fa-times"></i> Reset</button>
 									</td>
 								</tr>
 										</thead>
@@ -217,10 +217,10 @@
 			        }
 			    });
 				$('input[type="checkbox"]').click(function(){
-					var count_checkbox = $('#contacts_ids_:checked').length
+					var count_checkbox = $('#cases_ids_:checked').length
 				    $("#count-chkbox-case").text(count_checkbox);
 				    $("#count-chkbox-case").append(" records selected:");
-				    if ($('#contacts_ids_:checked').length <= 0)
+				    if ($('#cases_ids_:checked').length <= 0)
 				    	$("#count-chkbox-case").append(" records selected:").hide(); 
 				});
 	});
