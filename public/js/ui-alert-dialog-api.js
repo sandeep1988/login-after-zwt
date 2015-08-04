@@ -43,6 +43,19 @@ var UIAlertDialogApi = function () {
             });
 
 
+            $('.case_delete').click(function(){
+                var case_ids = ($(this).attr("attr-delete"));
+                var full_url = location.protocol + "//" + location.host + case_ids
+                bootbox.confirm("Are you sure?", function(result) {
+                    if (result == false ) {
+                        var fail_url = location.protocol + "//" + location.host + "/cases"
+                        window.location.assign(fail_url)
+                    } else {
+                        window.location.assign(full_url)
+                    }
+                }); 
+            });
+
             $('#demo_4').click(function(){
                 bootbox.prompt("What is your name?", function(result) {
                     if (result === null) {

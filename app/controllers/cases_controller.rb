@@ -2,7 +2,7 @@ class CasesController < ApplicationController
   before_action :set_case, only: [:show, :edit, :update, :destroy]
   skip_before_filter  :verify_authenticity_token
   helper_method :sort_column, :sort_direction
-  rescue_from ActiveRecord::RecordNotFound, with: :invalid_case
+  # rescue_from ActiveRecord::RecordNotFound, with: :invalid_case
   # GET /cases
   # GET /cases.json
   def index
@@ -13,6 +13,10 @@ class CasesController < ApplicationController
   # GET /cases/1
   # GET /cases/1.json
   def show
+    @edit_case = Case.find(params[:id]) 
+    @case = Case.find(params[:id])
+     send_data(@case.file_contents,
+              filename: @case.filename, type: @case.content_type)
   end
 
   # GET /cases/new
@@ -22,6 +26,10 @@ class CasesController < ApplicationController
 
   # GET /cases/1/edit
   def edit
+    @edit_case = Case.find(params[:id]) 
+  end
+
+  def update_contacts
   end
 
   # POST /cases
@@ -30,6 +38,11 @@ class CasesController < ApplicationController
     @case = Case.new(case_params)
     @case.v_sales_person_id = current_user.id
     @case.e_status = params[:e_status]
+    # @multi_file = params[:case][:file]
+    @case.filename = params[:file].original_filename
+    @case.content_type = params[:file].content_type
+    @case.file_contents= params[:file].read
+
       if @case.save
         redirect_to cases_path
       else
@@ -40,25 +53,29 @@ class CasesController < ApplicationController
   # PATCH/PUT /cases/1
   # PATCH/PUT /cases/1.json
   def update
-    respond_to do |format|
-      if @case.update(case_params)
-        format.html { redirect_to @case, notice: 'Case was successfully updated.' }
-        format.json { render :show, status: :ok, location: @case }
-      else
-        format.html { render :edit }
-        format.json { render json: @case.errors, status: :unprocessable_entity }
-      end
+    @case_data = Case.find(params[:format])
+    if params[:file].nil?
+      @case_data.update_attributes(case_params)
+    else 
+      @multi_edit_file = params[:file]
+      @case_data.filename = @multi_edit_file.original_filename
+      @case_data.content_type = @multi_edit_file.content_type
+      @case_data.file_contents = @multi_edit_file.read
+      @case_data.update_attributes(case_params)
     end
+        redirect_to cases_path
   end
 
   # DELETE /cases/1
   # DELETE /cases/1.json
   def destroy
-    @case.destroy
-    respond_to do |format|
-      format.html { redirect_to cases_url, notice: 'Case was successfully destroyed.' }
-      format.json { head :no_content }
+   @contact_case = Case.find(params[:id])
+    if @contact_case.destroy
+      redirect_to cases_url
     end
+  end
+
+  def update_cases 
   end
   
   def list_ajax
@@ -69,19 +86,24 @@ class CasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_case
-      @case = Case.find(params[:id])
+      if params[:action] == "update" 
+        @case = Case.find(params[:format])
+      else
+        @case = Case.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def case_params
-       params.require(:case).permit(:v_contact_id ,:v_sales_person_id, :v_title, :v_desc, :v_reference_urls, :v_file_attachments, :v_tags, :e_status, :v_note)
+       params.require(:case).permit(:v_contact_id ,:v_sales_person_id, :v_title, :v_desc, :v_reference_urls, :v_file_attachments, :v_tags, :e_status, :v_note, :file)
     end
 
+
   private
-      def invalid_case
-        logger.error "Attempt to access invalid case #{params[:id]}"
-        redirect_to cases_path, notice: 'Invalid case'
-      end
+      # def invalid_case
+      #   logger.error "Attempt to access invalid case #{params[:id]}"
+      #   redirect_to cases_path, notice: 'Invalid case'
+      # end
 
       def sort_column
         Contact.column_names.include?(params[:sort]) ? params[:sort] : "v_title"
