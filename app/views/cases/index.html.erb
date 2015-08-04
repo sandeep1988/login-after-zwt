@@ -131,9 +131,9 @@
 											<%= check_box_tag "cases_ids[]", cases.id %>
 											</td><td><a href="/cases/<%= cases.id %>/edit"><%=cases.v_title %></a>
 											</td>
-											<td><a target="_blank" href="http://www.<%=cases.v_note %>.com"><%= User.find(cases.v_sales_person_id).v_firstname %></a></td>
+											<td><%= User.find(cases.v_sales_person_id).v_firstname %></td>
 											<td><%= Contact.find(cases.v_contact_id).first_name %></td>
-											<td><%= cases.v_reference_urls %></td>
+											<td><a target="_blank" href="http://<%=cases.v_reference_urls %>"><%= cases.v_reference_urls %></a></td>
 											<td><%= cases.v_tags %></td>
 											<td>
 												<% if cases.e_status == "dead" %>

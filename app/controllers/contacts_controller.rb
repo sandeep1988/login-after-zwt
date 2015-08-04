@@ -2,6 +2,7 @@ class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy, :update_contacts]
   skip_before_filter  :verify_authenticity_token
   helper_method :sort_column, :sort_direction
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_contact
   # GET /contacts
   # GET /contacts.json
   def index
@@ -154,8 +155,13 @@ class ContactsController < ApplicationController
         @contact = Contact.find(params[:format])  
       else
         @contact = Contact.find(params[:id])
+      end
     end
-    end
+
+     def invalid_contact
+        logger.error "Attempt to access invalid Contact #{params[:id]}"
+        redirect_to contacts_path, notice: 'Invalid Contact'
+      end
 
     private
       def contact_params
