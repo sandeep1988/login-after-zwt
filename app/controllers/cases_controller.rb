@@ -13,7 +13,7 @@ class CasesController < ApplicationController
   # GET /cases/1
   # GET /cases/1.json
   def show
-    @edit_case = Contact.find(params[:id]) 
+    # @edit_case = Case.find(params[:id]) 
     @case = Case.find(params[:id])
      send_data(@case.file_contents,
               filename: @case.filename, type: @case.content_type)
@@ -26,7 +26,7 @@ class CasesController < ApplicationController
 
   # GET /cases/1/edit
   def edit
-    @edit_case = Contact.find(params[:id]) 
+    @edit_case = Case.find(params[:id]) 
   end
 
   def update_contacts
@@ -36,9 +36,13 @@ class CasesController < ApplicationController
   # POST /cases.json
   def create
     @case = Case.new(case_params)
-    session[:case_id] = @case.id 
     @case.v_sales_person_id = current_user.id
     @case.e_status = params[:e_status]
+    # @multi_file = params[:case][:file]
+    @case.filename = params[:file].original_filename
+    @case.content_type = params[:file].content_type
+    @case.file_contents= params[:file].read
+
       if @case.save
         redirect_to cases_path
       else
@@ -50,10 +54,11 @@ class CasesController < ApplicationController
   # PATCH/PUT /cases/1.json
   def update
     @case_data = Case.find(params[:format])
-    @case_data.filename = params[:file].original_filename
-    @case_data.content_type= params[:file].content_type
-    @case_data.file_contents= params[:file].read
-    @case_data.update_attributes(case_params)
+    @multi_edit_file = params[:file]
+      @case_data.filename = @multi_edit_file.original_filename
+      @case_data.content_type = @multi_edit_file.content_type
+      @case_data.file_contents = @multi_edit_file.read
+      @case_data.update_attributes(case_params)
       redirect_to cases_path
   end
 
