@@ -13,7 +13,7 @@ class CasesController < ApplicationController
   # GET /cases/1
   # GET /cases/1.json
   def show
-    # @edit_case = Case.find(params[:id]) 
+    @edit_case = Case.find(params[:id]) 
     @case = Case.find(params[:id])
      send_data(@case.file_contents,
               filename: @case.filename, type: @case.content_type)
@@ -54,12 +54,16 @@ class CasesController < ApplicationController
   # PATCH/PUT /cases/1.json
   def update
     @case_data = Case.find(params[:format])
-    @multi_edit_file = params[:file]
+    if params[:file].nil?
+      @case_data.update_attributes(case_params)
+    else 
+      @multi_edit_file = params[:file]
       @case_data.filename = @multi_edit_file.original_filename
       @case_data.content_type = @multi_edit_file.content_type
       @case_data.file_contents = @multi_edit_file.read
       @case_data.update_attributes(case_params)
-      redirect_to cases_path
+    end
+        redirect_to cases_path
   end
 
   # DELETE /cases/1
@@ -83,7 +87,7 @@ class CasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_case
-      if params[:action] == "update"
+      if params[:action] == "update" 
         @case = Case.find(params[:format])
       else
         @case = Case.find(params[:id])
