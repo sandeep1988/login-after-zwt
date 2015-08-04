@@ -69,10 +69,9 @@ class CasesController < ApplicationController
   # DELETE /cases/1
   # DELETE /cases/1.json
   def destroy
-    @case.destroy
-    respond_to do |format|
-      format.html { redirect_to cases_url, notice: 'Case was successfully destroyed.' }
-      format.json { head :no_content }
+   @contact_case = Case.find(params[:id])
+    if @contact_case.destroy
+      redirect_to cases_url
     end
   end
 

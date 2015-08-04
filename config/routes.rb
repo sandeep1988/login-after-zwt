@@ -33,6 +33,7 @@ devise_for :users, controllers: { sessions: "sessions",
   post '/cases/update_cases'
   match "/sales/destroy/:id" => "sales#destroy_user", via: [:get, :post, :put]
   match "/contacts/destroy/:id" => "contacts#destroy_contact", via: [:get, :post, :put]
+  match "/cases/destroy/:id" => "cases#destroy", via: [:get, :post, :put]
   # get '/sales/destroy_user/:id'
   match "/sales/:id" => "sales#update", via: [:get, :post, :put]
   
