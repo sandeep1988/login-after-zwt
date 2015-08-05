@@ -47,52 +47,18 @@
                                             <th>
                                                 Tags Name
                                             </th>
-                                            
                                         </tr>
                                     </thead>
                                     <tbody>
+                                     <% Tag.all.collect(&:v_title).each do |tag| %>
+                                         <% tag.split(',').each do |innertag| %>
                                         <tr>
                                             <td>
-                                                 magento
+                                                <%= innertag %>
                                             </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                laravel
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                angularjs 
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                 joomla 
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                               .net
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                 iphone
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                seo
-                                            </td>
-                                            
-                                        </tr>                                        
+                                        </tr> 
+                                         <% end %>
+                                        <% end %>                               
                                     </tbody>
                                 </table>
                             </div>
