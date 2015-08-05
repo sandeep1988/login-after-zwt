@@ -31,18 +31,12 @@ var handleValidation10 = function() {
                 v_reference_urls: {
                     required: true
                 },
-                v_file_attachments: {
-                    required: true
-                },
                 v_tags:{
                     required: true
                 },
                 e_status:{
                     required: true
                 },
-                v_note:{
-                   required: true
-                }
             },
 
             errorPlacement: function (error, element) { // render error placement for each input type
