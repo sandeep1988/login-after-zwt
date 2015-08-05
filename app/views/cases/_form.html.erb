@@ -78,7 +78,7 @@
                                      <div class="form-group">
                                         <label class="control-label col-md-3" for="inputWarning">Contact Person <span class="required">*</span></label>
                                         <div class="col-md-7">
-                                        <%= f.collection_select :v_contact_id, Contact.all, :id, :first_name, {prompt: "Select Contact Person"}, :class =>"form-control select2me" %>
+                                        <%= f.collection_select :contact_id, Contact.all, :id, :first_name, {prompt: "Select Contact Person"}, :class =>"form-control select2me" %>
                                          </div>
                                     </div>
 

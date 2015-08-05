@@ -54,11 +54,11 @@
                             </p>
                             <p>
                                 <strong>Contact Name </strong> <br>
-                                <strong><a target="_blank" href="/contacts/details"><%= Contact.find(@case.v_contact_id).first_name %> &nbsp;<%= Contact.find(@case.v_contact_id).last_name %></a></strong>
+                                <strong><a target="_blank" href="/contacts/details"><%= Contact.find(@case.contact_id).first_name %> &nbsp;<%= Contact.find(@case.contact_id).last_name %></a></strong>
                             </p>
                             <p>
                                 <strong>Compnay Name</strong> <br>
-                                    <%= Contact.find(@case.v_contact_id).v_company_name %>
+                                    <%= Contact.find(@case.contact_id).v_company_name %>
                             </p>
                             <p>
                                 <strong>Staus </strong> <br>

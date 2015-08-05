@@ -16,27 +16,46 @@ class CasesController < ApplicationController
             redirect_to cases_path
           end
         end
-      elsif params[:v_title] && params[:v_sales_person_id].blank? && params[:v_contact_id].blank? && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
+      elsif params[:v_title] && params[:user_id].blank? && params[:contact_id].blank? && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
         @cases = Case.where("v_title like ?", "%#{params[:v_title]}%").paginate( :per_page => @per_page, :page => params[:page])
 
-      elsif params[:v_title] && params[:v_sales_person_id] && params[:v_contact_id].blank? && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
-        @cases = Case.where("v_title like ? and v_sales_person_id like ?", "%#{params[:v_title]}%","%#{params[:v_sales_person_id]}%").paginate( :per_page => @per_page, :page => params[:page])
+        elsif params[:v_title].blank? && params[:user_id] && params[:contact_id].blank? && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
+         @cases = Case.joins(:user).where("v_firstname like ?", "%#{params[:user_id]}%").paginate( :per_page => @per_page, :page => params[:page])
 
-      elsif params[:v_title] && params[:v_sales_person_id] && params[:v_contact_id] && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
+        elsif params[:v_title].blank? && params[:user_id].blank? && params[:contact_id] && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
+        @cases = Case.joins(:contact).where("first_name like ?", "%#{params[:contact_id]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+        elsif params[:v_title] && params[:user_id].blank? && params[:contact_id] && params[:v_reference_urls] && params[:v_tags] && params[:e_status]
+
+        @cases = Case.joins(:contact).where("cases.v_title like ? and first_name like ? and cases.v_reference_urls like ? and cases.v_tags like ? and cases.e_status like ?", "%#{params[:v_title]}%","%#{params[:contact_id]}%","%#{params[:v_reference_urls]}%","%#{params[:v_tags]}%","%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+      elsif params[:v_title].blank? && params[:user_id] && params[:contact_id] && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
+
+        @cases = Case.joins(:user, :contact).where("contacts.first_name like ? and users.v_firstname like ?", "%#{params[:contact_id]}%","%#{params[:user_id]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+
+        elsif params[:v_title] && params[:user_id] && params[:contact_id] && params[:v_reference_urls] && params[:v_tags] && params[:e_status]
+
+        @cases = Case.joins(:user, :contact).where("contacts.first_name like ? and users.v_firstname like ? and cases.v_title like ? and cases.v_reference_urls like ? and cases.v_tags like ? and cases.e_status like ?", "%#{params[:contact_id]}%","%#{params[:user_id]}%","%#{params[:v_title]}%","%#{params[:v_reference_urls]}%","%#{params[:v_tags]}%","%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+      elsif params[:v_title] && params[:user_id].present? && params[:contact_id].blank? && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
+        @cases = Case.where("v_title like ? and user_id like ?", "%#{params[:v_title]}%","%#{params[:user_id]}%").paginate( :per_page => @per_page, :page => params[:page])
+
+      elsif params[:v_title] && params[:user_id].present? && params[:contact_id] && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
         
-        @cases = Case.where("v_title like ? and v_sales_person_id like ? and v_contact_id like ?", "%#{params[:v_title]}%","%#{params[:v_sales_person_id]}%","%#{params[:v_contact_id]}%").paginate( :per_page => @per_page, :page => params[:page])
+        @cases = Case.where("v_title like ? and user_id like ? and contact_id like ?", "%#{params[:v_title]}%","%#{params[:user_id]}%","%#{params[:contact_id]}%").paginate( :per_page => @per_page, :page => params[:page])
 
-      elsif params[:v_title] && params[:v_sales_person_id] && params[:v_contact_id] && params[:v_reference_urls] && params[:v_tags].blank? && params[:e_status].blank?
+      elsif params[:v_title] && params[:user_id].present? && params[:contact_id] && params[:v_reference_urls] && params[:v_tags].blank? && params[:e_status].blank?
       
-        @cases = Case.where("v_title like ? and v_sales_person_id like ? and v_contact_id like ? and v_reference_urls like ?", "%#{params[:v_title]}%","%#{params[:v_sales_person_id]}%","%#{params[:v_contact_id]}%","%#{params[:v_reference_urls]}%").paginate( :per_page => @per_page, :page => params[:page])
+        @cases = Case.where("v_title like ? and user_id like ? and contact_id like ? and v_reference_urls like ?", "%#{params[:v_title]}%","%#{params[:user_id]}%","%#{params[:contact_id]}%","%#{params[:v_reference_urls]}%").paginate( :per_page => @per_page, :page => params[:page])
 
-      elsif params[:v_title] && params[:v_sales_person_id] && params[:v_contact_id] && params[:v_reference_urls] && params[:v_tags] && params[:e_status].blank?
+      elsif params[:v_title] && params[:user_id].present? && params[:contact_id] && params[:v_reference_urls] && params[:v_tags] && params[:e_status].blank?
         
-        @cases = Case.where("v_title like ? and v_sales_person_id like ? and v_contact_id like ? and v_reference_urls like ? and v_tags like ?", "%#{params[:v_title]}%","%#{params[:v_sales_person_id]}%","%#{params[:v_contact_id]}%","%#{params[:v_reference_urls]}%","%#{params[:v_tags]}%").paginate( :per_page => @per_page, :page => params[:page])
+        @cases = Case.where("v_title like ? and user_id like ? and contact_id like ? and v_reference_urls like ? and v_tags like ?", "%#{params[:v_title]}%","%#{params[:user_id]}%","%#{params[:contact_id]}%","%#{params[:v_reference_urls]}%","%#{params[:v_tags]}%").paginate( :per_page => @per_page, :page => params[:page])
 
-      elsif params[:v_title] && params[:v_sales_person_id] && params[:v_contact_id] && params[:v_reference_urls] && params[:v_tags] && params[:e_status]
+      elsif params[:v_title] && params[:user_id].present? && params[:contact_id] && params[:v_reference_urls] && params[:v_tags] && params[:e_status]
         
-        @cases = Case.where("v_title like ? and v_sales_person_id like ? and v_contact_id like ? and v_reference_urls like ? and v_tags like ? and e_status like ?", "%#{params[:v_title]}%","%#{params[:v_sales_person_id]}%","%#{params[:v_contact_id]}%","%#{params[:v_reference_urls]}%","%#{params[:v_tags]}%","%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
+        @cases = Case.where("v_title like ? and user_id like ? and contact_id like ? and v_reference_urls like ? and v_tags like ? and e_status like ?", "%#{params[:v_title]}%","%#{params[:user_id]}%","%#{params[:contact_id]}%","%#{params[:v_reference_urls]}%","%#{params[:v_tags]}%","%#{params[:e_status]}%").paginate( :per_page => @per_page, :page => params[:page])
 
     else
      @cases = Case.all.paginate( :per_page => @per_page, :page => params[:page]).order(sort_column + ' ' + sort_direction)
@@ -69,7 +88,7 @@ class CasesController < ApplicationController
   # POST /cases.json
   def create
     @case = Case.new(case_params)
-    @case.v_sales_person_id = current_user.id
+    @case.user_id = current_user.id
     @case.e_status = params[:e_status]
     # @multi_file = params[:case][:file]
     @case.filename = params[:file].original_filename
@@ -126,7 +145,7 @@ class CasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def case_params
-       params.require(:case).permit(:v_contact_id ,:v_sales_person_id, :v_title, :v_desc, :v_reference_urls, :v_file_attachments, :v_tags, :e_status, :v_note, :file)
+       params.require(:case).permit(:contact_id ,:user_id, :v_title, :v_desc, :v_reference_urls, :v_file_attachments, :v_tags, :e_status, :v_note, :file)
     end
 
      def invalid_case
