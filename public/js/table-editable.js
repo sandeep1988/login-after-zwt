@@ -119,14 +119,26 @@ var TableEditable = function () {
 
         table.on('click', '.delete', function (e) {
             e.preventDefault();
-
+            var test = true;
             if (confirm("Are you sure to delete this row ?") == false) {
                 return;
             }
+             deleted_id = $(this).attr('deleteid');
+             $.ajax({
+                type: "DELETE",
+                url: $(this).attr('href'),
+                dataType: "html",
+                data: {
+                        'csrfmiddlewaretoken':$( "#csrfmiddlewaretoken").val()
+                },
+                success: function(response) {
+                    console.log("#row_"+deleted_id);
+                    $("#row_"+deleted_id).remove();
+                }
+            });
 
             var nRow = $(this).parents('tr')[0];
             oTable.fnDeleteRow(nRow);
-            alert("Deleted! Do not forget to do some ajax to sync with backend :)");
         });
 
         table.on('click', '.cancel', function (e) {
@@ -143,7 +155,7 @@ var TableEditable = function () {
 
         table.on('click', '.edit', function (e) {
             e.preventDefault();
-
+            alert("in edit");
             /* Get the row as a parent of the link that was clicked on */
             var nRow = $(this).parents('tr')[0];
 

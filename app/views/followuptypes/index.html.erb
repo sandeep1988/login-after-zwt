@@ -92,6 +92,7 @@
                                 </div>                               
                             </div>
                             <div class="portlet-body">
+                            <form name="edit-followup-form" action="/followuptypes" method ="get" id="edit-followup-form">
                                 <table id="sample_editable_1" class="table table-striped table-hover table-bordered dataTable no-footer" role="grid" aria-describedby="sample_editable_1_info">
                                     <thead>
                                         <tr role="row">
@@ -118,14 +119,13 @@
                             					Edit </a>
                             				</td>
                             				<td>
-                            					<a href="javascript:;" class="delete">
-                            					Delete </a>
+                            					<%= link_to 'Delete', followuptype_path(followuptype), :method => :delete, :class =>"delete", :deleteid =>followuptype.id, :remote => true %>
                             				</td>
                                         </tr> 
                                         <% end %>                                         
                                     </tbody>
                                 </table>
-                                
+                            </form>
                             </div>
                         </div>
                     </div>

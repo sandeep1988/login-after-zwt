@@ -1,6 +1,6 @@
 class FollowuptypesController < ApplicationController
   before_action :set_followuptype, only: [:show, :edit, :update, :destroy]
-
+  respond_to :html, :js, :json
   # GET /followuptypes
   # GET /followuptypes.json
   def index
@@ -49,9 +49,11 @@ class FollowuptypesController < ApplicationController
   # DELETE /followuptypes/1
   # DELETE /followuptypes/1.json
   def destroy
+    @followuptype = Followuptype.find(params[:id])
     @followuptype.destroy
     respond_to do |format|
       format.html { redirect_to followuptypes_url, notice: 'Followuptype was successfully destroyed.' }
+       format.js
       format.json { head :no_content }
     end
   end
