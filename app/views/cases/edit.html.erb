@@ -121,7 +121,13 @@
                                             <div class="form-group">
                                                 <label class="control-label">Title <span class="required">*</span></label>
                                                 <%= f.text_field :v_title, attrName: "case[v_title]", name: "v_title", class:"form-control", placeholder:"Add Title" %>
-                                            </div>                                        
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label">Contact Person <span class="required">*</span></label>
+                                                <%= f.collection_select :contact_id, Contact.all, :id, :first_name, {prompt: "Select Contact Person"}, :class =>"form-control select2me" %>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label class="control-label">Description <span class="required">*</span></label>
                                                 <%= f.text_area :v_desc, attrName: "case[v_desc]", name: "v_desc", class:"form-control", class:"ckeditor form-control",placeholder:"Add Description" %>
@@ -129,7 +135,7 @@
 
 
                                             <div class="form-group">
-                                                <label class="control-label">Reference Urls </label>
+                                                <label class="control-label">Reference Urls <span class="required">*</span></label>
                                                  <%= f.text_field :v_reference_urls, attrName: "case[v_reference_urls]", name: "v_reference_urls", class:"form-control", placeholder:"Enter Reference URL" %>
                                             </div>
 
@@ -148,7 +154,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="control-label">Tags</label>
+                                                <label class="control-label">Tags <span class="required">*</span> </label>
                                                 <%= f.text_field :v_tags, attrName: "case[v_tags]", id:"tags_2", name: "v_tags", class:"form-control", placeholder:"Add Tags" %>
                                             </div>
 
