@@ -4,7 +4,7 @@ class FollowuptypesController < ApplicationController
   # GET /followuptypes
   # GET /followuptypes.json
   def index
-    @followuptypes = Followuptype.all
+    @followuptype = Followuptype.new
   end
 
   # GET /followuptypes/1
@@ -25,16 +25,11 @@ class FollowuptypesController < ApplicationController
   # POST /followuptypes.json
   def create
     @followuptype = Followuptype.new(followuptype_params)
-
-    respond_to do |format|
       if @followuptype.save
-        format.html { redirect_to @followuptype, notice: 'Followuptype was successfully created.' }
-        format.json { render :show, status: :created, location: @followuptype }
+        redirect_to followuptypes_path
       else
-        format.html { render :new }
-        format.json { render json: @followuptype.errors, status: :unprocessable_entity }
+        render action: 'new'
       end
-    end
   end
 
   # PATCH/PUT /followuptypes/1
@@ -69,6 +64,6 @@ class FollowuptypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def followuptype_params
-      params[:followuptype]
+      params.require(:followuptype).permit(:v_title, :v_color)
     end
 end
