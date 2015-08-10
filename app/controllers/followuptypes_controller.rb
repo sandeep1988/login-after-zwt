@@ -4,7 +4,7 @@ class FollowuptypesController < ApplicationController
   # GET /followuptypes
   # GET /followuptypes.json
   def index
-    @followuptype = Followuptype.new
+    @followuptypes = Followuptype.all
   end
 
   # GET /followuptypes/1
@@ -19,6 +19,9 @@ class FollowuptypesController < ApplicationController
 
   # GET /followuptypes/1/edit
   def edit
+    @followuptype = Followuptype.find(params[:id])
+    @followuptype.update_attributes(v_title: params[:v_title], v_color: params[:v_color], updated_at:Time.now)
+    redirect_to followuptypes_path
   end
 
   # POST /followuptypes
@@ -35,13 +38,16 @@ class FollowuptypesController < ApplicationController
   # PATCH/PUT /followuptypes/1
   # PATCH/PUT /followuptypes/1.json
   def update
+    @followuptype = Followuptype.find(params[:id])
     respond_to do |format|
       if @followuptype.update(followuptype_params)
-        format.html { redirect_to @followuptype, notice: 'Followuptype was successfully updated.' }
-        format.json { render :show, status: :ok, location: @followuptype }
+        format.html { redirect_to followuptypes_path, notice: 'Followuptype was successfully updated.' }
+        format.json
+        format.js
       else
+        format.js
         format.html { render :edit }
-        format.json { render json: @followuptype.errors, status: :unprocessable_entity }
+        format.json 
       end
     end
   end
@@ -55,7 +61,8 @@ class FollowuptypesController < ApplicationController
       format.html { redirect_to followuptypes_url, notice: 'Followuptype was successfully destroyed.' }
        format.js
       format.json { head :no_content }
-    end
+     end
+
   end
 
   private

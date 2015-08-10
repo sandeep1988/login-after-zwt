@@ -3,6 +3,7 @@ class SalesController < ApplicationController
     helper_method :sort_column, :sort_direction
   skip_before_filter  :verify_authenticity_token
   layout "application"
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_user
   # GET /sales
   # GET /sales.json
   def index
@@ -222,6 +223,12 @@ class SalesController < ApplicationController
 end
 
 private
+
+  def invalid_user
+    logger.error "Attempt to access invalid User #{params[:id]}"
+    redirect_to sales_path, notice: 'Invalid User'
+  end
+
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :e_status, :v_firstname, :v_lastname, :v_im_skype, :v_im_password, :v_gmail, :v_linkedin_url, :v_phone, :e_type)
   end

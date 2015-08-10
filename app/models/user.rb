@@ -6,9 +6,8 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :on => :create
   validates_uniqueness_of :v_im_skype
   validates_uniqueness_of :v_gmail
-  
   enum e_type: [ :Admin, :User]
-  has_many :contacts
-  has_many :cases
-
+  
+  has_many :contacts, :dependent => :destroy
+  has_many :cases, :dependent => :destroy
 end

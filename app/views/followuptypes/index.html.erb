@@ -16,7 +16,6 @@
         </div>
     </div>
     <!-- END PAGE HEAD -->
-    
     <!-- BEGIN PAGE CONTENT -->
     <div class="page-content">
         <div class="container-fluid">
@@ -94,6 +93,7 @@
                                 </div>                               
                             </div>
                             <div class="portlet-body">
+                            <form name="edit-followuptypes-form" action="/followuptypes" method ="get" id="edit-followuptypes-form">
                                 <table id="sample_editable_1" class="table table-striped table-hover table-bordered dataTable no-footer" role="grid" aria-describedby="sample_editable_1_info">
                                     <thead>
                                         <tr role="row">
@@ -116,7 +116,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                            					<%= link_to 'Edit', edit_followuptype_path(followuptype), :editid => followuptype.id , :class =>"edit" %>
+                            					<%= link_to 'Edit', edit_followuptype_path(followuptype), :edit_id => followuptype.id , :class =>"edit" %>
                             				</td>
                             				<td>
                             					<%= link_to 'Delete', followuptype_path(followuptype), :method => :delete, :class =>"delete", :deleteid =>followuptype.id, :remote => true %>
@@ -125,6 +125,7 @@
                                         <% end %>                                         
                                     </tbody>
                                 </table>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -148,7 +149,7 @@
         setTimeout(function(){
                 TableEditable.init();
                 }, 
-                    400);       
+                    200);       
         if (jQuery().colorpicker) {
             $('.colorpicker-default').colorpicker({ format: 'hex' });
             $('.colorpicker-rgba').colorpicker();
