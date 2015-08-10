@@ -19,17 +19,45 @@ var TableEditable = function () {
             oTable.fnDraw();
         }
 
-        function editRow(oTable, nRow) {
+        function editRow(oTable, nRow, edit_id) {
             var aData = oTable.fnGetData(nRow);
             var jqTds = $('>td', nRow);
-            jqTds[0].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
-            jqTds[1].innerHTML = '<input type="text" class="form-control colorpicker-default input-small" value="' + $.trim(strip(aData[1])) + '">';
-            jqTds[2].innerHTML = '<a class="edit" href="">Save</a>';
-            jqTds[3].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            // alert(aData);
+        // Jquery for edit the inline page and get Id 
+            var div = document.createElement('div');
+            div.innerHTML = aData;
+            var editID = $(div).find('.edit').attr('edit_id');
+            jqTds[0].innerHTML = '<input type="text" name = "v_title" class="form-control input-small" value="' + aData[0] + '">';
+            jqTds[1].innerHTML = '<input type="text" name = "v_color" class="form-control colorpicker-default input-small" value="' + $.trim(strip(aData[1])) + '">';
+            jqTds[2].innerHTML = '<a class="edit" href="" save_id="'+editID+'">Save</a>';
+            // jqTds[3].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            jqTds[3].innerHTML = '<a class="cancel" href="">Cancel</a><input type="hidden" name = "id" class="form-control input-small" value="' + edit_id + '">';
             $('.colorpicker-default').colorpicker();            
         }
 
+        // edit and save the  followtype inline
         function saveRow(oTable, nRow) {
+            var aData = oTable.fnGetData(nRow);
+            var jqTds = $('>td', nRow);
+        // Jquery for edit the inline page and get Id 
+            var div = document.createElement('div');
+            div.innerHTML = aData;
+            var editID = $(div).find('.edit').attr('edit_id');
+            var serializedData = $('#edit-followuptypes-form').serialize();
+            $.ajax({
+                type: "GET",
+                url: "/followuptypes/"+editID+"/edit",
+                data: serializedData,
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    prodId = response.something;
+                },
+                error: function(error){
+                    alert("error");
+                    return;
+                }
+            });
             var jqInputs = $('input', nRow);
             oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);            
             jqInputs[1].value = '<div class="input-group color colorbg" data-color="'+jqInputs[1].value+'" data-color-format="rgba"><span class="input-group-btn"><button class="btn default" type="button"><i style="background-color: '+jqInputs[1].value+';"></i>&nbsp;</button></span>&nbsp; '+jqInputs[1].value+'</div> ';
@@ -49,9 +77,7 @@ var TableEditable = function () {
         }
 
         var table = $('#sample_editable_1');
-
         var oTable = table.dataTable({
-
             // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
             // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
             // So when dropdowns used the scrollable div should be removed. 
@@ -117,6 +143,8 @@ var TableEditable = function () {
             nNew = true;
         });
 
+        // delete the  followtype inline
+
         table.on('click', '.delete', function (e) {
             e.preventDefault();
             var test = true;
@@ -125,7 +153,7 @@ var TableEditable = function () {
             }
              deleted_id = $(this).attr('deleteid');
              $.ajax({
-                type: "DELETE",
+                type: "delete",
                 url: $(this).attr('href'),
                 dataType: "html",
                 data: {
@@ -155,7 +183,7 @@ var TableEditable = function () {
 
         table.on('click', '.edit', function (e) {
             e.preventDefault();
-            alert("in edit");
+             edit_id = $(this).attr('edit_id');
             /* Get the row as a parent of the link that was clicked on */
             var nRow = $(this).parents('tr')[0];
 
@@ -171,7 +199,7 @@ var TableEditable = function () {
                 alert("Updated! Do not forget to do some ajax to sync with backend :)");
             } else {
                 /* No edit in progress - let's start one */
-                editRow(oTable, nRow);
+                editRow(oTable, nRow, edit_id);
                 nEditing = nRow;
             }
         });
