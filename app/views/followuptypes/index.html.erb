@@ -60,6 +60,15 @@
                                     <span class="caption-helper visible-sm-inline-block visible-xs-inline-block">click to view Follow Up Types list</span>
                                 </div>                                        
                             </div>
+                             <div id="error_explanation">
+                                        <% if flash[:notice] %>
+                                            <div id="login-response-block" class="alert alert-danger display-hide" style="display:block;">
+                                                <button class="close" data-close="alert"></button>
+                                                <span><%= flash[:notice] %></span>
+                                            </div>
+                                        <% end %>
+                                </div>
+                                
                             <form id="new_followuptype" class="new_followuptype" method="post" accept-charset="UTF-8" action="/followuptypes">
                                     <div class="form-group">
                                         <label class="control-label" for="inputWarning">Title <span class="required">*</span></label>                 
@@ -92,6 +101,7 @@
                                     <span class="caption-subject font-green-sharp bold uppercase">Showing: All Follow Up Types</span>
                                 </div>                               
                             </div>
+
                             <div class="portlet-body">
                             <form name="edit-followuptypes-form" action="/followuptypes" method ="get" id="edit-followuptypes-form">
                                 <table id="sample_editable_1" class="table table-striped table-hover table-bordered dataTable no-footer" role="grid" aria-describedby="sample_editable_1_info">
@@ -104,7 +114,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <% Followuptype.all.each do |followuptype|%>
+                                    <% @followuptypes.each do |followuptype|%>
                                         <tr role="row">
                                             <td>
                                                 <%= followuptype.v_title %>

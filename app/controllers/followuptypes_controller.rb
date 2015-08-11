@@ -28,11 +28,14 @@ class FollowuptypesController < ApplicationController
   # POST /followuptypes.json
   def create
     @followuptype = Followuptype.new(followuptype_params)
+    if  !Followuptype.all.collect(&:v_title).include? params[:followuptype][:v_title] == "false"
       if @followuptype.save
         redirect_to followuptypes_path
       else
-        render action: 'new'
+        redirect_to followuptypes_path, notice: 'Title has already been taken'
+        # flash[:notice] = "Title has already been taken"
       end
+    end
   end
 
   # PATCH/PUT /followuptypes/1
@@ -41,7 +44,7 @@ class FollowuptypesController < ApplicationController
     @followuptype = Followuptype.find(params[:id])
     respond_to do |format|
       if @followuptype.update(followuptype_params)
-        format.html { redirect_to followuptypes_path, notice: 'Followuptype was successfully updated.' }
+        format.html { redirect_to followuptypes_path }
         format.json
         format.js
       else

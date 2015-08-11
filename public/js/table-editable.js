@@ -22,7 +22,6 @@ var TableEditable = function () {
         function editRow(oTable, nRow, edit_id) {
             var aData = oTable.fnGetData(nRow);
             var jqTds = $('>td', nRow);
-            // alert(aData);
         // Jquery for edit the inline page and get Id 
             var div = document.createElement('div');
             div.innerHTML = aData;
