@@ -94,6 +94,7 @@ class CasesController < ApplicationController
     @case.filename = params[:file].original_filename
     @case.content_type = params[:file].content_type
     @case.file_contents= params[:file].read
+    session[:case_id] = @case.id
 
       if @case.save
         redirect_to cases_path

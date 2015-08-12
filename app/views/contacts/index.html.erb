@@ -138,7 +138,7 @@
 										<% @contacts.each do |contacts| %>
 										<tr role="row" class="odd"><td class="sorting_1">
 											<%= check_box_tag "contacts_ids[]", contacts.id %>
-											</td><td><a href="/contacts/<%= contacts.id %>/edit"><%=contacts.first_name %>&nbsp;&nbsp;<%=contacts.last_name %></a>
+											</td><td><a href="/contacts/<%= contacts.id %>/"><%=contacts.first_name %>&nbsp;&nbsp;<%=contacts.last_name %></a>
 											<a href="skype:<%=contacts.v_im_skype %>"><img height="20px" src="/img/social/skype-icon.png"></a><br>
 											<a target="_blank" href="http://linkedin.com"><img height="20px" src="/img/social/linkedin-icon.png"></a>
 											</td>

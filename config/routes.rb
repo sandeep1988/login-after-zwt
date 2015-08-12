@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :followups
   resources :tags
     #devise_for :users, :controllers => {:registrations => "registrations"}
 devise_for :users, controllers: { sessions: "sessions", 
@@ -20,6 +21,7 @@ devise_for :users, controllers: { sessions: "sessions",
   get '/dashboard', to: 'sales#dashboard'
   get 'welcome/forget_password_developer'
   get "contacts/:id" => 'contacts#update', via: [:get, :post, :put]
+  get "contacts/:id" => 'contacts#details', via: [:get, :post, :put]
   # get 'contacts/details'
   get 'cases/details'
   get 'tag/index'

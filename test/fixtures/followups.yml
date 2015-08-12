@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact_id: 1
+  case_id: 1
+  followed_up_date: MyString
+  followed_up_type_id: 1
+  followed_up_by: 1
+  v_outcome: MyText
+  d_next_followed_up_date: MyString
+  next_followed_up_type_id: 1
+  next_followed_up_by: 1
+
+two:
+  contact_id: 1
+  case_id: 1
+  followed_up_date: MyString
+  followed_up_type_id: 1
+  followed_up_by: 1
+  v_outcome: MyText
+  d_next_followed_up_date: MyString
+  next_followed_up_type_id: 1
+  next_followed_up_by: 1
