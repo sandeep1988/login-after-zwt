@@ -4,8 +4,28 @@ class FollowupsController < ApplicationController
   # GET /followups
   # GET /followups.json
   def index
-    redirect_to contacts_path
-    @followups = Followup.all
+    if params[:option] == "phone"
+      @followups = Followup.where(:next_followed_up_type_id => 1)
+      render :layout => false  
+    elsif 
+      params[:option] == "skype"
+      @followups = Followup.where(:next_followed_up_type_id => 2)
+      render :layout => false  
+    elsif 
+      params[:option] == "email"
+      @followups = Followup.where(:next_followed_up_type_id => 3)
+      render :layout => false  
+    elsif 
+      params[:option] == "socialmedia"
+      @followups = Followup.where(:next_followed_up_type_id => 4)
+      render :layout => false  
+    elsif 
+      params[:option] == "all"
+      @followups = Followup.all
+      render :layout => false 
+    else
+      @followups = Followup.all
+    end
   end
 
   # GET /followups/1

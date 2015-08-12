@@ -71,6 +71,7 @@ class ContactsController < ApplicationController
   # GET /contacts/1.json
   def show
     @users = User.all
+    @followups = Followup.all
     @followup = Followup.new
     if params[:controller] == "contacts" && params[:action]=="show"
       @edit_contact = Contact.find(params[:id])
