@@ -302,9 +302,12 @@
 <script>
     jQuery(document).ready(function() {       
                 // initiate layout and plugins
-        setTimeout(function(){
-            Metronic.init();
-        },10);
+                setTimeout(function(){
+                Metronic.init();
+                }, 
+                    5);
+        if (jQuery().datepicker) { $('.date-picker').datepicker({rtl: Metronic.isRTL(),orientation: "left",autoclose: true}); }
+            ComponentsFormTools.init();
 
         if (jQuery().datepicker) { 
             $('.date-picker').datepicker({rtl: Metronic.isRTL(),orientation: "left",autoclose: true}); 
@@ -330,7 +333,8 @@
                 type: 'GET',
                 data: {option : selectedValue},
                 success: function(response) {
-                    $(".activity_container").html(response);       
+                    $(".activity_container").html(response); 
+                    ComponentsFormTools.init();      
                 },
                 error: function() {
                     alert('ajax error');
@@ -339,5 +343,3 @@
         });
     });
 </script>
-
-

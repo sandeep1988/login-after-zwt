@@ -52,7 +52,7 @@ class FollowupsController < ApplicationController
     @followup.followed_up_by = Contact.find_by_id(session[:contact_id]).user.id
     # @followup.case_id = Case.find_by_id(session[:case_id]).contact.id
       if @followup.save
-        redirect_to contacts_path
+        redirect_to contact_path(session[:contact_id])
       else
         render action: 'contacts/show'
       end

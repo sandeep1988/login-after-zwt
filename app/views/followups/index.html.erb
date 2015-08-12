@@ -1,47 +1,47 @@
-                                <div class="activity_container">
-                                    <div class="title">
-                                        <div class="form-group col-xs-6 col-md-6 pl0">
-                                            <label class="control-label hidden-xs">Displaying</label>
-                                            &nbsp; &nbsp; 
-                                            <select id="follow_type" data-width="180px" data-style="btn btn-sm blue-hoki" class="bs-select">
-                                                <option style="color: black;" value = "all">All</option>
-                                                <option style="color: purple;" value = "phone">Phone</option>
-                                                <option style="color: skyblue;" value = "skype">Skype</option>
-                                                <option style="color: green;" value = "email">Email</option>
-                                                <option style="color: blue;" value = "socialmedia">Social Media</option>
-                                            </select>
-                                        </div>
-                                        <div class="btn-group pull-right">
-                                            <select data-style="btn btn-sm blue-hoki" class="bs-select">
-                                                <option>All Activity </option>
-                                                <option>Contact-Related Activity </option>
-                                                <option>Cases-Related Activity</option>
-                                            </select>  
-                                        </div>
-                                        <div class="clearfix"><!----></div>                      
-                                    </div>
-                                    <% @followups.each do |followup| %>
-                                        <div class="act_blk icon-btn">
-                                        <% if followup.next_followed_up_type_id == 1 %>
-                                            <i class="fa fa-phone top-news-icon" title="Phone" style="color: purple;"></i>
-                                        <% else %>
-                                            <i class="fa fa-file-text-o top-news-icon" title="Email" style="color: green;"></i>
-                                        <% end %>
-                                            <span style="color: purple;"><%= followup.followed_up_date %> | <a href="#"><%= Contact.find_by_id(session[:contact_id]).user.v_firstname%></a></span>
-                                            <p> <%= followup.v_outcome %>     
-                                            </p>
-                                            <span class="caption-subject font-green-sharp bold uppercase">Future Follow Up</span>
-                                            <div>
-                                                <div style="padding-left: 0px;" class="col-md-4"><label>Date:</label> <%= followup.d_next_followed_up_date %></div>
-                                                <div class="col-md-4"><label>Type:</label>
-                                                <% if followup.next_followed_up_type_id == 1 %>Phone <% elsif  followup.next_followed_up_type_id == 2 %> IM(Skype)
-                                                <% elsif  followup.next_followed_up_type_id == 3 %> 
-                                                Email
-                                                <% else %> Social Media
-                                                <% end %>
-                                                </div>
-                                                <div class="col-md-4"><label>Person Reponsible:</label> <a href="#"><%= User.find(followup.next_followed_up_by).v_firstname %></a></div>
-                                            </div>
-                                        </div>        
-                                    <% end %>
-                                </div>
+<div class="activity_container">
+    <div class="title">
+        <div class="form-group col-xs-6 col-md-6 pl0">
+            <label class="control-label hidden-xs">Displaying</label>
+            &nbsp; &nbsp; 
+            <select id="follow_type" data-width="180px" data-style="btn btn-sm blue-hoki" class="bs-select">
+                <option style="color: black;" value = "all">All</option>
+                <option style="color: purple;" value = "phone">Phone</option>
+                <option style="color: skyblue;" value = "skype">Skype</option>
+                <option style="color: green;" value = "email">Email</option>
+                <option style="color: blue;" value = "socialmedia">Social Media</option>
+            </select>
+        </div>
+        <div class="btn-group pull-right">
+            <select data-style="btn btn-sm blue-hoki" class="bs-select">
+                <option>All Activity </option>
+                <option>Contact-Related Activity </option>
+                <option>Cases-Related Activity</option>
+            </select>  
+        </div>
+        <div class="clearfix"><!----></div>                      
+    </div>
+    <% @followups.each do |followup| %>
+        <div class="act_blk icon-btn">
+        <% if followup.next_followed_up_type_id == 1 %>
+            <i class="fa fa-phone top-news-icon" title="Phone" style="color: purple;"></i>
+        <% else %>
+            <i class="fa fa-file-text-o top-news-icon" title="Email" style="color: green;"></i>
+        <% end %>
+            <span style="color: purple;"><%= followup.followed_up_date %> | <a href="#"><%= Contact.find_by_id(session[:contact_id]).user.v_firstname%></a></span>
+            <p> <%= followup.v_outcome %>     
+            </p>
+            <span class="caption-subject font-green-sharp bold uppercase">Future Follow Up</span>
+            <div>
+                <div style="padding-left: 0px;" class="col-md-4"><label>Date:</label> <%= followup.d_next_followed_up_date %></div>
+                <div class="col-md-4"><label>Type:</label>
+                <% if followup.next_followed_up_type_id == 1 %>Phone <% elsif  followup.next_followed_up_type_id == 2 %> IM(Skype)
+                <% elsif  followup.next_followed_up_type_id == 3 %> 
+                Email
+                <% else %> Social Media
+                <% end %>
+                </div>
+                <div class="col-md-4"><label>Person Reponsible:</label> <a href="#"><%= User.find(followup.next_followed_up_by).v_firstname %></a></div>
+            </div>
+        </div>        
+    <% end %>
+</div>
