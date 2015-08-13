@@ -22,6 +22,7 @@ devise_for :users, controllers: { sessions: "sessions",
   get 'welcome/forget_password_developer'
   get "contacts/:id" => 'contacts#update', via: [:get, :post, :put]
   get "contacts/:id" => 'contacts#details', via: [:get, :post, :put]
+  get "cases/:id/details" => 'cases#details', via: [:get, :post, :put]
   # get 'contacts/details'
   get 'cases/details'
   get 'tag/index'

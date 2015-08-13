@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>Contacts <small>Find and manage Contacts</small></h1>
+                <h1>Case <small>Find and manage Case</small></h1>
             </div>
             <!-- END PAGE TITLE -->
             <!-- BEGIN PAGE TOOLBAR -->
@@ -23,10 +23,10 @@
                     <a href="/dashboard">Dashboard</a><i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="/contacts">Contacts</a><i class="fa fa-circle"></i>
+                    <a href="/cases">Case</a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
-                    <%=@edit_contact.first_name %>&nbsp;&nbsp;<%=@edit_contact.last_name %>
+                    <%=@edit_case.contact.first_name %>&nbsp;&nbsp;<%=@edit_case.contact.last_name %>
                 </li>                        
             </ul>                    
             <!-- END PAGE BREADCRUMB -->
@@ -40,53 +40,51 @@
                         <div class="portlet light">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <span class="caption-subject font-green-sharp bold uppercase">Contact Info</span>
+                                    <span class="caption-subject font-green-sharp bold uppercase">Case Info</span>
                                 </div>
                             </div>
                             <p>
                                 <strong>Name</strong> <br>
-                                <strong><a href="/contacts/details"><%=@edit_contact.first_name %>&nbsp;&nbsp;<%=@edit_contact.last_name %></a></strong>
+                                <strong><a href="/cases/details"><%=@edit_case.v_title %>&nbsp;&nbsp;</a></strong>
                             </p>
                             <p>
-                                <strong>Compnay Name</strong> <br>
-                                <%=@edit_contact.v_company_name %>
+                                <strong>Contact Name </strong> <br>
+                                <%=@edit_case.contact.first_name %>&nbsp;&nbsp;<%=@edit_case.contact.last_name %>
                             </p>
                             <p>
-                                <strong>Email</strong> <br>
-                                <a href="mailto:<%=@edit_contact.email %>"><%=@edit_contact.email %></a>
+                                <strong>Compnay Name </strong> <br>
+                                <a href="mailto:<%=@edit_case.contact.email %>"><%=@edit_case.contact.v_company_name %></a>
                             </p>
                             <p>
-                                <strong>IM (Skype)</strong> <br>
-                                <a href="skype:raghav_zwt?call"><%=@edit_contact.v_im_skype %></a>                                        
+                                <strong>Staus</strong> <br>
+                                <%=@edit_case.e_status %>                                        
                             </p>
                             <p>
-                                <strong>Country</strong> <br>
-                                <%=@edit_contact.v_country %>
+                                <strong>Added On</strong> <br>
+                                <%=@edit_case.created_at.to_formatted_s(:long) %>
                             </p>
                             <p>
-                                <strong>Cell Number</strong> <br>
-                                <a href="tel:<%=@edit_contact.v_cell_number %>"><%=@edit_contact.v_cell_number %></a>
+                                <strong>Reference Urls</strong> <br>
+                                <a target="_blank" href=http://<%= @edit_case.v_reference_urls %>>
+                                <%= @edit_case.v_reference_urls %>
+                                </a>
                             </p>
                             <p>
-                                <strong>Phone (Office)</strong> <br>
-                                <a href="tel:<%=@edit_contact.v_phone %>"><%=@edit_contact.v_phone %></a>
+                                <strong>Files</strong> <br>
+                                <%#= link_to @case_file.filename, "", method: :get %>
                             </p>
                             <p>
                                 <strong>Tags</strong> <br>
-                                <%=@edit_contact.v_tags %>
+                                <%=@edit_case.v_tags %>
                             </p>
                             <p>
-                                <strong>LinkedIn Profile</strong> <br>
-                                <a target="_blank" href="<%=@edit_contact.v_linkedin_url %>"><%=@edit_contact.v_linkedin_url %></a>
+                                <strong>Description </strong> <br>
+                                <%=@edit_case.v_desc.html_safe %>
                             </p>
                             <p>
-                                <strong>Website URL </strong> <br>
-                                <a target="_blank" href="http://<%=@edit_contact.v_website_url %>"><%=@edit_contact.v_website_url %></a>
-                            </p> 
-                            <p>
-                                <strong>Added On </strong> <br>
-                                <%=@edit_contact.created_at.to_formatted_s(:long) %>
-                            </p>                                   
+                                <strong> Notes </strong> <br>
+                                <%=@edit_case.v_note %>
+                            </p>                                
                         </div>
                         <!-- END PORTLET MAIN -->
                     </div>
@@ -96,13 +94,13 @@
                         <div class="portlet light">
                             <div class="portlet-title margin-bottom-0">
                                 <div class="caption">                                            
-                                    <span class="caption-subject font-green-sharp bold uppercase"><span class="icon-briefcase" aria-hidden="false"></span> <%=@edit_contact.first_name %>&nbsp;&nbsp;<%=@edit_contact.last_name %></span>
+                                    <span class="caption-subject font-green-sharp bold uppercase"><span class="icon-briefcase" aria-hidden="false"></span> <%=@edit_case.v_title %>&nbsp;&nbsp;
                                 </div>                               
                                 <div class="btn-group key_resource pull-right">
                                     <button data-toggle="dropdown" class="btn green-haze btn-responsive pull-right dropdown-toggle" data-hover="dropdown" aria-expanded="true">Key Resources <i class="fa fa-angle-down"></i></button>
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                         <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="/contacts/<%=@edit_contact.id %>/edit">Edit Contact</a>
+                                            <a role="menuitem" tabindex="-1" href="/cases/<%=@edit_case.id %>/edit">Edit Case</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -121,7 +119,7 @@
                                             <%= form_for(@followup) do |f| %>
                                                 <div class="alert alert-success display-hide">
                                                     <button class="close" data-close="alert"></button>
-                                                    Contact Followup information are successfully Added! 
+                                                    Case Followup information are successfully Added! 
                                                 </div>
                                                 <div class="alert alert-danger display-hide">
                                                     <button class="close" data-close="alert"></button>
@@ -156,7 +154,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-4">Followed Up By <span class="required">*</span></label>
                                                             <div class="col-md-8">
-                                                            <input type="text" name="followed_up_by" attrname="followup[followed_up_by]" disabled="" class="form-control" value=<%=@edit_contact.user.v_firstname %> />
+                                                            <input type="text" name="followed_up_by" attrname="followup[followed_up_by]" disabled="" class="form-control" value=<%=@edit_case.contact.user.v_firstname %> />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -230,11 +228,9 @@
                                     </div>
                                 </div> 
                                 <% end %>
-                                      
                                 <%#= render :partial => "followups/index" %>
-                                <%= render :template => 'followups/index' %>
-                                <%#= render "followups/index" %>
-                                                
+                                <%#= render :template => 'followups/index' %>
+                                <%#= render "followups/index" %>             
                             </div>
                            <div class="clearfix"></div>
                         </div>
@@ -256,7 +252,7 @@
                     <div class="light">
                     <p>
                         <strong>Title</strong> <br>
-                        <strong><a href="/cases/details">Case title will display here with long text</a></strong>
+                        <strong><a href="/cases/details"><%=@edit_case.v_title %></a></strong>
                     </p>
                     <p>
                         <strong>Reference Urls</strong> <br>

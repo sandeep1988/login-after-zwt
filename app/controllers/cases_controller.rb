@@ -65,6 +65,7 @@ class CasesController < ApplicationController
   # GET /cases/1
   # GET /cases/1.json
   def show
+    @users = User.all
     @edit_case = Case.find(params[:id]) 
     @case = Case.find(params[:id])
      send_data(@case.file_contents,
@@ -78,12 +79,24 @@ class CasesController < ApplicationController
 
   # GET /cases/1/edit
   def edit
+    @followups = Followup.all
+    @followup = Followup.new
     @edit_case = Case.find(params[:id]) 
+
   end
 
   def update_contacts
   end
 
+  def details
+    @users = User.all
+    @edit_case = Case.find(params[:id])
+    @followups = Followup.all
+    @followup = Followup.new
+   # @case_file = Case.find(params[:id])
+     #send_data(@case_file.file_contents,
+              #filename: @case_file.filename, type: @case_file.content_type) 
+  end
   # POST /cases
   # POST /cases.json
   def create

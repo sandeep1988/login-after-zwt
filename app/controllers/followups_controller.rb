@@ -50,7 +50,9 @@ class FollowupsController < ApplicationController
     @followup.next_followed_up_by = params[:next_followed_up_by]
     @followup.contact_id = Contact.find_by_id(session[:contact_id]).id
     @followup.followed_up_by = Contact.find_by_id(session[:contact_id]).user.id
-    # @followup.case_id = Case.find_by_id(session[:case_id]).contact.id
+    @contactid = Contact.find_by_id(session[:contact_id]).id
+    @followup.case_id = Case.where(:contact_id => @contactid)
+    # Date.strptime("{  year,date_test,month }", "{ %Y, %m, %d }")
       if @followup.save
         redirect_to contact_path(session[:contact_id])
       else

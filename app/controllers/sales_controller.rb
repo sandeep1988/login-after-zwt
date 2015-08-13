@@ -204,7 +204,6 @@ class SalesController < ApplicationController
     @sales_person = User.find(params[:id])
     if @sales_person.destroy
       redirect_to sales_url
-      # , notice: "sales person deleted
     end
   end
   

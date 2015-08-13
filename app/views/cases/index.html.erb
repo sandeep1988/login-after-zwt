@@ -129,7 +129,7 @@
 										<% @cases.each do |cases| %>
 										<tr role="row" class="odd"><td class="sorting_1">
 											<%= check_box_tag "cases_ids[]", cases.id %>
-											</td><td><a href="/cases/<%= cases.id %>/edit"><%=cases.v_title %></a>
+											</td><td><a href="/cases/<%= cases.id %>/details"><%=cases.v_title %></a>
 											</td>
 											<td><%= User.find(cases.user_id).v_firstname %></td>
 											<td><%= Contact.find(cases.contact_id).first_name %></td>
