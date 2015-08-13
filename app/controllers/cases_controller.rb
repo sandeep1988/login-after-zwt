@@ -68,6 +68,7 @@ class CasesController < ApplicationController
     @users = User.all
     @edit_case = Case.find(params[:id]) 
     @case = Case.find(params[:id])
+    session[:case_id] = @edit_case
      send_data(@case.file_contents,
               filename: @case.filename, type: @case.content_type)
   end
@@ -93,6 +94,7 @@ class CasesController < ApplicationController
     @edit_case = Case.find(params[:id])
     @followups = Followup.all
     @followup = Followup.new
+    session[:case_id] = @edit_case.id
    # @case_file = Case.find(params[:id])
      #send_data(@case_file.file_contents,
               #filename: @case_file.filename, type: @case_file.content_type) 

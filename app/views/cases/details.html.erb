@@ -154,7 +154,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-4">Followed Up By <span class="required">*</span></label>
                                                             <div class="col-md-8">
-                                                            <input type="text" name="followed_up_by" attrname="followup[followed_up_by]" disabled="" class="form-control" value=<%=@edit_case.contact.user.v_firstname %> />
+                                                            <input type="text" name="followed_up_by" attrname="followup[followed_up_by]" disabled="" class="form-control" value=<%=@edit_case.user.v_firstname %>&nbsp;<%=@edit_case.user.v_lastname %> />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -229,7 +229,7 @@
                                 </div> 
                                 <% end %>
                                 <%#= render :partial => "followups/index" %>
-                                <%#= render :template => 'followups/index' %>
+                                <%= render :template => 'followups/index' %>
                                 <%#= render "followups/index" %>             
                             </div>
                            <div class="clearfix"></div>

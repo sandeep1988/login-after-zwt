@@ -48,16 +48,24 @@ class FollowupsController < ApplicationController
   def create
     @followup = Followup.new(followup_params)
     @followup.next_followed_up_by = params[:next_followed_up_by]
-    @followup.contact_id = Contact.find_by_id(session[:contact_id]).id
-    @followup.followed_up_by = Contact.find_by_id(session[:contact_id]).user.id
-    @contactid = Contact.find_by_id(session[:contact_id]).id
-    @followup.case_id = Case.where(:contact_id => @contactid)
-    # Date.strptime("{  year,date_test,month }", "{ %Y, %m, %d }")
+    if request.referer.include? "?cases"
+        @followup.case_id = Case.find_by_id(session[:case_id]).id
+        @followup.followed_up_by = Case.find_by_id(session[:case_id]).user.id
+        @followup.e_status = "case"
+        if @followup.save
+          redirect_to case_path(session[:case_id])
+        end
+    else 
+      @followup.contact_id = Contact.find_by_id(session[:contact_id]).id
+      @followup.followed_up_by = Contact.find_by_id(session[:contact_id]).user.id
+      @contactid = Contact.find_by_id(session[:contact_id]).id
+      @followup.e_status = "contact"
       if @followup.save
-        redirect_to contact_path(session[:contact_id])
-      else
-        render action: 'contacts/show'
-      end
+          redirect_to contact_path(session[:contact_id])
+        else
+          render action: 'contacts/show'
+        end
+    end
     end
 
   # PATCH/PUT /followups/1
@@ -92,6 +100,6 @@ class FollowupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def followup_params
-      params.require(:followup).permit(:contact_id, :case_id, :followed_up_date, :followed_up_type_id, :followed_up_by, :v_outcome, :d_next_followed_up_date, :next_followed_up_type_id, :next_followed_up_by)
+      params.require(:followup).permit(:contact_id, :case_id, :followed_up_date, :followed_up_type_id, :followed_up_by, :v_outcome, :d_next_followed_up_date, :next_followed_up_type_id, :next_followed_up_by, :e_status)
     end
 end
