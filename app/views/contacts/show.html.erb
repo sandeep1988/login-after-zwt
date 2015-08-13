@@ -312,7 +312,7 @@
         if (jQuery().datepicker) { 
             $('.date-picker').datepicker({rtl: Metronic.isRTL(),orientation: "left",autoclose: true}); 
         }  
-        
+        // validation of followup page
         jQuery('#submit_followup_action').click(function(event) { 
             event.preventDefault();
                 if (jQuery('#new_followup').validate().form()) { 
@@ -324,7 +324,7 @@
             return false;
         });
 
-        // $("#followup").change(function() {
+        // ajax for select followup Type on contact show page
         jQuery('body').on('change', '#follow_type', function(e) {
             var selectedValue = this.value;
             $.ajax({
