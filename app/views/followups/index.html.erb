@@ -40,7 +40,8 @@
                 <% else %> Social Media
                 <% end %>
                 </div>
-                <div class="col-md-4"><label>Person Reponsible:</label> <a href="#"><%= User.find(followup.next_followed_up_by).v_firstname %></a></div>
+                <div class="col-md-4"><label>Person Reponsible:</label> <a href="#">
+                <%= User.find(followup.next_followed_up_by).v_firstname %></a></div>
             </div>
         </div>        
     <% end %>

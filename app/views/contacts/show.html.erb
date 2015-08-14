@@ -204,7 +204,6 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="control-label col-md-4">Person Reponsible</label>
-                                                            
                                                               <div class="col-md-8">
                                                                   <%= select_tag 'next_followed_up_by', options_for_select(@users.collect{ |u| [u.v_firstname, u.id] }), :class => "form-control select2me"%> 
                                                               </div>             

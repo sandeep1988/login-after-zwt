@@ -106,9 +106,9 @@ class CasesController < ApplicationController
     @case.user_id = current_user.id
     @case.e_status = params[:e_status]
     # @multi_file = params[:case][:file]
-    @case.filename = params[:file].original_filename
-    @case.content_type = params[:file].content_type
-    @case.file_contents= params[:file].read
+    @case.filename = params[:file].original_filename if !@case.filename.nil?
+    @case.content_type = params[:file].content_type  if !@case.content_type.nil?
+    @case.file_contents= params[:file].read if !@case.filename.nil?
     session[:case_id] = @case.id
 
       if @case.save

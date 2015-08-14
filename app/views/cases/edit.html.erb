@@ -74,10 +74,12 @@
                                 <%= @case.v_reference_urls %>
                                 </a>
                             </p>
-                            <p>
-                                <strong>Files </strong> <br>
-                                <%= link_to @case.filename, case_path(@case), method: :get %>
-                            </p>
+                            <% if !@case.filename.nil? %>
+                                <p>
+                                    <strong>Files </strong> <br>
+                                        <%= link_to @case.filename, case_path(@case), method: :get %>
+                                </p>
+                            <% end %>
                             <p>
                                 <strong>Tags </strong> <br>
                                 <%= @case.v_tags %>
@@ -201,14 +203,13 @@
 <script src="/plugins/jquery-tags-input/jquery.tagsinput.min.js" type="text/javascript"></script>
 <script src="/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
 <script src="/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
-<script src="/js/components-form-tools.js"></script>     
+<script src="/js/components-form-tools.js"></script>   
 <script>
     jQuery(document).ready(function() { 
         Metronic.init();
         setTimeout(function(){
-        ComponentsFormTools.init();
-    }, 
-        200);
+            ComponentsFormTools.init();
+        }, 200);
         jQuery('#submit_case').click(function(event) { 
             event.preventDefault();
             if (jQuery('#edit-cases-form').validate().form()) { 
@@ -219,6 +220,6 @@
                 }
             return false;
         });
-});
+    });
 
 </script>           
