@@ -119,11 +119,12 @@ class SalesController < ApplicationController
 
   def welcome
     @salesperson = User.new(user_params)
-        if @salesperson.save
-          redirect_to sales_path
-        else 
-          redirect_to new_sale_path
-        end
+      if @salesperson.save
+        UserMailer.welcome_email(@salesperson).deliver
+        redirect_to sales_path
+      else
+        redirect_to new_sale_path
+      end
   end
   # PATCH/PUT /sales/1
   # PATCH/PUT /sales/1.json
