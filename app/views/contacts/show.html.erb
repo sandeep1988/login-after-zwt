@@ -325,7 +325,7 @@
         });
 
         // ajax for select followup Type on contact show page
-        jQuery('body').on('change', '#follow_type', function(e) {
+        jQuery('body').on('change','#follow_type', function(e) {
             var selectedValue = this.value;
             $.ajax({
                 url: '/followups',
@@ -334,8 +334,7 @@
                 data: {option : selectedValue},
                 success: function(response) {
                     $(".activity_container").html(response); 
-                    ComponentsFormTools.init(); 
-                     Metronic.init();     
+                    ComponentsFormTools.init();  
                 },
                 error: function() {
                     alert('ajax error');

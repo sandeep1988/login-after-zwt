@@ -330,8 +330,7 @@
                 data: {option : selectedValue},
                 success: function(response) {
                     $(".activity_container").html(response); 
-                    ComponentsFormTools.init(); 
-                     Metronic.init();     
+                    ComponentsFormTools.init();    
                 },
                 error: function() {
                     alert('ajax error');
