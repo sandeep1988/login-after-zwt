@@ -320,8 +320,8 @@
             return false;
         });
 
-        // ajax for select followup Type on contact show page
-        jQuery('body').on('change', '#follow_type', function(e) {
+         // ajax for select followup Type on Case show page
+        jQuery('body').on('change','#follow_type, #activity_type', function(e) {
             var selectedValue = this.value;
             $.ajax({
                 url: '/followups',
@@ -330,7 +330,7 @@
                 data: {option : selectedValue},
                 success: function(response) {
                     $(".activity_container").html(response); 
-                    ComponentsFormTools.init();    
+                    ComponentsFormTools.init();  
                 },
                 error: function() {
                     alert('ajax error');

@@ -325,7 +325,7 @@
         });
 
         // ajax for select followup Type on contact show page
-        jQuery('body').on('change','#follow_type', function(e) {
+        jQuery('body').on('change','#follow_type, #activity_type', function(e) {
             var selectedValue = this.value;
             $.ajax({
                 url: '/followups',
