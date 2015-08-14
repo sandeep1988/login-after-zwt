@@ -28,7 +28,7 @@
                     <a href="/cases">Cases</a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
-                    <a href="/cases/details">Case title will display here with long text</a><i class="fa fa-circle"></i>
+                    <a href="/cases/details"><%= @case.v_title %></a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
                     Edit
@@ -54,7 +54,7 @@
                             </p>
                             <p>
                                 <strong>Contact Name </strong> <br>
-                                <strong><a target="_blank" href="/contacts/details"><%= Contact.find(@case.contact_id).first_name %> &nbsp;<%= Contact.find(@case.contact_id).last_name %></a></strong>
+                                <strong><a target="_blank" href="/contacts/<%= Contact.find(@case.contact_id).id %>/"><%= Contact.find(@case.contact_id).first_name %> &nbsp;<%= Contact.find(@case.contact_id).last_name %></a></strong>
                             </p>
                             <p>
                                 <strong>Compnay Name</strong> <br>
