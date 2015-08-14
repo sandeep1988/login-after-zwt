@@ -99,12 +99,7 @@
                                     <span class="caption-subject font-green-sharp bold uppercase"><span class="icon-briefcase" aria-hidden="false"></span> <%=@edit_contact.first_name %>&nbsp;&nbsp;<%=@edit_contact.last_name %></span>
                                 </div>                               
                                 <div class="btn-group key_resource pull-right">
-                                    <button data-toggle="dropdown" class="btn green-haze btn-responsive pull-right dropdown-toggle" data-hover="dropdown" aria-expanded="true">Key Resources <i class="fa fa-angle-down"></i></button>
-                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="/contacts/<%=@edit_contact.id %>/edit">Edit Contact</a>
-                                        </li>
-                                    </ul>
+                                    <a role="menuitem" tabindex="-1" href="/contacts/<%=@edit_contact.id %>/edit"><button class="btn green-haze btn-responsive pull-right dropdown-toggle" data-hover="dropdown" aria-expanded="true"><i class="fa fa-edit">&nbsp;</i>Edit Contact</button></a>                                    
                                 </div>
                             </div>
                             <div class="inbox p0">

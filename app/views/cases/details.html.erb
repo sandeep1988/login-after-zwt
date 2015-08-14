@@ -97,12 +97,7 @@
                                     <span class="caption-subject font-green-sharp bold uppercase"><span class="icon-briefcase" aria-hidden="false"></span> <%=@edit_case.v_title %>&nbsp;&nbsp;
                                 </div>                               
                                 <div class="btn-group key_resource pull-right">
-                                    <button data-toggle="dropdown" class="btn green-haze btn-responsive pull-right dropdown-toggle" data-hover="dropdown" aria-expanded="true">Key Resources <i class="fa fa-angle-down"></i></button>
-                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="/cases/<%=@edit_case.id %>/edit">Edit Case</a>
-                                        </li>
-                                    </ul>
+                                    <a role="menuitem" tabindex="-1" href="/cases/<%=@edit_case.id %>/edit"><button class="btn green-haze btn-responsive pull-right dropdown-toggle" data-hover="dropdown" aria-expanded="true"><i class="fa fa-edit">&nbsp;</i>Edit Case</button></a>                                    
                                 </div>
                             </div>
                             <div class="inbox p0">
