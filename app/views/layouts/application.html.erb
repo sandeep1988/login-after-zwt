@@ -84,13 +84,12 @@
                             <li class="droddown dropdown-separator">
                                 <span class="separator"></span>
                             </li>
-
                             <!-- END INBOX DROPDOWN -->
                             <!-- BEGIN USER LOGIN DROPDOWN -->
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="/img/avatar9.jpg">
-                                    <span class="username username-hide-mobile">Kavis Jash</span>
+                                    <span class="username username-hide-mobile"><%= current_user.v_firstname %>&nbsp;<%= current_user.v_lastname %> </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
@@ -155,15 +154,16 @@
                                 <a href="/cases" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="Cases Detail">Cases</a>
                                 </li>
                                 <% end %>
-
-                        <% if params[:controller] == "sales" && params[:action] != "dashboard" %>
-                            <li class="active">
-                                <a href="/sales" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="List of all sales people">Sales People</a>
-                            </li>
-                        <% else %>
-                            <li> 
-                                <a href="/sales" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="List of all sales people">Sales People</a>
-                            </li>
+                         <% if user_signed_in? && current_user.e_type? == false %>
+                            <% if params[:controller] == "sales" && params[:action] != "dashboard" %>
+                                <li class="active">
+                                    <a href="/sales" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="List of all sales people">Sales People</a>
+                                </li>
+                            <% else %>
+                                <li> 
+                                    <a href="/sales" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="List of all sales people">Sales People</a>
+                                </li>
+                            <% end %>
                         <% end %>
                         </ul>
                     </div>

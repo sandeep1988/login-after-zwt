@@ -4,10 +4,12 @@ class SalesController < ApplicationController
   skip_before_filter  :verify_authenticity_token
   layout "application"
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_user
+  before_filter :authorize_admin, :only => [:index, :show, :new, :create, :destroy]
+
   # GET /sales
   # GET /sales.json
   def index
-      @per_page = params[:per_page] || User.per_page || 1
+    @per_page = params[:per_page] || User.per_page || 1
       if  params[:e_status_user] == "active"
         @per_page = params[:per_page] || User.per_page || 10
         @sales = User.all.paginate( :per_page => @per_page, :page => params[:page])
@@ -244,4 +246,8 @@ private
     %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 
+  def authorize_admin
+    return unless !current_user.e_type? == false
+    redirect_to root_path, alert: 'Admins only!'
+  end
 end

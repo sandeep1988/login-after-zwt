@@ -17,7 +17,6 @@ var UIAlertDialogApi = function () {
             $('.user_delete').click(function(){
                 var user_ids = ($(this).attr("attr-delete"));
                 var full_url = location.protocol + "//" + location.host + user_ids
-                alert(full_url);
                 bootbox.confirm("Are you sure?", function(result) {
                     if (result == false ) {
                         var fail_url = location.protocol + "//" + location.host + "/sales"
