@@ -15,6 +15,7 @@ devise_for :users, controllers: { sessions: "sessions",
   # resources :sales, :except => [:show]
   get 'welcome/edit_user'
   get 'welcome/index'
+  post 'cases/download_followupcase'
   post '/search', to: 'sales#search'
   get '/search', to: 'sales#search'
   post '/welcome', to: 'sales#welcome'

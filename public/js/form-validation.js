@@ -269,9 +269,6 @@ var handleValidation10 = function() {
             rules: {
                 v_title: {
                     required: true
-                },  
-                v_desc: {
-                    required: true
                 },
                 v_reference_urls: {
                     required: true

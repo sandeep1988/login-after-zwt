@@ -71,7 +71,7 @@
                             </p>
                             <p>
                                 <strong>Files</strong> <br>
-                                <%#= link_to @case_file.filename, "", method: :get %>
+                                <%= link_to @edit_case.filename, case_path(@edit_case), method: :get %>
                             </p>
                             <p>
                                 <strong>Tags</strong> <br>
