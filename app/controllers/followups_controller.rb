@@ -33,14 +33,14 @@ class FollowupsController < ApplicationController
     @followup = Followup.new(followup_params)
     @followup.next_followed_up_by = params[:next_followed_up_by]
     if request.referer.include? "?cases"
-        @followup.case_id = Case.find_by_id(session[:case_id]).id
+        @followup.action_type = Case.find_by_id(session[:case_id]).id
         @followup.followed_up_by = Case.find_by_id(session[:case_id]).user.id
         @followup.e_status = "case"
         if @followup.save
-          redirect_to case_path(session[:case_id])
+          redirect_to cases_details_path(session[:case_id])
         end
     else 
-      @followup.contact_id = Contact.find_by_id(session[:contact_id]).id
+      @followup.action_type = Contact.find_by_id(session[:contact_id]).id
       @followup.followed_up_by = Contact.find_by_id(session[:contact_id]).user.id
       @contactid = Contact.find_by_id(session[:contact_id]).id
       @followup.e_status = "contact"
