@@ -13,27 +13,33 @@ class SalesController < ApplicationController
       if  params[:e_status_user] == "active"
         @per_page = params[:per_page] || User.per_page || 10
         @sales = User.all.paginate( :per_page => @per_page, :page => params[:page])
+        if !params[:sales_ids].nil?
           params[:sales_ids].each do |active_users| 
           user = User.find(active_users)
           user.update_column(:e_status, 1) 
         end
+      end
 
       elsif  params[:e_status_user] == "inactive"
         @per_page = params[:per_page] || User.per_page || 10
         @sales = User.all.paginate( :per_page => @per_page, :page => params[:page])
+        if !params[:sales_ids].nil?
           params[:sales_ids].each do |inactive_users| 
           user = User.find(inactive_users)
           user.update_column(:e_status, 0) 
       end
+    end
 
      elsif  params[:e_status_user] == "delete"
         @per_page = params[:per_page] || User.per_page || 10
         @sales = User.all.paginate( :per_page => @per_page, :page => params[:page])
+        if !params[:sales_ids].nil?
           params[:sales_ids].each do |delete_users| 
           user = User.find(delete_users)
            if user.destroy 
             redirect_to sales_path
           end
+        end
         end
 
      elsif !params[:v_firstname].blank? && !params[:email].blank? && !params[:v_phone].blank? && !params[:e_status].blank?

@@ -206,10 +206,10 @@
 <script src="/js/components-form-tools.js"></script>   
 <script>
     jQuery(document).ready(function() { 
-        Metronic.init();
         setTimeout(function(){
+            Metronic.init();
             ComponentsFormTools.init();
-        }, 200);
+        }, 50);
         jQuery('#submit_case').click(function(event) { 
             event.preventDefault();
             if (jQuery('#edit-cases-form').validate().form()) { 

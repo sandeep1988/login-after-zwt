@@ -10,12 +10,14 @@ class CasesController < ApplicationController
     if  params[:selection] =="delete"
         @per_page = params[:per_page] || Case.per_page || 10
         @cases = Case.all.paginate( :per_page => @per_page, :page => params[:page])
+         if !params[:cases_ids].nil?
           params[:cases_ids].each do |delete_cases| 
           cases = Case.find(delete_cases)
           if cases.destroy 
             redirect_to cases_path
           end
         end
+      end
       elsif params[:v_title] && params[:user_id].blank? && params[:contact_id].blank? && params[:v_reference_urls].blank? && params[:v_tags].blank? && params[:e_status].blank?
         @cases = Case.where("v_title like ?", "%#{params[:v_title]}%").paginate( :per_page => @per_page, :page => params[:page])
 
